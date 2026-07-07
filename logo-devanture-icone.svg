@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Version icône : auvent + vitrine, pour favicon et avatar -->
+  <rect width="120" height="120" rx="24" fill="#1E3A5F"/>
+  <g>
+    <rect x="18" y="34" width="84" height="12" rx="2" fill="#F6F1E9"/>
+    <path d="M18,46 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 Z" fill="#F6F1E9"/>
+    <rect x="24" y="62" width="4" height="32" rx="2" fill="#F6F1E9"/>
+    <rect x="92" y="62" width="4" height="32" rx="2" fill="#F6F1E9"/>
+    <rect x="18" y="94" width="84" height="4" rx="2" fill="#F6F1E9"/>
+  </g>
+</svg>

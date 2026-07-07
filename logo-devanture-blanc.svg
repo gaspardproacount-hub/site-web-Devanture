@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 140" width="460" height="140">
+  <!-- Aperçu sur fond bleu-nuit ; en usage réel, supprimer ce rect de fond -->
+  <rect width="460" height="140" fill="#1E3A5F"/>
+  <g>
+    <rect x="28" y="38" width="84" height="12" rx="2" fill="#F6F1E9"/>
+    <path d="M28,50 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 Z" fill="#F6F1E9"/>
+    <rect x="34" y="66" width="4" height="34" rx="2" fill="#F6F1E9"/>
+    <rect x="102" y="66" width="4" height="34" rx="2" fill="#F6F1E9"/>
+    <rect x="28" y="100" width="84" height="4" rx="2" fill="#F6F1E9"/>
+  </g>
+  <text x="140" y="76" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="42" font-weight="600" fill="#F6F1E9" letter-spacing="0.5">Devanture</text>
+  <text x="142" y="102" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#D9A98E" letter-spacing="2.5">SITES WEB POUR COMMERCES</text>
+</svg>
