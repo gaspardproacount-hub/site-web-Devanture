@@ -171,6 +171,51 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ---------- Formulaire de contact : envoi AJAX avec délai maîtrisé ----------
+  var contactForm = document.getElementById("contact-form");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var submitBtn = contactForm.querySelector('button[type="submit"]');
+      var statusEl = document.getElementById("form-status");
+      var formData = new FormData(contactForm);
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Envoi en cours...";
+      statusEl.className = "form-status";
+      statusEl.textContent = "";
+
+      var controller = new AbortController();
+      var timeoutId = setTimeout(function () {
+        controller.abort();
+      }, 15000);
+
+      fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+        signal: controller.signal,
+      })
+        .then(function (response) {
+          clearTimeout(timeoutId);
+          if (!response.ok) throw new Error("Réponse serveur invalide");
+          window.location.href = "merci.html";
+        })
+        .catch(function () {
+          clearTimeout(timeoutId);
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Envoyer ma demande";
+          statusEl.className = "form-status is-error";
+          statusEl.innerHTML =
+            "L'envoi a échoué (connexion trop lente ou service temporairement indisponible). " +
+            'Réessayez dans un instant, ou écrivez-moi directement à ' +
+            '<a href="mailto:gaspard.proacount@gmail.com">gaspard.proacount@gmail.com</a>.';
+        });
+    });
+  }
+
   // ---------- Année dans le footer ----------
   var yearEl = document.getElementById("current-year");
   if (yearEl) {
