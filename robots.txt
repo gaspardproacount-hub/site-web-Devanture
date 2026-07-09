@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# À personnaliser : remplacer le domaine par le nom de domaine définitif du site
-Sitemap: https://www.gaspardderville-webdesign.fr/sitemap.xml
+Sitemap: https://www.devanture-web.fr/sitemap.xml
