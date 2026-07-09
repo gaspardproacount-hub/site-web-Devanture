@@ -88,25 +88,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ---------- Lueur qui suit le curseur, sur toute la page ----------
-  var spotlight = document.querySelector(".global-spotlight");
+  // ---------- Hero : lueur qui suit le curseur ----------
+  var hero = document.querySelector(".hero");
+  var spotlight = hero ? hero.querySelector(".hero-spotlight") : null;
 
-  if (spotlight && !prefersReducedMotion) {
-    document.addEventListener("pointermove", function (e) {
-      var x = (e.clientX / window.innerWidth) * 100;
-      var y = (e.clientY / window.innerHeight) * 100;
+  if (hero && spotlight && !prefersReducedMotion) {
+    hero.addEventListener("pointermove", function (e) {
+      var rect = hero.getBoundingClientRect();
+      var x = ((e.clientX - rect.left) / rect.width) * 100;
+      var y = ((e.clientY - rect.top) / rect.height) * 100;
       spotlight.style.setProperty("--spot-x", x + "%");
       spotlight.style.setProperty("--spot-y", y + "%");
       spotlight.classList.add("is-active");
     });
 
-    document.documentElement.addEventListener("mouseleave", function () {
+    hero.addEventListener("pointerleave", function () {
       spotlight.classList.remove("is-active");
     });
   }
 
   // ---------- Hero : léger parallax au scroll ----------
-  var hero = document.querySelector(".hero");
   var heroContainer = hero ? hero.querySelector(".container") : null;
 
   if (hero && heroContainer && !prefersReducedMotion) {
@@ -148,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!entry.isIntersecting) return;
             priceObserver.unobserve(el);
 
-            var duration = 900;
+            var duration = 2600;
             var startTime = null;
 
             function step(timestamp) {

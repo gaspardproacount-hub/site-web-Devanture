@@ -43,30 +43,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Lueur qui suit le curseur, sur toute la page ---------- */
-.global-spotlight {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  background: radial-gradient(
-    600px circle at var(--spot-x, 50%) var(--spot-y, 30%),
-    color-mix(in srgb, var(--accent) 16%, transparent),
-    transparent 70%
-  );
-}
-
-.global-spotlight.is-active {
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .global-spotlight {
-    display: none;
-  }
-}
 
 img {
   max-width: 100%;
@@ -303,14 +279,41 @@ section {
 
 /* ---------- Hero ---------- */
 .hero {
+  position: relative;
+  overflow: hidden;
   padding: 88px 0 72px;
   border-bottom: 1px solid var(--neutre);
 }
 
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    480px circle at var(--spot-x, 50%) var(--spot-y, 30%),
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    transparent 70%
+  );
+}
+
+.hero-spotlight.is-active {
+  opacity: 1;
+}
+
 .hero .container {
+  position: relative;
+  z-index: 1;
   max-width: 760px;
   text-align: center;
   transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-spotlight {
+    display: none;
+  }
 }
 
 .hero-eyebrow {
@@ -359,6 +362,7 @@ section {
   display: block;
   background-color: var(--fond);
   border: 1px solid var(--neutre);
+  border-top: 3px solid var(--accent);
   border-radius: var(--radius);
   padding: 32px 24px;
   text-align: center;
@@ -584,6 +588,7 @@ section {
 .feature-card {
   background-color: var(--fond);
   border: 1px solid var(--neutre);
+  border-top: 3px solid var(--accent);
   border-radius: var(--radius);
   padding: 24px;
 }
@@ -604,6 +609,7 @@ section {
   margin: 0 auto;
   background-color: var(--fond);
   border: 1px solid var(--neutre);
+  border-top: 4px solid var(--accent);
   border-radius: var(--radius);
   padding: 40px;
   text-align: center;
