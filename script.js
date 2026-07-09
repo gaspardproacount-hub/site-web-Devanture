@@ -1,4 +1,4 @@
-// Gaspard Derville — Web designer à Toulouse
+// Devanture — Sites web pour commerces
 // JavaScript vanilla partagé par toutes les pages : menu mobile, FAQ, fade-in au scroll.
 
 document.addEventListener("DOMContentLoaded", function () {
