@@ -26,9 +26,6 @@
 
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Recommandé par FormSubmit.co pour éviter que les politiques de referrer strictes des navigateurs ne bloquent l'envoi cross-domaine -->
-  <meta name="referrer" content="origin">
-
   <!-- Fil d'Ariane structuré -->
   <script type="application/ld+json">
   {
@@ -85,18 +82,12 @@
                 <p class="muted">Décrivez-moi votre commerce, je reviens vers vous avec des conseils concrets et une estimation.</p>
 
                 <!--
-                  Envoi via l'API AJAX de FormSubmit.co (fetch en JS, cf script.js) plutôt
-                  qu'une soumission de formulaire classique : ça évite le rechargement complet
-                  de page et permet un délai maîtrisé (15s) avec un message d'erreur clair en
-                  cas de lenteur, au lieu de l'écran "délai de connexion dépassé" du navigateur.
-                  Aucun compte requis, mais la première soumission envoie un email de
-                  confirmation à activer une seule fois avant que les envois suivants
-                  arrivent automatiquement.
+                  Envoi via /api/contact.js, une fonction serverless Vercel qui reste sur le
+                  domaine devanture-web.fr (voir script.js). Contrairement à un service tiers
+                  type FormSubmit, elle n'est pas visée par les bloqueurs de pub qui bloquent
+                  fréquemment les formulaires pointant vers des domaines externes.
                 -->
-                <form action="https://formsubmit.co/ajax/gaspard.proacount@gmail.com" method="POST" id="contact-form">
-                  <input type="hidden" name="_subject" value="Nouvelle demande de contact — Devanture">
-                  <input type="hidden" name="_template" value="table">
-                  <input type="hidden" name="_captcha" value="false">
+                <form action="/api/contact" method="POST" id="contact-form">
                   <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                   <div class="form-group">
                     <label for="nom">Nom</label>

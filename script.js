@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       var submitBtn = contactForm.querySelector('button[type="submit"]');
       var statusEl = document.getElementById("form-status");
-      var formData = new FormData(contactForm);
+      var data = Object.fromEntries(new FormData(contactForm).entries());
 
       submitBtn.disabled = true;
       submitBtn.textContent = "Envoi en cours...";
@@ -194,8 +194,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       fetch(contactForm.action, {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
         signal: controller.signal,
       })
         .then(function (response) {
