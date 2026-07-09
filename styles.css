@@ -187,7 +187,7 @@ section {
 }
 
 .nav-logo img {
-  height: 68px;
+  height: 96px;
   width: auto;
 }
 
@@ -233,7 +233,7 @@ section {
 
 @media (max-width: 768px) {
   .nav-logo img {
-    height: 52px;
+    height: 72px;
   }
 
   .nav-toggle {
@@ -762,7 +762,7 @@ section {
 }
 
 .footer-logo img {
-  height: 48px;
+  height: 72px;
   width: auto;
   display: block;
 }
