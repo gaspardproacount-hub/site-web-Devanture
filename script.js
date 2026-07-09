@@ -88,26 +88,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ---------- Hero : lueur qui suit le curseur ----------
-  var hero = document.querySelector(".hero");
+  // ---------- Lueur qui suit le curseur, sur toute la page ----------
+  var spotlight = document.querySelector(".global-spotlight");
 
-  if (hero && !prefersReducedMotion) {
-    hero.addEventListener("pointerenter", function () {
-      hero.classList.add("is-spotlight-active");
+  if (spotlight && !prefersReducedMotion) {
+    document.addEventListener("pointermove", function (e) {
+      var x = (e.clientX / window.innerWidth) * 100;
+      var y = (e.clientY / window.innerHeight) * 100;
+      spotlight.style.setProperty("--spot-x", x + "%");
+      spotlight.style.setProperty("--spot-y", y + "%");
+      spotlight.classList.add("is-active");
     });
-    hero.addEventListener("pointerleave", function () {
-      hero.classList.remove("is-spotlight-active");
-    });
-    hero.addEventListener("pointermove", function (e) {
-      var rect = hero.getBoundingClientRect();
-      var x = ((e.clientX - rect.left) / rect.width) * 100;
-      var y = ((e.clientY - rect.top) / rect.height) * 100;
-      hero.style.setProperty("--spot-x", x + "%");
-      hero.style.setProperty("--spot-y", y + "%");
+
+    document.documentElement.addEventListener("mouseleave", function () {
+      spotlight.classList.remove("is-active");
     });
   }
 
   // ---------- Hero : léger parallax au scroll ----------
+  var hero = document.querySelector(".hero");
   var heroContainer = hero ? hero.querySelector(".container") : null;
 
   if (hero && heroContainer && !prefersReducedMotion) {
