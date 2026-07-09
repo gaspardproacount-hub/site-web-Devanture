@@ -52,10 +52,10 @@
       </button>
       <ul class="nav-links">
         <li><a href="index.html" class="is-active">Accueil</a></li>
-        <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
-        <li><a href="site-web-cafe.html">Café</a></li>
-        <li><a href="site-web-restaurant.html">Restaurant</a></li>
         <li><a href="site-web-boutique.html">Boutique</a></li>
+        <li><a href="site-web-restaurant.html">Restaurant</a></li>
+        <li><a href="site-web-cafe.html">Café</a></li>
+        <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -83,25 +83,25 @@
         <p class="section-intro fade-in">Chaque commerce a ses propres besoins. Choisissez votre activité pour découvrir une offre pensée spécifiquement pour vous.</p>
 
         <div class="card-grid">
-          <a href="site-web-boulangerie.html" class="metier-card fade-in">
-            <span class="metier-card-icon" aria-hidden="true">🥖</span>
-            <h3>Boulangerie</h3>
-            <p>Horaires, click &amp; collect et photos qui donnent envie.</p>
-          </a>
-          <a href="site-web-cafe.html" class="metier-card fade-in">
-            <span class="metier-card-icon" aria-hidden="true">☕</span>
-            <h3>Café</h3>
-            <p>Ambiance, carte à jour et avis clients mis en valeur.</p>
+          <a href="site-web-boutique.html" class="metier-card fade-in">
+            <span class="metier-card-icon" aria-hidden="true">🛍️</span>
+            <h3>Boutique</h3>
+            <p>Vitrine de vos produits et bonne visibilité locale.</p>
           </a>
           <a href="site-web-restaurant.html" class="metier-card fade-in">
             <span class="metier-card-icon" aria-hidden="true">🍽️</span>
             <h3>Restaurant</h3>
             <p>Menu lisible sur mobile et réservation simplifiée.</p>
           </a>
-          <a href="site-web-boutique.html" class="metier-card fade-in">
-            <span class="metier-card-icon" aria-hidden="true">🛍️</span>
-            <h3>Boutique</h3>
-            <p>Vitrine de vos produits et bonne visibilité locale.</p>
+          <a href="site-web-cafe.html" class="metier-card fade-in">
+            <span class="metier-card-icon" aria-hidden="true">☕</span>
+            <h3>Café</h3>
+            <p>Ambiance, carte à jour et avis clients mis en valeur.</p>
+          </a>
+          <a href="site-web-boulangerie.html" class="metier-card fade-in">
+            <span class="metier-card-icon" aria-hidden="true">🥖</span>
+            <h3>Boulangerie</h3>
+            <p>Horaires, click &amp; collect et photos qui donnent envie.</p>
           </a>
         </div>
       </div>
@@ -144,11 +144,23 @@
         <h2 class="section-title fade-in">Réalisations</h2>
         <p class="section-intro fade-in">Quelques exemples de projets réalisés pour des commerçants de proximité.</p>
 
+        <!--
+          Chaque vignette mène au site de démo du client correspondant : remplacer les
+          href [LIEN-DEMO-...] par l'URL réelle de chaque site une fois en ligne.
+        -->
         <div class="gallery-grid">
-          <div class="placeholder-img fade-in">Photo à venir — Site boulangerie</div>
-          <div class="placeholder-img fade-in">Photo à venir — Site café</div>
-          <div class="placeholder-img fade-in">Photo à venir — Site restaurant</div>
-          <div class="placeholder-img fade-in">Photo à venir — Site boutique</div>
+          <a href="[LIEN-DEMO-BOUTIQUE]" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
+            <div class="placeholder-img">Photo à venir — Site boutique</div>
+          </a>
+          <a href="[LIEN-DEMO-RESTAURANT]" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
+            <div class="placeholder-img">Photo à venir — Site restaurant</div>
+          </a>
+          <a href="[LIEN-DEMO-CAFE]" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
+            <div class="placeholder-img">Photo à venir — Site café</div>
+          </a>
+          <a href="[LIEN-DEMO-BOULANGERIE]" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
+            <div class="placeholder-img">Photo à venir — Site boulangerie</div>
+          </a>
         </div>
       </div>
     </section>
@@ -164,12 +176,15 @@
                 <p class="muted">Décrivez-moi votre commerce, je reviens vers vous avec des conseils concrets et une estimation.</p>
 
                 <!--
-                  Formulaire sans backend pour l'instant.
-                  Pour le rendre fonctionnel : créer un formulaire sur https://formspree.io
-                  puis remplacer l'attribut action par l'URL fournie, ex :
-                  action="https://formspree.io/f/VOTRE_ID" method="POST"
+                  Le formulaire s'envoie directement par email via mailto: (aucun compte
+                  ni service tiers requis) : la soumission ouvre le client mail du visiteur
+                  avec un brouillon pré-rempli à destination de gaspard.proacount@gmail.com.
+                  Limite à connaître : ça ne fonctionne que si le visiteur a un client mail
+                  configuré sur son appareil (peu fiable sur mobile). Pour un envoi silencieux
+                  et fiable depuis le serveur, remplacer par un service comme
+                  https://formspree.io ou https://formsubmit.co (action="https://formsubmit.co/gaspard.proacount@gmail.com").
                 -->
-                <form action="" method="POST">
+                <form action="mailto:gaspard.proacount@gmail.com" method="POST" enctype="text/plain">
                   <div class="form-group">
                     <label for="nom">Nom</label>
                     <input type="text" id="nom" name="nom" required>
@@ -201,7 +216,7 @@
               <div class="contact-info">
                 <h3>Coordonnées</h3>
                 <p>
-                  Email : <a href="mailto:[EMAIL]">[EMAIL]</a><br>
+                  Email : <a href="mailto:gaspard.proacount@gmail.com">gaspard.proacount@gmail.com</a><br>
                   <span class="contact-reply-note">Réponse sous 24h</span>
                 </p>
               </div>
@@ -222,10 +237,10 @@
         </div>
         <ul class="footer-links">
           <li><a href="index.html">Accueil</a></li>
-          <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
-          <li><a href="site-web-cafe.html">Café</a></li>
-          <li><a href="site-web-restaurant.html">Restaurant</a></li>
           <li><a href="site-web-boutique.html">Boutique</a></li>
+          <li><a href="site-web-restaurant.html">Restaurant</a></li>
+          <li><a href="site-web-cafe.html">Café</a></li>
+          <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>

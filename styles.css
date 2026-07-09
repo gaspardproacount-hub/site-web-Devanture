@@ -431,8 +431,25 @@ section {
   }
 }
 
+.gallery-item {
+  display: block;
+  border-radius: var(--radius);
+  transition: transform 0.15s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.gallery-item:hover .placeholder-img {
+  border-color: var(--accent);
+  opacity: 0.9;
+}
+
 .placeholder-img {
   background-color: var(--neutre);
+  border: 1px solid var(--neutre);
   border-radius: var(--radius);
   aspect-ratio: 4 / 3;
   display: flex;
@@ -443,6 +460,7 @@ section {
   font-size: 0.88rem;
   color: var(--texte);
   opacity: 0.7;
+  transition: border-color 0.15s ease, opacity 0.15s ease;
 }
 
 /* ---------- Problems / offer lists ---------- */

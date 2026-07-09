@@ -51,10 +51,10 @@
       </button>
       <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
-        <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
-        <li><a href="site-web-cafe.html">Café</a></li>
-        <li><a href="site-web-restaurant.html" class="is-active">Restaurant</a></li>
         <li><a href="site-web-boutique.html">Boutique</a></li>
+        <li><a href="site-web-restaurant.html" class="is-active">Restaurant</a></li>
+        <li><a href="site-web-cafe.html">Café</a></li>
+        <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -133,7 +133,7 @@
       <div class="container">
         <h2 class="section-title fade-in">Tarif</h2>
         <div class="pricing-card fade-in">
-          <p class="pricing-amount">À partir de [TARIF] € <span>/ projet</span></p>
+          <p class="pricing-amount">À partir de 890 € <span>/ projet</span></p>
           <p class="muted">Un tarif clair, sans surprise, pour un site clé en main.</p>
           <ul class="check-list">
             <li>Site vitrine complet (accueil, menu, réservation, contact)</li>
@@ -159,7 +159,7 @@
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>Comptez en général deux à trois semaines entre notre premier échange et la mise en ligne, selon la disponibilité de votre menu et de vos photos.</p>
+              <p>Comptez en général 2 à 3 jours entre notre premier échange et la mise en ligne, selon la disponibilité de votre menu et de vos photos.</p>
             </div>
           </div>
           <div class="faq-item">
@@ -209,17 +209,17 @@
       <div class="container">
         <h2 class="section-title fade-in" style="font-size:1.2rem;">Vous exercez un autre métier ?</h2>
         <div class="cross-links fade-in">
-          <a href="site-web-boulangerie.html" class="cross-link-card">
-            <strong>Boulangerie</strong>
-            Vous êtes plutôt boulanger ? Voir l'offre boulangerie
+          <a href="site-web-boutique.html" class="cross-link-card">
+            <strong>Boutique</strong>
+            Vous tenez une boutique ? Voir l'offre boutique
           </a>
           <a href="site-web-cafe.html" class="cross-link-card">
             <strong>Café</strong>
             Vous êtes plutôt tenancier de café ? Voir l'offre café
           </a>
-          <a href="site-web-boutique.html" class="cross-link-card">
-            <strong>Boutique</strong>
-            Vous tenez une boutique ? Voir l'offre boutique
+          <a href="site-web-boulangerie.html" class="cross-link-card">
+            <strong>Boulangerie</strong>
+            Vous êtes plutôt boulanger ? Voir l'offre boulangerie
           </a>
         </div>
       </div>
@@ -236,12 +236,15 @@
                 <p class="muted">Décrivez-moi votre établissement, je reviens vers vous avec des conseils concrets et une estimation.</p>
 
                 <!--
-                  Formulaire sans backend pour l'instant.
-                  Pour le rendre fonctionnel : créer un formulaire sur https://formspree.io
-                  puis remplacer l'attribut action par l'URL fournie, ex :
-                  action="https://formspree.io/f/VOTRE_ID" method="POST"
+                  Le formulaire s'envoie directement par email via mailto: (aucun compte
+                  ni service tiers requis) : la soumission ouvre le client mail du visiteur
+                  avec un brouillon pré-rempli à destination de gaspard.proacount@gmail.com.
+                  Limite à connaître : ça ne fonctionne que si le visiteur a un client mail
+                  configuré sur son appareil (peu fiable sur mobile). Pour un envoi silencieux
+                  et fiable depuis le serveur, remplacer par un service comme
+                  https://formspree.io ou https://formsubmit.co (action="https://formsubmit.co/gaspard.proacount@gmail.com").
                 -->
-                <form action="" method="POST">
+                <form action="mailto:gaspard.proacount@gmail.com" method="POST" enctype="text/plain">
                   <div class="form-group">
                     <label for="nom">Nom</label>
                     <input type="text" id="nom" name="nom" required>
@@ -272,7 +275,7 @@
               <div class="contact-info">
                 <h3>Coordonnées</h3>
                 <p>
-                  Email : <a href="mailto:[EMAIL]">[EMAIL]</a><br>
+                  Email : <a href="mailto:gaspard.proacount@gmail.com">gaspard.proacount@gmail.com</a><br>
                   <span class="contact-reply-note">Réponse sous 24h</span>
                 </p>
               </div>
@@ -293,10 +296,10 @@
         </div>
         <ul class="footer-links">
           <li><a href="index.html">Accueil</a></li>
-          <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
-          <li><a href="site-web-cafe.html">Café</a></li>
-          <li><a href="site-web-restaurant.html">Restaurant</a></li>
           <li><a href="site-web-boutique.html">Boutique</a></li>
+          <li><a href="site-web-restaurant.html">Restaurant</a></li>
+          <li><a href="site-web-cafe.html">Café</a></li>
+          <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
