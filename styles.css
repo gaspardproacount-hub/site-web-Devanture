@@ -761,24 +761,15 @@ section {
   font-size: 0.9rem;
 }
 
-.footer-brand {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--fond);
-}
-
-.footer-tagline {
+.footer-logo img {
+  height: 32px;
+  width: auto;
   display: block;
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.85rem;
-  opacity: 0.75;
-  margin-top: 2px;
 }
 
 .footer-grid {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 24px;

@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 140" width="460" height="140">
-  <!-- Aperçu sur fond bleu-nuit ; en usage réel, supprimer ce rect de fond -->
-  <rect width="460" height="140" fill="#1E3A5F"/>
+  <!-- Fond transparent — logo pour fond sombre (footer bleu-nuit) -->
   <g>
     <rect x="28" y="38" width="84" height="12" rx="2" fill="#F6F1E9"/>
     <path d="M28,50 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 Z" fill="#F6F1E9"/>
