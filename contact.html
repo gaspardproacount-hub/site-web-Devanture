@@ -83,15 +83,19 @@
                 <p class="muted">Décrivez-moi votre commerce, je reviens vers vous avec des conseils concrets et une estimation.</p>
 
                 <!--
-                  Le formulaire s'envoie directement par email via mailto: (aucun compte
-                  ni service tiers requis) : la soumission ouvre le client mail du visiteur
-                  avec un brouillon pré-rempli à destination de gaspard.proacount@gmail.com.
-                  Limite à connaître : ça ne fonctionne que si le visiteur a un client mail
-                  configuré sur son appareil (peu fiable sur mobile). Pour un envoi silencieux
-                  et fiable depuis le serveur, remplacer par un service comme
-                  https://formspree.io ou https://formsubmit.co (action="https://formsubmit.co/gaspard.proacount@gmail.com").
+                  Envoi via FormSubmit.co : POST silencieux et fiable côté serveur
+                  vers gaspard.proacount@gmail.com, sans ouvrir de client mail (contrairement
+                  à mailto:, peu fiable sur mobile et perçu comme non sécurisé par le
+                  navigateur). Aucun compte requis, mais la première soumission envoie un
+                  email de confirmation à activer une seule fois avant que les envois suivants
+                  arrivent automatiquement.
                 -->
-                <form action="mailto:gaspard.proacount@gmail.com" method="POST" enctype="text/plain">
+                <form action="https://formsubmit.co/gaspard.proacount@gmail.com" method="POST">
+                  <input type="hidden" name="_subject" value="Nouvelle demande de contact — Devanture">
+                  <input type="hidden" name="_template" value="table">
+                  <input type="hidden" name="_captcha" value="false">
+                  <input type="hidden" name="_next" value="https://www.devanture-web.fr/merci.html">
+                  <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                   <div class="form-group">
                     <label for="nom">Nom</label>
                     <input type="text" id="nom" name="nom" required>
