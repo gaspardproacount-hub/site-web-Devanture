@@ -51,6 +51,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------- Reveal en cascade : délai progressif par grille ----------
+  document.querySelectorAll(".card-grid, .feature-grid, .steps, .gallery-grid, .cross-links").forEach(function (grid) {
+    Array.prototype.forEach.call(grid.children, function (child, index) {
+      if (child.classList.contains("fade-in")) {
+        child.style.transitionDelay = index * 80 + "ms";
+      }
+    });
+  });
+
   // ---------- Fade-in discret au scroll ----------
   var fadeEls = document.querySelectorAll(".fade-in");
 
@@ -74,6 +85,89 @@ document.addEventListener("DOMContentLoaded", function () {
     // Navigateur sans support : on affiche directement le contenu
     fadeEls.forEach(function (el) {
       el.classList.add("is-visible");
+    });
+  }
+
+  // ---------- Hero : lueur qui suit le curseur ----------
+  var hero = document.querySelector(".hero");
+
+  if (hero && !prefersReducedMotion) {
+    hero.addEventListener("pointerenter", function () {
+      hero.classList.add("is-spotlight-active");
+    });
+    hero.addEventListener("pointerleave", function () {
+      hero.classList.remove("is-spotlight-active");
+    });
+    hero.addEventListener("pointermove", function (e) {
+      var rect = hero.getBoundingClientRect();
+      var x = ((e.clientX - rect.left) / rect.width) * 100;
+      var y = ((e.clientY - rect.top) / rect.height) * 100;
+      hero.style.setProperty("--spot-x", x + "%");
+      hero.style.setProperty("--spot-y", y + "%");
+    });
+  }
+
+  // ---------- Hero : léger parallax au scroll ----------
+  var heroContainer = hero ? hero.querySelector(".container") : null;
+
+  if (hero && heroContainer && !prefersReducedMotion) {
+    var parallaxTicking = false;
+
+    function applyHeroParallax() {
+      var heroHeight = hero.offsetHeight;
+      var progress = Math.min(Math.max(window.scrollY / heroHeight, 0), 1);
+      heroContainer.style.transform = "translateY(" + progress * -30 + "px)";
+      heroContainer.style.opacity = 1 - progress * 0.4;
+      parallaxTicking = false;
+    }
+
+    window.addEventListener("scroll", function () {
+      if (!parallaxTicking) {
+        window.requestAnimationFrame(applyHeroParallax);
+        parallaxTicking = true;
+      }
+    });
+
+    applyHeroParallax();
+  }
+
+  // ---------- Compteur animé du tarif ----------
+  var priceEls = document.querySelectorAll(".price-value");
+
+  if (priceEls.length) {
+    priceEls.forEach(function (el) {
+      var target = parseInt(el.dataset.target, 10) || 0;
+
+      if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+        el.textContent = target;
+        return;
+      }
+
+      var priceObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            priceObserver.unobserve(el);
+
+            var duration = 900;
+            var startTime = null;
+
+            function step(timestamp) {
+              if (startTime === null) startTime = timestamp;
+              var elapsed = timestamp - startTime;
+              var progress = Math.min(elapsed / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 3);
+              el.textContent = Math.round(eased * target);
+              if (progress < 1) window.requestAnimationFrame(step);
+            }
+
+            window.requestAnimationFrame(step);
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      priceObserver.observe(el);
     });
   }
 
