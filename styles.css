@@ -351,6 +351,9 @@ section {
 /* ---------- Hero vidéo (accueil uniquement) ---------- */
 .hero-video {
   overflow: hidden;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
 }
 
 .hero-video .hero-spotlight {
@@ -367,7 +370,7 @@ section {
 .hero-video-bg video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
@@ -377,8 +380,8 @@ section {
   z-index: 1;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--accent) 78%, black) 0%,
-    color-mix(in srgb, var(--accent) 42%, transparent) 55%,
+    color-mix(in srgb, var(--accent) 38%, black) 0%,
+    color-mix(in srgb, var(--accent) 8%, transparent) 55%,
     var(--fond) 100%
   );
 }
@@ -386,6 +389,7 @@ section {
 .hero-video h1,
 .hero-video .hero-subtitle {
   color: var(--fond);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
 }
 
 .hero-video .btn-secondary {
