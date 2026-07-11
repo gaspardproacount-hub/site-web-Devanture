@@ -11,7 +11,7 @@
     <rect x="28" y="100" width="84" height="4" rx="2" fill="#1E3A5F"/>
   </g>
   <!-- Nom -->
-  <text x="140" y="76" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="42" font-weight="600" fill="#21201C" letter-spacing="0.5">Devanture</text>
+  <text x="140" y="76" font-family="Space Grotesk, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="42" font-weight="600" fill="#21201C" letter-spacing="0.5">Devanture</text>
   <!-- Tagline -->
   <text x="142" y="102" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#B96A45" letter-spacing="2.5">SITES WEB POUR COMMERCES</text>
 </svg>

@@ -5,15 +5,14 @@
    ========================================================================== */
 
 :root {
-  --fond: #F6F1E9;
-  --texte: #21201C;
+  --fond: #FAFAF8;
+  --texte: #1C1D20;
   --accent: #1E3A5F;
   --accent-hover: #182E4C; /* hover des boutons : bleu légèrement assombri */
-  --accent-2: #B96A45; /* terracotta : sur-titres, hover de liens, soulignés décoratifs, petites icônes */
-  --accent-2-text: #9D5A3A; /* variante assombrie de l'accent 2, garantit un contraste AA quand il porte du texte */
-  --neutre: #E6DFD3;
+  --accent-soft: #3A5670; /* variante claire de l'accent, seule teinte utilisée pour les touches décoratives */
+  --neutre: #E7E7E3;
 
-  --font-heading: "Fraunces", Georgia, serif;
+  --font-heading: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --content-max: 1100px;
@@ -58,7 +57,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-2-text);
+  color: var(--accent-soft);
   text-decoration: underline;
 }
 
@@ -113,7 +112,7 @@ section {
   width: 48px;
   height: 3px;
   margin: 14px auto 0;
-  background-color: var(--accent-2);
+  background-color: var(--accent-soft);
   border-radius: 2px;
 }
 
@@ -235,7 +234,7 @@ section {
 }
 
 .nav-links a:hover {
-  color: var(--accent-2-text);
+  color: var(--accent-soft);
 }
 
 .nav-links a.is-active {
@@ -327,7 +326,7 @@ section {
 
 .hero-eyebrow {
   display: inline-block;
-  color: var(--accent-2-text);
+  color: var(--accent-soft);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -369,19 +368,16 @@ section {
 
 .metier-card {
   display: block;
-  background-color: var(--fond);
-  border: 1px solid var(--neutre);
-  border-top: 3px solid var(--accent);
+  background-color: color-mix(in srgb, var(--accent) 4%, var(--fond));
   border-radius: var(--radius);
   padding: 32px 24px;
   text-align: center;
-  box-shadow: var(--shadow-subtle);
-  transition: border-color 0.15s ease, transform 0.15s var(--ease-out);
+  transition: background-color 0.15s ease, transform 0.15s var(--ease-out);
   color: var(--texte);
 }
 
 .metier-card:hover {
-  border-color: var(--accent);
+  background-color: color-mix(in srgb, var(--accent) 9%, var(--fond));
   transform: translateY(-2px);
   text-decoration: none;
 }
@@ -395,7 +391,7 @@ section {
   height: 56px;
   margin: 0 auto 18px;
   border-radius: 50%;
-  background-color: var(--neutre);
+  background-color: color-mix(in srgb, var(--accent) 14%, var(--fond));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -603,9 +599,7 @@ section {
 }
 
 .feature-card {
-  background-color: var(--fond);
-  border: 1px solid var(--neutre);
-  border-top: 3px solid var(--accent);
+  background-color: color-mix(in srgb, var(--accent) 4%, var(--fond));
   border-radius: var(--radius);
   padding: 24px;
 }
@@ -624,9 +618,7 @@ section {
 .pricing-card {
   max-width: 520px;
   margin: 0 auto;
-  background-color: var(--fond);
-  border: 1px solid var(--neutre);
-  border-top: 4px solid var(--accent);
+  background-color: color-mix(in srgb, var(--accent) 5%, var(--fond));
   border-radius: var(--radius);
   padding: 40px;
   text-align: center;
@@ -678,7 +670,7 @@ section {
 .faq-icon {
   flex-shrink: 0;
   font-size: 1.2rem;
-  color: var(--accent-2-text);
+  color: var(--accent-soft);
   transition: transform 0.2s var(--ease-in-out);
 }
 
@@ -740,18 +732,17 @@ section {
 
 .cross-link-card {
   display: block;
-  border: 1px solid var(--neutre);
   border-radius: var(--radius);
   padding: 20px;
   text-align: center;
   font-size: 0.92rem;
   color: var(--texte);
-  background-color: var(--fond);
-  transition: border-color 0.15s ease, transform 0.15s var(--ease-out);
+  background-color: color-mix(in srgb, var(--accent) 4%, var(--fond));
+  transition: background-color 0.15s ease, transform 0.15s var(--ease-out);
 }
 
 .cross-link-card:hover {
-  border-color: var(--accent);
+  background-color: color-mix(in srgb, var(--accent) 9%, var(--fond));
   text-decoration: none;
 }
 
