@@ -108,134 +108,6 @@
   }
 }
 
-/* ---------- Formes décoratives ----------
-   Blobs et cercles en aplat de couleur, purement CSS (border-radius
-   asymétrique), posés derrière le contenu de chaque section. */
-.mv-shape {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.mv-shape-blob {
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-}
-
-.mv-shape-circle {
-  border-radius: 50%;
-}
-
-.mv-shape-ring {
-  border-radius: 50%;
-  background: transparent !important;
-  border-style: solid;
-}
-
-/* Hero */
-.mv-hero-shape-1 {
-  width: 220px;
-  height: 220px;
-  top: -60px;
-  left: -80px;
-  background-color: var(--mv-accent-3);
-  opacity: 0.55;
-}
-
-.mv-hero-shape-2 {
-  width: 90px;
-  height: 90px;
-  bottom: 10%;
-  left: 8%;
-  border-width: 10px;
-  border-color: var(--accent-2);
-  opacity: 0.7;
-}
-
-.mv-hero-shape-3 {
-  width: 46px;
-  height: 46px;
-  top: 12%;
-  right: 6%;
-  background-color: var(--accent);
-  opacity: 0.5;
-}
-
-/* Notre histoire */
-.mv-story-shape-1 {
-  width: 160px;
-  height: 160px;
-  top: -40px;
-  right: -50px;
-  background-color: var(--mv-accent-4);
-  opacity: 0.28;
-}
-
-.mv-story-shape-2 {
-  width: 56px;
-  height: 56px;
-  bottom: -10px;
-  left: 42%;
-  background-color: var(--mv-accent-3);
-  opacity: 0.6;
-}
-
-/* Onglets */
-.mv-tabs-shape-1 {
-  width: 130px;
-  height: 130px;
-  top: -30px;
-  right: 12%;
-  border-width: 12px;
-  border-color: var(--mv-accent-3);
-  opacity: 0.6;
-}
-
-/* Bento */
-.mv-bento-shape-1 {
-  width: 120px;
-  height: 120px;
-  bottom: -30px;
-  right: 30%;
-  background-color: var(--accent);
-  opacity: 0.35;
-}
-
-/* Grille collection */
-.mv-collection-shape-1 {
-  width: 100px;
-  height: 100px;
-  top: -20px;
-  left: 20px;
-  background-color: var(--mv-accent-4);
-  opacity: 0.4;
-}
-
-.mv-collection-shape-2 {
-  width: 60px;
-  height: 60px;
-  top: 40px;
-  right: 6%;
-  border-width: 8px;
-  border-color: var(--accent);
-  opacity: 0.6;
-}
-
-/* Contact */
-.mv-contact-shape-1 {
-  width: 110px;
-  height: 110px;
-  top: -30px;
-  right: -30px;
-  background-color: var(--accent-2);
-  opacity: 0.25;
-}
-
-@media (max-width: 768px) {
-  .mv-shape {
-    transform: scale(0.7);
-  }
-}
-
 /* ---------- Hero fractionné (accueil) : bloc de couleur plein cadre ---------- */
 .mv-hero-block {
   background-color: var(--accent-2);
@@ -356,12 +228,10 @@
   margin-left: 0;
 }
 
-.mv-carousel-intro {
+.mv-carousel-section .mv-script {
   position: relative;
   z-index: 1;
   color: var(--fond);
-  opacity: 0.85;
-  max-width: 46ch;
 }
 
 .mv-carousel {
@@ -836,6 +706,10 @@
 .mv-banner .hero-eyebrow {
   color: var(--mv-accent-3);
   opacity: 1;
+}
+
+.mv-banner .mv-script {
+  color: var(--fond);
 }
 
 /* ---------- Contact (page infos pratiques) ---------- */
