@@ -180,6 +180,11 @@ section {
   border-bottom: 1px solid var(--neutre);
 }
 
+.site-header-video {
+  background: linear-gradient(180deg, var(--fond) 0%, color-mix(in srgb, var(--accent) 30%, var(--fond)) 100%);
+  border-bottom: none;
+}
+
 .nav {
   display: flex;
   align-items: center;
