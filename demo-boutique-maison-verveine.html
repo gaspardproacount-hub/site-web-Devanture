@@ -13,7 +13,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="boutique-maison-verveine.css">
@@ -21,13 +21,15 @@
   <!-- Palette et typographie propres à cette page de démo : surcharge des variables partagées -->
   <style>
     :root {
-      --fond: #F4F1E8;
-      --texte: #26261F;
-      --accent: #3F5138;
-      --accent-hover: #313F2B;
-      --accent-soft: #6B7A5E;
-      --accent-2: #C1662E;
-      --neutre: #E8E3D3;
+      --fond: #F8F7EE;
+      --texte: #16281C;
+      --accent: #1E8449;
+      --accent-hover: #166636;
+      --accent-soft: #9BAE8D;
+      --accent-2: #1B3A2B;
+      --neutre: #E4E8D5;
+      --mv-accent-3: #C9D96B;
+      --mv-accent-4: #5A6B45;
       --font-heading: "Playfair Display", Georgia, serif;
       --font-body: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -55,18 +57,20 @@
 
   <main>
 
-    <!-- Hero fractionné : texte + photo pleine hauteur de la façade -->
-    <section class="hero mv-hero">
+    <!-- Hero : bloc de couleur plein cadre, grand mot en fond, accroche manuscrite -->
+    <section class="hero mv-hero mv-hero-block">
       <div class="hero-spotlight" aria-hidden="true"></div>
+      <span class="mv-giant-word" aria-hidden="true">VERVEINE</span>
       <div class="container">
         <div class="mv-hero-grid">
           <div class="mv-hero-copy">
-            <span class="hero-eyebrow">Concept-boutique · Bordeaux</span>
-            <h1>Des pièces choisies avec soin, pour un style qui vous ressemble</h1>
-            <p class="hero-subtitle">Maison Verveine réunit vêtements, accessoires et petits objets choisis pour leur qualité et leur caractère.</p>
-            <div class="hero-actions">
-              <a href="demo-boutique-maison-verveine-collection.html" class="btn btn-primary">Découvrir la collection</a>
-              <a href="demo-boutique-maison-verveine-infos.html" class="btn btn-secondary">Nous trouver</a>
+            <span class="hero-eyebrow gsap-reveal">Concept-boutique · Bordeaux</span>
+            <h1 class="gsap-reveal">Des pièces choisies avec soin</h1>
+            <p class="mv-script gsap-reveal">pour un style qui vous ressemble.</p>
+            <p class="hero-subtitle gsap-reveal">Maison Verveine réunit vêtements, accessoires et petits objets choisis pour leur qualité et leur caractère.</p>
+            <div class="hero-actions gsap-reveal">
+              <a href="demo-boutique-maison-verveine-collection.html" class="btn btn-primary mv-btn-pill">Découvrir la collection</a>
+              <a href="demo-boutique-maison-verveine-infos.html" class="btn btn-secondary mv-btn-pill mv-btn-outline-light">Nous trouver</a>
             </div>
           </div>
           <div class="mv-hero-media fade-in mv-photo-reveal">
@@ -77,47 +81,83 @@
       </div>
     </section>
 
+    <!-- Barre de progression de scroll -->
+    <div class="mv-scroll-progress" aria-hidden="true"><div class="mv-scroll-progress-fill" id="mv-scroll-fill"></div></div>
+
+    <!-- Notre histoire -->
+    <section class="mv-story">
+      <div class="container">
+        <div class="two-col">
+          <div class="gsap-reveal-group">
+            <h2 class="section-title mv-title gsap-reveal-item">Notre histoire</h2>
+            <p class="muted gsap-reveal-item">Ouverte en 2019 dans le quartier des Chartrons, Maison Verveine est née d'une envie simple : proposer une boutique où chaque pièce a été choisie une à une, plutôt qu'empilée par centaines.</p>
+            <p class="muted gsap-reveal-item">Ici, pas de grandes collections anonymes : des petites marques françaises et européennes, des matières qui vieillissent bien, et des conseils sincères pour trouver la pièce qui vous correspond vraiment.</p>
+          </div>
+          <ul class="check-list gsap-reveal-group">
+            <li class="gsap-reveal-item">Sélection resserrée, renouvelée chaque saison</li>
+            <li class="gsap-reveal-item">Petites marques françaises et européennes</li>
+            <li class="gsap-reveal-item">Conseil personnalisé, sans pression d'achat</li>
+            <li class="gsap-reveal-item">Retouches sur mesure proposées en boutique</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rupture visuelle : image plein cadre entre deux blocs de texte -->
+    <section class="mv-break">
+      <div class="mv-break-media mv-parallax">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine" loading="lazy">
+      </div>
+    </section>
+
     <!-- Bandeau citation plein cadre -->
     <section class="mv-quote-band">
-      <div class="mv-quote-media fade-in mv-photo-reveal">
+      <div class="mv-quote-media mv-parallax">
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155712_9a498069-23ac-4db0-8320-9ffef2c8cbb9.png" alt="Intérieur de la boutique Maison Verveine, espace prêt-à-porter" loading="lazy">
       </div>
       <div class="container">
-        <blockquote class="mv-quote fade-in">
+        <blockquote class="mv-quote gsap-reveal">
           <p>Chaque pièce est choisie une à une, plutôt qu'empilée par centaines.</p>
           <cite>— Camille, fondatrice de Maison Verveine</cite>
         </blockquote>
       </div>
     </section>
 
-    <!-- Notre histoire -->
-    <section>
+    <!-- Cartes boutique en tilt 3D -->
+    <section class="mv-tilt-section">
       <div class="container">
-        <div class="two-col">
-          <div class="fade-in">
-            <h2 class="section-title" style="text-align:left;">Notre histoire</h2>
-            <p class="muted">Ouverte en 2019 dans le quartier des Chartrons, Maison Verveine est née d'une envie simple : proposer une boutique où chaque pièce a été choisie une à une, plutôt qu'empilée par centaines.</p>
-            <p class="muted">Ici, pas de grandes collections anonymes : des petites marques françaises et européennes, des matières qui vieillissent bien, et des conseils sincères pour trouver la pièce qui vous correspond vraiment.</p>
+        <h2 class="section-title mv-title gsap-reveal">Dans la boutique</h2>
+        <p class="mv-script gsap-reveal">pour un style qui vous ressemble.</p>
+        <div class="mv-tilt-grid gsap-reveal-group">
+          <div class="mv-tilt-card gsap-reveal-item">
+            <img class="mv-obj-right" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155727_79e0b918-ea68-4223-bb80-2a931a1e7d5b.png" alt="Façade de Maison Verveine" loading="lazy">
+            <span class="mv-tilt-card-label">Façade</span>
           </div>
-          <ul class="check-list fade-in">
-            <li>Sélection resserrée, renouvelée chaque saison</li>
-            <li>Petites marques françaises et européennes</li>
-            <li>Conseil personnalisé, sans pression d'achat</li>
-            <li>Retouches sur mesure proposées en boutique</li>
-          </ul>
+          <div class="mv-tilt-card gsap-reveal-item">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155712_9a498069-23ac-4db0-8320-9ffef2c8cbb9.png" alt="Espace prêt-à-porter de Maison Verveine" loading="lazy">
+            <span class="mv-tilt-card-label">Prêt-à-porter</span>
+          </div>
+          <div class="mv-tilt-card gsap-reveal-item">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155654_46138bc7-1bb4-4596-82cf-7d70f78fd795.png" alt="Comptoir d'accessoires de Maison Verveine" loading="lazy">
+            <span class="mv-tilt-card-label">Accessoires</span>
+          </div>
+          <div class="mv-tilt-card gsap-reveal-item">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine" loading="lazy">
+            <span class="mv-tilt-card-label">Vitrine</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Explorer le site -->
-    <section class="section-alt">
+    <section class="mv-bento-section">
       <div class="container">
-        <div class="mv-bento fade-in">
-          <a href="demo-boutique-maison-verveine-collection.html" class="mv-bento-tile mv-bento-tile--image">
+        <div class="mv-bento gsap-reveal-group">
+          <a href="demo-boutique-maison-verveine-collection.html" class="mv-bento-tile mv-bento-tile--image gsap-reveal-item">
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine" loading="lazy">
             <span class="mv-bento-tile-label">Collection<small>Prêt-à-porter, accessoires et petite maroquinerie</small></span>
           </a>
-          <a href="demo-boutique-maison-verveine-infos.html" class="mv-bento-tile mv-bento-tile--solid">
+          <a href="demo-boutique-maison-verveine-infos.html" class="mv-bento-tile mv-bento-tile--solid gsap-reveal-item">
             <span class="mv-bento-tile-label">Infos pratiques<small>Horaires, adresse et contact</small></span>
           </a>
         </div>
@@ -141,5 +181,11 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- Smooth scroll + animations pilotées par le scroll, communes aux 3 pages -->
+  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="boutique-maison-verveine.js"></script>
 </body>
 </html>

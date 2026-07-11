@@ -4,6 +4,123 @@
    les autres démos (Fournil Doré, Le Basilic) restent inchangées.
    ========================================================================== */
 
+:root {
+  --mv-accent-3: #C9D96B; /* vert matcha */
+  --mv-accent-4: #5A6B45; /* vert brut / olive */
+  --font-display: "Baloo 2", "Outfit", sans-serif; /* logo + grands mots de fond */
+  --font-script: "Caveat", cursive; /* accroche manuscrite */
+}
+
+/* ---------- Logo & wordmark : police ronde et affirmée ---------- */
+.nav-logo,
+.demo-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* ---------- Espacement des lettres : nav, boutons, rendu plus raffiné ---------- */
+.nav-links a {
+  letter-spacing: 0.03em;
+}
+
+.btn {
+  letter-spacing: 0.05em;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+    transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--texte) 22%, transparent);
+}
+
+.mv-btn-outline-light:hover {
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--texte) 35%, transparent);
+}
+
+/* ---------- Titres de section asymétriques ---------- */
+.mv-title {
+  text-align: left;
+  max-width: 18ch;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.mv-title::after {
+  margin-left: 0;
+}
+
+/* ---------- Barre de progression de scroll (coin droit) ---------- */
+.mv-scroll-progress {
+  position: fixed;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 120px;
+  border-radius: 3px;
+  background-color: color-mix(in srgb, var(--texte) 12%, transparent);
+  z-index: 200;
+  overflow: hidden;
+}
+
+.mv-scroll-progress-fill {
+  width: 100%;
+  height: 0%;
+  background-color: var(--accent);
+  border-radius: 3px;
+  transition: height 0.1s linear;
+}
+
+@media (max-width: 768px) {
+  .mv-scroll-progress {
+    display: none;
+  }
+}
+
+/* ---------- Boutons pilule ---------- */
+.mv-btn-pill {
+  border-radius: 999px;
+}
+
+.mv-btn-outline-light {
+  border-color: var(--fond);
+  color: var(--fond);
+}
+
+.mv-btn-outline-light:hover {
+  background-color: var(--fond);
+  color: var(--accent-2);
+}
+
+/* ---------- Grand mot en fond, ton-sur-ton ---------- */
+.mv-giant-word {
+  position: absolute;
+  top: 50%;
+  left: -3%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(6rem, 16vw, 15rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- Accroche manuscrite ---------- */
+.mv-script {
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 1.6vw + 1.3rem, 2.4rem);
+  line-height: 1.3;
+  padding-bottom: 6px;
+  margin: -6px 0 18px;
+}
+
 /* ---------- Aide au reveal photo : zoom lent au scroll ----------
    Se branche sur .fade-in / .is-visible déjà géré par script.js,
    aucune JS supplémentaire nécessaire. */
@@ -23,8 +140,44 @@
   }
 }
 
-/* ---------- Hero fractionné (accueil) ---------- */
+/* ---------- Hero fractionné (accueil) : bloc de couleur plein cadre ---------- */
+.mv-hero-block {
+  background-color: var(--accent-2);
+  overflow: hidden;
+}
+
+.mv-hero-block .hero-spotlight {
+  display: none;
+}
+
+.mv-hero-block .mv-giant-word {
+  color: color-mix(in srgb, var(--fond) 16%, var(--accent-2));
+}
+
+.mv-hero-copy .hero-eyebrow {
+  color: var(--mv-accent-3);
+}
+
+.mv-hero-copy h1 {
+  color: var(--fond);
+  font-size: clamp(2.8rem, 3vw + 2.2rem, 5rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  max-width: 11ch;
+}
+
+.mv-hero-copy .hero-subtitle {
+  color: var(--fond);
+  opacity: 0.92;
+}
+
+.mv-hero-copy .mv-script {
+  color: var(--fond);
+}
+
 .mv-hero-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.05fr 1fr;
   align-items: center;
@@ -40,12 +193,15 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: var(--radius);
+  border: 4px solid var(--fond);
+  box-shadow: 0 0 0 3px var(--accent);
 }
 
 .mv-hero-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 75% 30%;
 }
 
 .mv-signage {
@@ -86,6 +242,112 @@
   text-align: left;
 }
 
+/* ---------- Rupture visuelle : image plein cadre entre deux blocs de texte ---------- */
+.mv-break {
+  position: relative;
+  height: 62vh;
+  min-height: 380px;
+  overflow: hidden;
+}
+
+.mv-break-media {
+  position: absolute;
+  inset: -16% 0;
+  overflow: hidden;
+}
+
+.mv-break-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .mv-break {
+    height: 42vh;
+    min-height: 260px;
+  }
+
+  .mv-break-media {
+    inset: 0;
+  }
+}
+
+/* ---------- Cartes boutique en tilt 3D ---------- */
+.mv-tilt-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.mv-tilt-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  perspective: 1200px;
+}
+
+.mv-tilt-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  box-shadow:
+    0 8px 16px color-mix(in srgb, var(--texte) 14%, transparent),
+    0 28px 50px color-mix(in srgb, var(--texte) 18%, transparent);
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+}
+
+.mv-tilt-card:hover {
+  box-shadow:
+    0 14px 24px color-mix(in srgb, var(--texte) 18%, transparent),
+    0 40px 70px color-mix(in srgb, var(--texte) 26%, transparent);
+}
+
+.mv-tilt-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mv-obj-right {
+  object-position: 78% center;
+}
+
+.mv-tilt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--texte) 65%, transparent));
+}
+
+.mv-tilt-card-label {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  z-index: 1;
+  color: var(--fond);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 900px) {
+  .mv-tilt-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .mv-tilt-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
 /* ---------- Bandeau citation plein cadre ---------- */
 .mv-quote-band {
   position: relative;
@@ -98,14 +360,21 @@
 
 .mv-quote-media {
   position: absolute;
-  inset: 0;
+  inset: -16% 0;
   z-index: 0;
+  overflow: hidden;
 }
 
 .mv-quote-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .mv-quote-media {
+    inset: 0;
+  }
 }
 
 .mv-quote-band::after {
@@ -115,9 +384,11 @@
   z-index: 1;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--texte) 45%, transparent),
-    color-mix(in srgb, var(--texte) 72%, transparent)
+    color-mix(in srgb, var(--mv-accent-4) 55%, transparent),
+    color-mix(in srgb, var(--texte) 78%, transparent)
   );
+  mix-blend-mode: multiply;
+  background-color: color-mix(in srgb, var(--texte) 55%, transparent);
 }
 
 .mv-quote-band .container {
@@ -149,12 +420,43 @@
   font-size: 0.82rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--fond);
-  opacity: 0.85;
+  color: var(--mv-accent-3);
+  opacity: 0.95;
+}
+
+/* ---------- Notre histoire : bloc éditorial asymétrique ---------- */
+.mv-story {
+  position: relative;
+  overflow: hidden;
+}
+
+.mv-story .two-col {
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 72px;
+}
+
+.mv-story h2 {
+  font-size: clamp(2rem, 2vw + 1.6rem, 3.2rem);
+  line-height: 1.12;
+  max-width: 9ch;
+}
+
+@media (max-width: 768px) {
+  .mv-story .two-col {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
 /* ---------- Bento "Explorer" (accueil) ---------- */
+.mv-bento-section {
+  position: relative;
+  overflow: hidden;
+}
+
 .mv-bento {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
@@ -169,11 +471,12 @@
   overflow: hidden;
   padding: 28px;
   color: var(--fond);
-  transition: transform 0.2s var(--ease-out);
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
 
 .mv-bento-tile:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 36px color-mix(in srgb, var(--texte) 24%, transparent);
   text-decoration: none;
 }
 
@@ -200,11 +503,20 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--texte) 78%, transparent));
+  background: linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--accent) 70%, var(--texte) 40%));
+  mix-blend-mode: multiply;
+}
+
+.mv-bento-tile--image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--texte) 65%, transparent));
 }
 
 .mv-bento-tile--solid {
-  background-color: var(--accent);
+  background-color: var(--mv-accent-4);
 }
 
 .mv-bento-tile-label {
@@ -221,7 +533,7 @@
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 0.85rem;
-  opacity: 0.85;
+  opacity: 0.9;
   margin-top: 6px;
   line-height: 1.4;
 }
@@ -237,7 +549,14 @@
 }
 
 /* ---------- Grille "collage" (page collection) ---------- */
+.mv-collection-section {
+  position: relative;
+  overflow: hidden;
+}
+
 .mv-collection-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 170px;
@@ -254,7 +573,8 @@
 }
 
 .mv-collection-tile--text {
-  background-color: color-mix(in srgb, var(--accent) 4%, var(--fond));
+  color: var(--texte);
+  background-color: color-mix(in srgb, var(--accent) 6%, var(--fond));
 }
 
 .mv-collection-tile--text h3 {
@@ -264,7 +584,7 @@
 
 .mv-collection-tile--text p {
   font-size: 0.88rem;
-  opacity: 0.8;
+  opacity: 0.85;
   margin-bottom: 0;
 }
 
@@ -295,7 +615,16 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--texte) 72%, transparent));
+  background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--mv-accent-4) 70%, var(--texte) 30%));
+  mix-blend-mode: multiply;
+}
+
+.mv-collection-tile--photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--texte) 55%, transparent));
 }
 
 .mv-collection-tile--photo span {
@@ -346,8 +675,9 @@
 
 .mv-banner-media {
   position: absolute;
-  inset: 0;
+  inset: -16% 0;
   z-index: 0;
+  overflow: hidden;
 }
 
 .mv-banner-media img {
@@ -356,12 +686,27 @@
   object-fit: cover;
 }
 
+@media (max-width: 768px) {
+  .mv-banner-media {
+    inset: 0;
+  }
+}
+
 .mv-banner::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 25%, color-mix(in srgb, var(--texte) 76%, transparent));
+  background: linear-gradient(180deg, transparent 20%, color-mix(in srgb, var(--accent-2) 60%, var(--texte) 40%));
+  mix-blend-mode: multiply;
+}
+
+.mv-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--texte) 70%, transparent));
 }
 
 .mv-banner .container {
@@ -375,6 +720,16 @@
 }
 
 .mv-banner .hero-eyebrow {
+  color: var(--mv-accent-3);
+  opacity: 1;
+}
+
+.mv-banner .mv-script {
   color: var(--fond);
-  opacity: 0.9;
+}
+
+/* ---------- Contact (page infos pratiques) ---------- */
+.mv-contact-section {
+  position: relative;
+  overflow: hidden;
 }
