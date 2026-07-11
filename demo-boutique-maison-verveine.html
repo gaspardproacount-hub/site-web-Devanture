@@ -13,11 +13,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="boutique-maison-verveine.css">
 
-  <!-- Palette propre à cette page de démo : surcharge des variables partagées -->
+  <!-- Palette et typographie propres à cette page de démo : surcharge des variables partagées -->
   <style>
     :root {
       --fond: #F4F1E8;
@@ -27,6 +28,8 @@
       --accent-soft: #6B7A5E;
       --accent-2: #C1662E;
       --neutre: #E8E3D3;
+      --font-heading: "Playfair Display", Georgia, serif;
+      --font-body: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
 </head>
@@ -45,7 +48,6 @@
       <ul class="nav-links">
         <li><a href="demo-boutique-maison-verveine.html" class="is-active">Accueil</a></li>
         <li><a href="demo-boutique-maison-verveine-collection.html">Collection</a></li>
-        <li><a href="demo-boutique-maison-verveine-galerie.html">Galerie</a></li>
         <li><a href="demo-boutique-maison-verveine-infos.html">Infos pratiques</a></li>
       </ul>
     </nav>
@@ -53,17 +55,38 @@
 
   <main>
 
-    <!-- Hero -->
-    <section class="hero">
+    <!-- Hero fractionné : texte + photo pleine hauteur de la façade -->
+    <section class="hero mv-hero">
       <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="container">
-        <span class="hero-eyebrow">Concept-boutique · Bordeaux</span>
-        <h1>Des pièces choisies avec soin, pour un style qui vous ressemble</h1>
-        <p class="hero-subtitle">Maison Verveine réunit une sélection de vêtements, d'accessoires et de petits objets, choisis pour leur qualité et leur caractère. Un lieu où l'on prend le temps de bien choisir.</p>
-        <div class="hero-actions">
-          <a href="demo-boutique-maison-verveine-collection.html" class="btn btn-primary">Découvrir la collection</a>
-          <a href="demo-boutique-maison-verveine-infos.html" class="btn btn-secondary">Nous trouver</a>
+        <div class="mv-hero-grid">
+          <div class="mv-hero-copy">
+            <span class="hero-eyebrow">Concept-boutique · Bordeaux</span>
+            <h1>Des pièces choisies avec soin, pour un style qui vous ressemble</h1>
+            <p class="hero-subtitle">Maison Verveine réunit vêtements, accessoires et petits objets choisis pour leur qualité et leur caractère.</p>
+            <div class="hero-actions">
+              <a href="demo-boutique-maison-verveine-collection.html" class="btn btn-primary">Découvrir la collection</a>
+              <a href="demo-boutique-maison-verveine-infos.html" class="btn btn-secondary">Nous trouver</a>
+            </div>
+          </div>
+          <div class="mv-hero-media fade-in mv-photo-reveal">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155727_79e0b918-ea68-4223-bb80-2a931a1e7d5b.png" alt="Façade de Maison Verveine, quartier des Chartrons à Bordeaux" loading="eager">
+            <span class="mv-signage">Maison Verveine</span>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Bandeau citation plein cadre -->
+    <section class="mv-quote-band">
+      <div class="mv-quote-media fade-in mv-photo-reveal">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155712_9a498069-23ac-4db0-8320-9ffef2c8cbb9.png" alt="Intérieur de la boutique Maison Verveine, espace prêt-à-porter" loading="lazy">
+      </div>
+      <div class="container">
+        <blockquote class="mv-quote fade-in">
+          <p>Chaque pièce est choisie une à une, plutôt qu'empilée par centaines.</p>
+          <cite>— Camille, fondatrice de Maison Verveine</cite>
+        </blockquote>
       </div>
     </section>
 
@@ -89,19 +112,13 @@
     <!-- Explorer le site -->
     <section class="section-alt">
       <div class="container">
-        <h2 class="section-title fade-in" style="font-size:1.2rem;">Explorer</h2>
-        <div class="cross-links fade-in">
-          <a href="demo-boutique-maison-verveine-collection.html" class="cross-link-card">
-            <strong>Collection</strong>
-            Prêt-à-porter, accessoires et petite maroquinerie
+        <div class="mv-bento fade-in">
+          <a href="demo-boutique-maison-verveine-collection.html" class="mv-bento-tile mv-bento-tile--image">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine" loading="lazy">
+            <span class="mv-bento-tile-label">Collection<small>Prêt-à-porter, accessoires et petite maroquinerie</small></span>
           </a>
-          <a href="demo-boutique-maison-verveine-galerie.html" class="cross-link-card">
-            <strong>Galerie</strong>
-            L'ambiance de la boutique, entre pierre blonde et bois clair
-          </a>
-          <a href="demo-boutique-maison-verveine-infos.html" class="cross-link-card">
-            <strong>Infos pratiques</strong>
-            Horaires, adresse et contact
+          <a href="demo-boutique-maison-verveine-infos.html" class="mv-bento-tile mv-bento-tile--solid">
+            <span class="mv-bento-tile-label">Infos pratiques<small>Horaires, adresse et contact</small></span>
           </a>
         </div>
       </div>
@@ -116,7 +133,6 @@
         <ul class="footer-links">
           <li><a href="demo-boutique-maison-verveine.html">Accueil</a></li>
           <li><a href="demo-boutique-maison-verveine-collection.html">Collection</a></li>
-          <li><a href="demo-boutique-maison-verveine-galerie.html">Galerie</a></li>
           <li><a href="demo-boutique-maison-verveine-infos.html">Infos pratiques</a></li>
         </ul>
       </div>

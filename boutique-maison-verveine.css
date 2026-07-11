@@ -1,0 +1,380 @@
+/* ==========================================================================
+   Maison Verveine — habillage éditorial propre à cette démo.
+   Étend styles.css (palette, tokens, .fade-in) sans le modifier :
+   les autres démos (Fournil Doré, Le Basilic) restent inchangées.
+   ========================================================================== */
+
+/* ---------- Aide au reveal photo : zoom lent au scroll ----------
+   Se branche sur .fade-in / .is-visible déjà géré par script.js,
+   aucune JS supplémentaire nécessaire. */
+.mv-photo-reveal img {
+  transition: transform 1.2s var(--ease-out);
+  transform: scale(1.08);
+}
+
+.mv-photo-reveal.is-visible img {
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mv-photo-reveal img {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ---------- Hero fractionné (accueil) ---------- */
+.mv-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 56px;
+}
+
+.mv-hero-copy .hero-actions {
+  justify-content: flex-start;
+}
+
+.mv-hero-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.mv-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mv-signage {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  background-color: var(--fond);
+  color: var(--accent);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  padding: 10px 20px 12px;
+  border-radius: 2px;
+  box-shadow: var(--shadow-subtle);
+}
+
+@media (max-width: 900px) {
+  .mv-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .mv-hero-copy {
+    text-align: left;
+  }
+
+  .mv-hero-media {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* ---------- Hero : le conteneur générique est centré par défaut,
+   on l'étend en pleine largeur pour porter la grille 2 colonnes ---------- */
+.mv-hero .container {
+  max-width: var(--content-max);
+  text-align: left;
+}
+
+/* ---------- Bandeau citation plein cadre ---------- */
+.mv-quote-band {
+  position: relative;
+  padding: 0;
+  min-height: 56vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.mv-quote-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.mv-quote-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mv-quote-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--texte) 45%, transparent),
+    color-mix(in srgb, var(--texte) 72%, transparent)
+  );
+}
+
+.mv-quote-band .container {
+  position: relative;
+  z-index: 2;
+}
+
+.mv-quote {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mv-quote p {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 1.2vw + 1.3rem, 2.3rem);
+  line-height: 1.35;
+  color: var(--fond);
+  margin-bottom: 18px;
+  padding-bottom: 4px;
+  text-wrap: balance;
+}
+
+.mv-quote cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fond);
+  opacity: 0.85;
+}
+
+/* ---------- Bento "Explorer" (accueil) ---------- */
+.mv-bento {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.mv-bento-tile {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 320px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  padding: 28px;
+  color: var(--fond);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.mv-bento-tile:hover {
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+
+.mv-bento-tile:active {
+  transform: scale(0.98);
+}
+
+.mv-bento-tile--image img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.mv-bento-tile--image:hover img {
+  transform: scale(1.05);
+}
+
+.mv-bento-tile--image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--texte) 78%, transparent));
+}
+
+.mv-bento-tile--solid {
+  background-color: var(--accent);
+}
+
+.mv-bento-tile-label {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+.mv-bento-tile-label small {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .mv-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .mv-bento-tile {
+    min-height: 240px;
+  }
+}
+
+/* ---------- Grille "collage" (page collection) ---------- */
+.mv-collection-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 170px;
+  grid-auto-flow: dense;
+  gap: 20px;
+}
+
+.mv-collection-tile {
+  border-radius: var(--radius);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.mv-collection-tile--text {
+  background-color: color-mix(in srgb, var(--accent) 4%, var(--fond));
+}
+
+.mv-collection-tile--text h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.mv-collection-tile--text p {
+  font-size: 0.88rem;
+  opacity: 0.8;
+  margin-bottom: 0;
+}
+
+.mv-collection-tile--photo {
+  position: relative;
+  grid-column: span 2;
+  grid-row: span 2;
+  overflow: hidden;
+  color: var(--fond);
+}
+
+.mv-collection-tile--photo img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.mv-collection-tile--photo:hover img {
+  transform: scale(1.05);
+}
+
+.mv-collection-tile--photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--texte) 72%, transparent));
+}
+
+.mv-collection-tile--photo span {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+  .mv-collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mv-collection-tile--photo {
+    grid-column: span 2;
+    grid-row: span 1;
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 560px) {
+  .mv-collection-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .mv-collection-tile {
+    min-height: 160px;
+  }
+
+  .mv-collection-tile--photo {
+    grid-column: span 1;
+    min-height: 220px;
+  }
+}
+
+/* ---------- Bandeau photo (page infos pratiques) ---------- */
+.mv-banner {
+  position: relative;
+  min-height: 40vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: 0 0 40px;
+}
+
+.mv-banner-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.mv-banner-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mv-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 25%, color-mix(in srgb, var(--texte) 76%, transparent));
+}
+
+.mv-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.mv-banner h1 {
+  color: var(--fond);
+  margin-bottom: 0;
+}
+
+.mv-banner .hero-eyebrow {
+  color: var(--fond);
+  opacity: 0.9;
+}

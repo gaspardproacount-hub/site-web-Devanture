@@ -13,11 +13,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="boutique-maison-verveine.css">
 
-  <!-- Palette propre à cette page de démo : surcharge des variables partagées -->
+  <!-- Palette et typographie propres à cette page de démo : surcharge des variables partagées -->
   <style>
     :root {
       --fond: #F4F1E8;
@@ -27,6 +28,8 @@
       --accent-soft: #6B7A5E;
       --accent-2: #C1662E;
       --neutre: #E8E3D3;
+      --font-heading: "Playfair Display", Georgia, serif;
+      --font-body: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
 </head>
@@ -45,7 +48,6 @@
       <ul class="nav-links">
         <li><a href="demo-boutique-maison-verveine.html">Accueil</a></li>
         <li><a href="demo-boutique-maison-verveine-collection.html" class="is-active">Collection</a></li>
-        <li><a href="demo-boutique-maison-verveine-galerie.html">Galerie</a></li>
         <li><a href="demo-boutique-maison-verveine-infos.html">Infos pratiques</a></li>
       </ul>
     </nav>
@@ -58,28 +60,36 @@
         <h1 class="section-title fade-in">La collection</h1>
         <p class="section-intro fade-in">Un aperçu de ce que vous trouverez en boutique, toute l'année.</p>
 
-        <div class="feature-grid">
-          <div class="feature-card fade-in">
+        <div class="mv-collection-grid fade-in">
+          <div class="mv-collection-tile mv-collection-tile--photo">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155654_46138bc7-1bb4-4596-82cf-7d70f78fd795.png" alt="Comptoir d'accessoires et de maroquinerie de Maison Verveine" loading="lazy">
+            <span>Accessoires & maroquinerie</span>
+          </div>
+          <div class="mv-collection-tile mv-collection-tile--text">
             <h3>Prêt-à-porter femme</h3>
             <p>Vêtements du quotidien et pièces plus habillées, dans des matières naturelles.</p>
           </div>
-          <div class="feature-card fade-in">
+          <div class="mv-collection-tile mv-collection-tile--text">
             <h3>Accessoires & bijoux</h3>
             <p>Bijoux fantaisie et fine joaillerie fantaisie, foulards et ceintures.</p>
           </div>
-          <div class="feature-card fade-in">
+          <div class="mv-collection-tile mv-collection-tile--text">
             <h3>Petite maroquinerie</h3>
             <p>Sacs, portefeuilles et pochettes en cuir, fabriqués en petites séries.</p>
           </div>
-          <div class="feature-card fade-in">
+          <div class="mv-collection-tile mv-collection-tile--text">
             <h3>Idées cadeaux</h3>
             <p>Une sélection d'objets à offrir, du carnet relié au parfum d'intérieur.</p>
           </div>
-          <div class="feature-card fade-in">
+          <div class="mv-collection-tile mv-collection-tile--photo">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155712_9a498069-23ac-4db0-8320-9ffef2c8cbb9.png" alt="Espace prêt-à-porter de Maison Verveine" loading="lazy">
+            <span>L'espace prêt-à-porter</span>
+          </div>
+          <div class="mv-collection-tile mv-collection-tile--text">
             <h3>Nouveautés chaque semaine</h3>
             <p>De nouvelles pièces arrivent régulièrement : suivez nos réseaux pour ne rien manquer.</p>
           </div>
-          <div class="feature-card fade-in">
+          <div class="mv-collection-tile mv-collection-tile--text">
             <h3>Retouches sur mesure</h3>
             <p>Ourlets et ajustements réalisés par notre couturière partenaire, sous 5 jours.</p>
           </div>
@@ -107,7 +117,6 @@
         <ul class="footer-links">
           <li><a href="demo-boutique-maison-verveine.html">Accueil</a></li>
           <li><a href="demo-boutique-maison-verveine-collection.html">Collection</a></li>
-          <li><a href="demo-boutique-maison-verveine-galerie.html">Galerie</a></li>
           <li><a href="demo-boutique-maison-verveine-infos.html">Infos pratiques</a></li>
         </ul>
       </div>
