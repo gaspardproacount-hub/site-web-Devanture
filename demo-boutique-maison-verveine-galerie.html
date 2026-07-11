@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <script>document.documentElement.classList.add('js');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie — Maison Verveine</title>
+  <meta name="description" content="La boutique Maison Verveine en images : façade, espace prêt-à-porter et vitrines de saison.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://www.devanture-web.fr/demo-boutique-maison-verveine-galerie.html">
+
+  <link rel="icon" type="image/svg+xml" href="logo-devanture-icone.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Palette propre à cette page de démo : surcharge des variables partagées -->
+  <style>
+    :root {
+      --fond: #F4F1E8;
+      --texte: #26261F;
+      --accent: #3F5138;
+      --accent-hover: #313F2B;
+      --accent-soft: #6B7A5E;
+      --accent-2: #C1662E;
+      --neutre: #E8E3D3;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="demo-badge">🔧 <span>Démo <strong>Devanture</strong> — retour au site →</span></a>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="demo-boutique-maison-verveine.html" class="nav-logo demo-wordmark">🌿 Maison Verveine</a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="demo-boutique-maison-verveine.html">Accueil</a></li>
+        <li><a href="demo-boutique-maison-verveine-collection.html">Collection</a></li>
+        <li><a href="demo-boutique-maison-verveine-galerie.html" class="is-active">Galerie</a></li>
+        <li><a href="demo-boutique-maison-verveine-infos.html">Infos pratiques</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section>
+      <div class="container">
+        <h1 class="section-title fade-in">La boutique</h1>
+        <p class="section-intro fade-in">Un aperçu de l'ambiance, entre pierre blonde et bois clair.</p>
+
+        <div class="gallery-grid">
+          <div class="placeholder-img fade-in">Photo à venir — Façade de la boutique</div>
+          <div class="placeholder-img fade-in">Photo à venir — Espace prêt-à-porter</div>
+          <div class="placeholder-img fade-in">Photo à venir — Comptoir & accessoires</div>
+          <div class="placeholder-img fade-in">Photo à venir — Vitrine de saison</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section-alt">
+      <div class="container">
+        <div class="cta-band fade-in">
+          <h2>Envie de découvrir la boutique en vrai ?</h2>
+          <p>On vous accueille du mardi au samedi, sans rendez-vous.</p>
+          <a href="demo-boutique-maison-verveine-infos.html" class="btn btn-primary">Voir les horaires</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="demo-wordmark" style="color: var(--fond);">🌿 Maison Verveine</div>
+        <ul class="footer-links">
+          <li><a href="demo-boutique-maison-verveine.html">Accueil</a></li>
+          <li><a href="demo-boutique-maison-verveine-collection.html">Collection</a></li>
+          <li><a href="demo-boutique-maison-verveine-galerie.html">Galerie</a></li>
+          <li><a href="demo-boutique-maison-verveine-infos.html">Infos pratiques</a></li>
+        </ul>
+      </div>
+      <p class="footer-bottom">© <span id="current-year"></span> Maison Verveine — Site fictif de démonstration, réalisé par <a href="index.html">Devanture →</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

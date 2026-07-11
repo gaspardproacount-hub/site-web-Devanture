@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <script>document.documentElement.classList.add('js');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos produits — Le Fournil Doré</title>
+  <meta name="description" content="Les produits du Fournil Doré : pains de tradition, viennoiseries, pâtisseries et click & collect.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://www.devanture-web.fr/demo-boulangerie-fournil-dore-produits.html">
+
+  <link rel="icon" type="image/svg+xml" href="logo-devanture-icone.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Palette propre à cette page de démo : surcharge des variables partagées -->
+  <style>
+    :root {
+      --fond: #FBF3E1;
+      --texte: #2E2015;
+      --accent: #7A4423;
+      --accent-hover: #5F3419;
+      --accent-soft: #A97847;
+      --accent-2: #B4472A;
+      --neutre: #F0E4CC;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="demo-badge">🔧 <span>Démo <strong>Devanture</strong> — retour au site →</span></a>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="demo-boulangerie-fournil-dore.html" class="nav-logo demo-wordmark">🥖 Le Fournil Doré</a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="demo-boulangerie-fournil-dore.html">Accueil</a></li>
+        <li><a href="demo-boulangerie-fournil-dore-produits.html" class="is-active">Nos produits</a></li>
+        <li><a href="demo-boulangerie-fournil-dore-galerie.html">Galerie</a></li>
+        <li><a href="demo-boulangerie-fournil-dore-infos.html">Horaires</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section>
+      <div class="container">
+        <h1 class="section-title fade-in">Nos produits</h1>
+        <p class="section-intro fade-in">Du pain de tradition aux gâteaux sur commande.</p>
+
+        <div class="feature-grid">
+          <div class="feature-card fade-in">
+            <h3>Pains de tradition</h3>
+            <p>Baguette de tradition, pain de campagne au levain, pain aux céréales.</p>
+          </div>
+          <div class="feature-card fade-in">
+            <h3>Viennoiseries</h3>
+            <p>Croissants, pains au chocolat et chaussons aux pommes, façonnés à la main chaque matin.</p>
+          </div>
+          <div class="feature-card fade-in">
+            <h3>Pâtisseries</h3>
+            <p>Tartes de saison, éclairs et petits gâteaux individuels, préparés sur place.</p>
+          </div>
+          <div class="feature-card fade-in">
+            <h3>Sandwichs & snacking</h3>
+            <p>Formule sandwich-boisson-dessert à emporter, disponible dès 11h30.</p>
+          </div>
+          <div class="feature-card fade-in">
+            <h3>Gâteaux sur commande</h3>
+            <p>Gâteaux d'anniversaire et pièces montées, sur commande 48h à l'avance.</p>
+          </div>
+          <div class="feature-card fade-in">
+            <h3>Click & collect</h3>
+            <p>Commandez en ligne et récupérez votre pain sans faire la queue.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section-alt">
+      <div class="container">
+        <div class="cta-band fade-in">
+          <h2>Une envie de pain frais ?</h2>
+          <p>Passez nous voir dès 6h30, ou commandez à emporter.</p>
+          <a href="demo-boulangerie-fournil-dore-infos.html" class="btn btn-primary">Voir les horaires</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="demo-wordmark" style="color: var(--fond);">🥖 Le Fournil Doré</div>
+        <ul class="footer-links">
+          <li><a href="demo-boulangerie-fournil-dore.html">Accueil</a></li>
+          <li><a href="demo-boulangerie-fournil-dore-produits.html">Nos produits</a></li>
+          <li><a href="demo-boulangerie-fournil-dore-galerie.html">Galerie</a></li>
+          <li><a href="demo-boulangerie-fournil-dore-infos.html">Horaires</a></li>
+        </ul>
+      </div>
+      <p class="footer-bottom">© <span id="current-year"></span> Le Fournil Doré — Site fictif de démonstration, réalisé par <a href="index.html">Devanture →</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
