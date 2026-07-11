@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
             yPercent: 8,
             ease: "none",
             scrollTrigger: {
-              trigger: img.closest(".mv-break, .mv-quote-band, .mv-banner"),
+              trigger: img.closest(".mv-quote-band, .mv-banner"),
               start: "top bottom",
               end: "bottom top",
               scrub: true,

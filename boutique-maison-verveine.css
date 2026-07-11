@@ -242,37 +242,6 @@
   text-align: left;
 }
 
-/* ---------- Rupture visuelle : image plein cadre entre deux blocs de texte ---------- */
-.mv-break {
-  position: relative;
-  height: 62vh;
-  min-height: 380px;
-  overflow: hidden;
-}
-
-.mv-break-media {
-  position: absolute;
-  inset: -16% 0;
-  overflow: hidden;
-}
-
-.mv-break-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@media (max-width: 768px) {
-  .mv-break {
-    height: 42vh;
-    min-height: 260px;
-  }
-
-  .mv-break-media {
-    inset: 0;
-  }
-}
-
 /* ---------- Cartes boutique en tilt 3D ---------- */
 .mv-tilt-section {
   position: relative;
@@ -356,6 +325,16 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+}
+
+.mv-quote-band--large {
+  min-height: 92vh;
+}
+
+@media (max-width: 768px) {
+  .mv-quote-band--large {
+    min-height: 70vh;
+  }
 }
 
 .mv-quote-media {
