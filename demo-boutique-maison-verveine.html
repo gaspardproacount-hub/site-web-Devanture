@@ -13,7 +13,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="boutique-maison-verveine.css">
@@ -21,13 +21,15 @@
   <!-- Palette et typographie propres à cette page de démo : surcharge des variables partagées -->
   <style>
     :root {
-      --fond: #F4F1E8;
-      --texte: #26261F;
-      --accent: #3F5138;
-      --accent-hover: #313F2B;
-      --accent-soft: #6B7A5E;
-      --accent-2: #C1662E;
-      --neutre: #E8E3D3;
+      --fond: #F8F7EE;
+      --texte: #16281C;
+      --accent: #1E8449;
+      --accent-hover: #166636;
+      --accent-soft: #9BAE8D;
+      --accent-2: #1B3A2B;
+      --neutre: #E4E8D5;
+      --mv-accent-3: #C9D96B;
+      --mv-accent-4: #5A6B45;
       --font-heading: "Playfair Display", Georgia, serif;
       --font-body: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -55,18 +57,20 @@
 
   <main>
 
-    <!-- Hero fractionné : texte + photo pleine hauteur de la façade -->
-    <section class="hero mv-hero">
+    <!-- Hero : bloc de couleur plein cadre, grand mot en fond, accroche manuscrite -->
+    <section class="hero mv-hero mv-hero-block">
       <div class="hero-spotlight" aria-hidden="true"></div>
+      <span class="mv-giant-word" aria-hidden="true">VERVEINE</span>
       <div class="container">
         <div class="mv-hero-grid">
           <div class="mv-hero-copy">
             <span class="hero-eyebrow">Concept-boutique · Bordeaux</span>
-            <h1>Des pièces choisies avec soin, pour un style qui vous ressemble</h1>
+            <h1>Des pièces choisies avec soin</h1>
+            <p class="mv-script">pour un style qui vous ressemble.</p>
             <p class="hero-subtitle">Maison Verveine réunit vêtements, accessoires et petits objets choisis pour leur qualité et leur caractère.</p>
             <div class="hero-actions">
-              <a href="demo-boutique-maison-verveine-collection.html" class="btn btn-primary">Découvrir la collection</a>
-              <a href="demo-boutique-maison-verveine-infos.html" class="btn btn-secondary">Nous trouver</a>
+              <a href="demo-boutique-maison-verveine-collection.html" class="btn btn-primary mv-btn-pill">Découvrir la collection</a>
+              <a href="demo-boutique-maison-verveine-infos.html" class="btn btn-secondary mv-btn-pill mv-btn-outline-light">Nous trouver</a>
             </div>
           </div>
           <div class="mv-hero-media fade-in mv-photo-reveal">
@@ -76,6 +80,9 @@
         </div>
       </div>
     </section>
+
+    <!-- Barre de progression de scroll -->
+    <div class="mv-scroll-progress" aria-hidden="true"><div class="mv-scroll-progress-fill" id="mv-scroll-fill"></div></div>
 
     <!-- Bandeau citation plein cadre -->
     <section class="mv-quote-band">
@@ -91,7 +98,9 @@
     </section>
 
     <!-- Notre histoire -->
-    <section>
+    <section class="mv-story">
+      <span class="mv-shape mv-shape-blob mv-story-shape-1" aria-hidden="true"></span>
+      <span class="mv-shape mv-shape-circle mv-story-shape-2" aria-hidden="true"></span>
       <div class="container">
         <div class="two-col">
           <div class="fade-in">
@@ -109,8 +118,29 @@
       </div>
     </section>
 
+    <!-- Onglets à bascule fondue : parcourir la boutique en images -->
+    <section class="section-alt mv-tabs-section">
+      <span class="mv-shape mv-shape-ring mv-tabs-shape-1" aria-hidden="true"></span>
+      <div class="container">
+        <h2 class="section-title fade-in" style="text-align:left;">Dans la boutique</h2>
+        <div class="mv-tabs" role="tablist" aria-label="Aperçus de la boutique">
+          <button type="button" class="mv-tab is-active" role="tab" aria-selected="true" data-target="mv-panel-facade">Façade</button>
+          <button type="button" class="mv-tab" role="tab" aria-selected="false" data-target="mv-panel-pap">Prêt-à-porter</button>
+          <button type="button" class="mv-tab" role="tab" aria-selected="false" data-target="mv-panel-access">Accessoires</button>
+          <button type="button" class="mv-tab" role="tab" aria-selected="false" data-target="mv-panel-vitrine">Vitrine</button>
+        </div>
+        <div class="mv-tab-panels fade-in">
+          <img id="mv-panel-facade" class="mv-tab-panel is-active" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155727_79e0b918-ea68-4223-bb80-2a931a1e7d5b.png" alt="Façade de Maison Verveine">
+          <img id="mv-panel-pap" class="mv-tab-panel" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155712_9a498069-23ac-4db0-8320-9ffef2c8cbb9.png" alt="Espace prêt-à-porter de Maison Verveine">
+          <img id="mv-panel-access" class="mv-tab-panel" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155654_46138bc7-1bb4-4596-82cf-7d70f78fd795.png" alt="Comptoir d'accessoires de Maison Verveine">
+          <img id="mv-panel-vitrine" class="mv-tab-panel" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine">
+        </div>
+      </div>
+    </section>
+
     <!-- Explorer le site -->
-    <section class="section-alt">
+    <section class="mv-bento-section">
+      <span class="mv-shape mv-shape-blob mv-bento-shape-1" aria-hidden="true"></span>
       <div class="container">
         <div class="mv-bento fade-in">
           <a href="demo-boutique-maison-verveine-collection.html" class="mv-bento-tile mv-bento-tile--image">
@@ -141,5 +171,33 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    document.querySelectorAll(".mv-tabs .mv-tab").forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        document.querySelectorAll(".mv-tabs .mv-tab").forEach(function (t) {
+          t.classList.remove("is-active");
+          t.setAttribute("aria-selected", "false");
+        });
+        tab.classList.add("is-active");
+        tab.setAttribute("aria-selected", "true");
+        document.querySelectorAll(".mv-tab-panel").forEach(function (panel) {
+          panel.classList.remove("is-active");
+        });
+        document.getElementById(tab.dataset.target).classList.add("is-active");
+      });
+    });
+
+    (function () {
+      var fill = document.getElementById("mv-scroll-fill");
+      if (!fill) return;
+      function updateScrollProgress() {
+        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        var progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+        fill.style.height = Math.min(Math.max(progress, 0), 100) + "%";
+      }
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      updateScrollProgress();
+    })();
+  </script>
 </body>
 </html>

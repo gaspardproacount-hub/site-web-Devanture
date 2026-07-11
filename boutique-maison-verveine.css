@@ -4,6 +4,91 @@
    les autres démos (Fournil Doré, Le Basilic) restent inchangées.
    ========================================================================== */
 
+:root {
+  --mv-accent-3: #C9D96B; /* vert matcha */
+  --mv-accent-4: #5A6B45; /* vert brut / olive */
+  --font-display: "Baloo 2", "Outfit", sans-serif; /* logo + grands mots de fond */
+  --font-script: "Caveat", cursive; /* accroche manuscrite */
+}
+
+/* ---------- Logo & wordmark : police ronde et affirmée ---------- */
+.nav-logo,
+.demo-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* ---------- Barre de progression de scroll (coin droit) ---------- */
+.mv-scroll-progress {
+  position: fixed;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 120px;
+  border-radius: 3px;
+  background-color: color-mix(in srgb, var(--texte) 12%, transparent);
+  z-index: 200;
+  overflow: hidden;
+}
+
+.mv-scroll-progress-fill {
+  width: 100%;
+  height: 0%;
+  background-color: var(--accent);
+  border-radius: 3px;
+  transition: height 0.1s linear;
+}
+
+@media (max-width: 768px) {
+  .mv-scroll-progress {
+    display: none;
+  }
+}
+
+/* ---------- Boutons pilule ---------- */
+.mv-btn-pill {
+  border-radius: 999px;
+}
+
+.mv-btn-outline-light {
+  border-color: var(--fond);
+  color: var(--fond);
+}
+
+.mv-btn-outline-light:hover {
+  background-color: var(--fond);
+  color: var(--accent-2);
+}
+
+/* ---------- Grand mot en fond, ton-sur-ton ---------- */
+.mv-giant-word {
+  position: absolute;
+  top: 50%;
+  left: -3%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(6rem, 16vw, 15rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- Accroche manuscrite ---------- */
+.mv-script {
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 1.6vw + 1.3rem, 2.4rem);
+  line-height: 1.3;
+  padding-bottom: 6px;
+  margin: -6px 0 18px;
+}
+
 /* ---------- Aide au reveal photo : zoom lent au scroll ----------
    Se branche sur .fade-in / .is-visible déjà géré par script.js,
    aucune JS supplémentaire nécessaire. */
@@ -23,8 +108,168 @@
   }
 }
 
-/* ---------- Hero fractionné (accueil) ---------- */
+/* ---------- Formes décoratives ----------
+   Blobs et cercles en aplat de couleur, purement CSS (border-radius
+   asymétrique), posés derrière le contenu de chaque section. */
+.mv-shape {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mv-shape-blob {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.mv-shape-circle {
+  border-radius: 50%;
+}
+
+.mv-shape-ring {
+  border-radius: 50%;
+  background: transparent !important;
+  border-style: solid;
+}
+
+/* Hero */
+.mv-hero-shape-1 {
+  width: 220px;
+  height: 220px;
+  top: -60px;
+  left: -80px;
+  background-color: var(--mv-accent-3);
+  opacity: 0.55;
+}
+
+.mv-hero-shape-2 {
+  width: 90px;
+  height: 90px;
+  bottom: 10%;
+  left: 8%;
+  border-width: 10px;
+  border-color: var(--accent-2);
+  opacity: 0.7;
+}
+
+.mv-hero-shape-3 {
+  width: 46px;
+  height: 46px;
+  top: 12%;
+  right: 6%;
+  background-color: var(--accent);
+  opacity: 0.5;
+}
+
+/* Notre histoire */
+.mv-story-shape-1 {
+  width: 160px;
+  height: 160px;
+  top: -40px;
+  right: -50px;
+  background-color: var(--mv-accent-4);
+  opacity: 0.28;
+}
+
+.mv-story-shape-2 {
+  width: 56px;
+  height: 56px;
+  bottom: -10px;
+  left: 42%;
+  background-color: var(--mv-accent-3);
+  opacity: 0.6;
+}
+
+/* Onglets */
+.mv-tabs-shape-1 {
+  width: 130px;
+  height: 130px;
+  top: -30px;
+  right: 12%;
+  border-width: 12px;
+  border-color: var(--mv-accent-3);
+  opacity: 0.6;
+}
+
+/* Bento */
+.mv-bento-shape-1 {
+  width: 120px;
+  height: 120px;
+  bottom: -30px;
+  right: 30%;
+  background-color: var(--accent);
+  opacity: 0.35;
+}
+
+/* Grille collection */
+.mv-collection-shape-1 {
+  width: 100px;
+  height: 100px;
+  top: -20px;
+  left: 20px;
+  background-color: var(--mv-accent-4);
+  opacity: 0.4;
+}
+
+.mv-collection-shape-2 {
+  width: 60px;
+  height: 60px;
+  top: 40px;
+  right: 6%;
+  border-width: 8px;
+  border-color: var(--accent);
+  opacity: 0.6;
+}
+
+/* Contact */
+.mv-contact-shape-1 {
+  width: 110px;
+  height: 110px;
+  top: -30px;
+  right: -30px;
+  background-color: var(--accent-2);
+  opacity: 0.25;
+}
+
+@media (max-width: 768px) {
+  .mv-shape {
+    transform: scale(0.7);
+  }
+}
+
+/* ---------- Hero fractionné (accueil) : bloc de couleur plein cadre ---------- */
+.mv-hero-block {
+  background-color: var(--accent-2);
+  overflow: hidden;
+}
+
+.mv-hero-block .hero-spotlight {
+  display: none;
+}
+
+.mv-hero-block .mv-giant-word {
+  color: color-mix(in srgb, var(--fond) 16%, var(--accent-2));
+}
+
+.mv-hero-copy .hero-eyebrow {
+  color: var(--mv-accent-3);
+}
+
+.mv-hero-copy h1 {
+  color: var(--fond);
+}
+
+.mv-hero-copy .hero-subtitle {
+  color: var(--fond);
+  opacity: 0.92;
+}
+
+.mv-hero-copy .mv-script {
+  color: var(--fond);
+}
+
 .mv-hero-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.05fr 1fr;
   align-items: center;
@@ -40,6 +285,8 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: var(--radius);
+  border: 4px solid var(--fond);
+  box-shadow: 0 0 0 3px var(--accent);
 }
 
 .mv-hero-media img {
@@ -115,9 +362,11 @@
   z-index: 1;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--texte) 45%, transparent),
-    color-mix(in srgb, var(--texte) 72%, transparent)
+    color-mix(in srgb, var(--mv-accent-4) 55%, transparent),
+    color-mix(in srgb, var(--texte) 78%, transparent)
   );
+  mix-blend-mode: multiply;
+  background-color: color-mix(in srgb, var(--texte) 55%, transparent);
 }
 
 .mv-quote-band .container {
@@ -149,12 +398,94 @@
   font-size: 0.82rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--fond);
-  opacity: 0.85;
+  color: var(--mv-accent-3);
+  opacity: 0.95;
+}
+
+/* ---------- Notre histoire : conteneur pour les formes ---------- */
+.mv-story {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------- Onglets à bascule fondue ---------- */
+.mv-tabs-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.mv-tabs {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.mv-tab {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 2px solid var(--texte);
+  background-color: transparent;
+  color: var(--texte);
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), transform 0.15s var(--ease-out);
+}
+
+.mv-tab:hover {
+  transform: translateY(-2px);
+}
+
+.mv-tab:active {
+  transform: scale(0.96);
+}
+
+.mv-tab:nth-child(1).is-active { background-color: var(--accent); border-color: var(--accent); color: var(--fond); }
+.mv-tab:nth-child(2).is-active { background-color: var(--accent-2); border-color: var(--accent-2); color: var(--fond); }
+.mv-tab:nth-child(3).is-active { background-color: var(--mv-accent-3); border-color: var(--mv-accent-3); color: var(--texte); }
+.mv-tab:nth-child(4).is-active { background-color: var(--mv-accent-4); border-color: var(--mv-accent-4); color: var(--fond); }
+
+.mv-tab-panels {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.mv-tab-panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out);
+}
+
+.mv-tab-panel.is-active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mv-tab-panel {
+    transition: none;
+  }
 }
 
 /* ---------- Bento "Explorer" (accueil) ---------- */
+.mv-bento-section {
+  position: relative;
+  overflow: hidden;
+}
+
 .mv-bento {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
@@ -200,11 +531,20 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--texte) 78%, transparent));
+  background: linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--accent) 70%, var(--texte) 40%));
+  mix-blend-mode: multiply;
+}
+
+.mv-bento-tile--image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--texte) 65%, transparent));
 }
 
 .mv-bento-tile--solid {
-  background-color: var(--accent);
+  background-color: var(--mv-accent-4);
 }
 
 .mv-bento-tile-label {
@@ -221,7 +561,7 @@
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 0.85rem;
-  opacity: 0.85;
+  opacity: 0.9;
   margin-top: 6px;
   line-height: 1.4;
 }
@@ -237,7 +577,14 @@
 }
 
 /* ---------- Grille "collage" (page collection) ---------- */
+.mv-collection-section {
+  position: relative;
+  overflow: hidden;
+}
+
 .mv-collection-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 170px;
@@ -254,8 +601,13 @@
 }
 
 .mv-collection-tile--text {
-  background-color: color-mix(in srgb, var(--accent) 4%, var(--fond));
+  color: var(--texte);
 }
+
+.mv-collection-tile--text:nth-of-type(4n+1) { background-color: color-mix(in srgb, var(--accent) 16%, var(--fond)); }
+.mv-collection-tile--text:nth-of-type(4n+2) { background-color: color-mix(in srgb, var(--accent-2) 16%, var(--fond)); }
+.mv-collection-tile--text:nth-of-type(4n+3) { background-color: color-mix(in srgb, var(--mv-accent-3) 22%, var(--fond)); }
+.mv-collection-tile--text:nth-of-type(4n+4) { background-color: color-mix(in srgb, var(--mv-accent-4) 16%, var(--fond)); }
 
 .mv-collection-tile--text h3 {
   font-size: 1.05rem;
@@ -264,7 +616,7 @@
 
 .mv-collection-tile--text p {
   font-size: 0.88rem;
-  opacity: 0.8;
+  opacity: 0.85;
   margin-bottom: 0;
 }
 
@@ -295,7 +647,16 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--texte) 72%, transparent));
+  background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--mv-accent-4) 70%, var(--texte) 30%));
+  mix-blend-mode: multiply;
+}
+
+.mv-collection-tile--photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--texte) 55%, transparent));
 }
 
 .mv-collection-tile--photo span {
@@ -361,7 +722,16 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 25%, color-mix(in srgb, var(--texte) 76%, transparent));
+  background: linear-gradient(180deg, transparent 20%, color-mix(in srgb, var(--accent-2) 60%, var(--texte) 40%));
+  mix-blend-mode: multiply;
+}
+
+.mv-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--texte) 70%, transparent));
 }
 
 .mv-banner .container {
@@ -375,6 +745,12 @@
 }
 
 .mv-banner .hero-eyebrow {
-  color: var(--fond);
-  opacity: 0.9;
+  color: var(--mv-accent-3);
+  opacity: 1;
+}
+
+/* ---------- Contact (page infos pratiques) ---------- */
+.mv-contact-section {
+  position: relative;
+  overflow: hidden;
 }
