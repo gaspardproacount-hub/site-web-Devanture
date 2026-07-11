@@ -333,6 +333,95 @@
   text-align: left;
 }
 
+/* ---------- Carrousel 3D (accueil) ---------- */
+.mv-carousel-section {
+  position: relative;
+  background-color: var(--accent-2);
+  overflow: hidden;
+  padding: 90px 0 70px;
+}
+
+.mv-carousel-section .mv-giant-word {
+  color: color-mix(in srgb, var(--fond) 16%, var(--accent-2));
+}
+
+.mv-carousel-section .section-title {
+  position: relative;
+  z-index: 1;
+  color: var(--fond);
+}
+
+.mv-carousel-section .section-title::after {
+  background-color: var(--mv-accent-3);
+  margin-left: 0;
+}
+
+.mv-carousel-intro {
+  position: relative;
+  z-index: 1;
+  color: var(--fond);
+  opacity: 0.85;
+  max-width: 46ch;
+}
+
+.mv-carousel {
+  position: relative;
+  z-index: 1;
+  width: 220px;
+  height: 280px;
+  margin: 70px auto 20px;
+  transform-style: preserve-3d;
+  transform: perspective(1400px);
+  animation: mv-carousel-spin 34s linear infinite;
+}
+
+.mv-carousel-item {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 3px solid var(--fond);
+  box-shadow: 0 20px 40px color-mix(in srgb, var(--texte) 45%, transparent);
+  transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(380px);
+}
+
+.mv-carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes mv-carousel-spin {
+  from {
+    transform: perspective(1400px) rotateX(-8deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1400px) rotateX(-8deg) rotateY(360deg);
+  }
+}
+
+.mv-carousel:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mv-carousel {
+    animation: none;
+    transform: perspective(1400px) rotateX(-8deg) rotateY(0deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .mv-carousel {
+    width: 150px;
+    height: 190px;
+  }
+
+  .mv-carousel-item {
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(270px);
+  }
+}
+
 /* ---------- Bandeau citation plein cadre ---------- */
 .mv-quote-band {
   position: relative;
