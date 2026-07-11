@@ -18,6 +18,38 @@
   font-weight: 700;
 }
 
+/* ---------- Espacement des lettres : nav, boutons, rendu plus raffiné ---------- */
+.nav-links a {
+  letter-spacing: 0.03em;
+}
+
+.btn {
+  letter-spacing: 0.05em;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+    transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--texte) 22%, transparent);
+}
+
+.mv-btn-outline-light:hover {
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--texte) 35%, transparent);
+}
+
+/* ---------- Titres de section asymétriques ---------- */
+.mv-title {
+  text-align: left;
+  max-width: 18ch;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.mv-title::after {
+  margin-left: 0;
+}
+
 /* ---------- Barre de progression de scroll (coin droit) ---------- */
 .mv-scroll-progress {
   position: fixed;
@@ -128,6 +160,10 @@
 
 .mv-hero-copy h1 {
   color: var(--fond);
+  font-size: clamp(2.8rem, 3vw + 2.2rem, 5rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  max-width: 11ch;
 }
 
 .mv-hero-copy .hero-subtitle {
@@ -205,90 +241,105 @@
   text-align: left;
 }
 
-/* ---------- Carrousel 3D (accueil) ---------- */
-.mv-carousel-section {
+/* ---------- Rupture visuelle : image plein cadre entre deux blocs de texte ---------- */
+.mv-break {
   position: relative;
-  background-color: var(--accent-2);
+  height: 62vh;
+  min-height: 380px;
   overflow: hidden;
-  padding: 90px 0 70px;
 }
 
-.mv-carousel-section .mv-giant-word {
-  color: color-mix(in srgb, var(--fond) 16%, var(--accent-2));
-}
-
-.mv-carousel-section .section-title {
-  position: relative;
-  z-index: 1;
-  color: var(--fond);
-}
-
-.mv-carousel-section .section-title::after {
-  background-color: var(--mv-accent-3);
-  margin-left: 0;
-}
-
-.mv-carousel-section .mv-script {
-  position: relative;
-  z-index: 1;
-  color: var(--fond);
-}
-
-.mv-carousel {
-  position: relative;
-  z-index: 1;
-  width: 220px;
-  height: 280px;
-  margin: 70px auto 20px;
-  transform-style: preserve-3d;
-  transform: perspective(1400px);
-  animation: mv-carousel-spin 34s linear infinite;
-}
-
-.mv-carousel-item {
+.mv-break-media {
   position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
+  inset: -16% 0;
   overflow: hidden;
-  border: 3px solid var(--fond);
-  box-shadow: 0 20px 40px color-mix(in srgb, var(--texte) 45%, transparent);
-  transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(380px);
 }
 
-.mv-carousel-item img {
+.mv-break-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-@keyframes mv-carousel-spin {
-  from {
-    transform: perspective(1400px) rotateX(-8deg) rotateY(0deg);
-  }
-  to {
-    transform: perspective(1400px) rotateX(-8deg) rotateY(360deg);
-  }
-}
-
-.mv-carousel:hover {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mv-carousel {
-    animation: none;
-    transform: perspective(1400px) rotateX(-8deg) rotateY(0deg);
-  }
-}
-
 @media (max-width: 768px) {
-  .mv-carousel {
-    width: 150px;
-    height: 190px;
+  .mv-break {
+    height: 42vh;
+    min-height: 260px;
   }
 
-  .mv-carousel-item {
-    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(270px);
+  .mv-break-media {
+    inset: 0;
+  }
+}
+
+/* ---------- Cartes boutique en tilt 3D ---------- */
+.mv-tilt-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.mv-tilt-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  perspective: 1200px;
+}
+
+.mv-tilt-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  box-shadow:
+    0 8px 16px color-mix(in srgb, var(--texte) 14%, transparent),
+    0 28px 50px color-mix(in srgb, var(--texte) 18%, transparent);
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+}
+
+.mv-tilt-card:hover {
+  box-shadow:
+    0 14px 24px color-mix(in srgb, var(--texte) 18%, transparent),
+    0 40px 70px color-mix(in srgb, var(--texte) 26%, transparent);
+}
+
+.mv-tilt-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mv-tilt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--texte) 65%, transparent));
+}
+
+.mv-tilt-card-label {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  z-index: 1;
+  color: var(--fond);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 900px) {
+  .mv-tilt-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .mv-tilt-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
@@ -304,14 +355,21 @@
 
 .mv-quote-media {
   position: absolute;
-  inset: 0;
+  inset: -16% 0;
   z-index: 0;
+  overflow: hidden;
 }
 
 .mv-quote-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .mv-quote-media {
+    inset: 0;
+  }
 }
 
 .mv-quote-band::after {
@@ -361,78 +419,27 @@
   opacity: 0.95;
 }
 
-/* ---------- Notre histoire : conteneur pour les formes ---------- */
+/* ---------- Notre histoire : bloc éditorial asymétrique ---------- */
 .mv-story {
   position: relative;
   overflow: hidden;
 }
 
-/* ---------- Onglets à bascule fondue ---------- */
-.mv-tabs-section {
-  position: relative;
-  overflow: hidden;
+.mv-story .two-col {
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 72px;
 }
 
-.mv-tabs {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 24px;
+.mv-story h2 {
+  font-size: clamp(2rem, 2vw + 1.6rem, 3.2rem);
+  line-height: 1.12;
+  max-width: 9ch;
 }
 
-.mv-tab {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 10px 22px;
-  border-radius: 999px;
-  border: 2px solid var(--texte);
-  background-color: transparent;
-  color: var(--texte);
-  cursor: pointer;
-  transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), transform 0.15s var(--ease-out);
-}
-
-.mv-tab:hover {
-  transform: translateY(-2px);
-}
-
-.mv-tab:active {
-  transform: scale(0.96);
-}
-
-.mv-tab:nth-child(1).is-active { background-color: var(--accent); border-color: var(--accent); color: var(--fond); }
-.mv-tab:nth-child(2).is-active { background-color: var(--accent-2); border-color: var(--accent-2); color: var(--fond); }
-.mv-tab:nth-child(3).is-active { background-color: var(--mv-accent-3); border-color: var(--mv-accent-3); color: var(--texte); }
-.mv-tab:nth-child(4).is-active { background-color: var(--mv-accent-4); border-color: var(--mv-accent-4); color: var(--fond); }
-
-.mv-tab-panels {
-  position: relative;
-  z-index: 1;
-  aspect-ratio: 16 / 9;
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.mv-tab-panel {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.6s var(--ease-out);
-}
-
-.mv-tab-panel.is-active {
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mv-tab-panel {
-    transition: none;
+@media (max-width: 768px) {
+  .mv-story .two-col {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 }
 
@@ -459,11 +466,12 @@
   overflow: hidden;
   padding: 28px;
   color: var(--fond);
-  transition: transform 0.2s var(--ease-out);
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
 
 .mv-bento-tile:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 36px color-mix(in srgb, var(--texte) 24%, transparent);
   text-decoration: none;
 }
 

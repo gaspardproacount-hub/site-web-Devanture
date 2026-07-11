@@ -64,11 +64,11 @@
       <div class="container">
         <div class="mv-hero-grid">
           <div class="mv-hero-copy">
-            <span class="hero-eyebrow">Concept-boutique · Bordeaux</span>
-            <h1>Des pièces choisies avec soin</h1>
-            <p class="mv-script">pour un style qui vous ressemble.</p>
-            <p class="hero-subtitle">Maison Verveine réunit vêtements, accessoires et petits objets choisis pour leur qualité et leur caractère.</p>
-            <div class="hero-actions">
+            <span class="hero-eyebrow gsap-reveal">Concept-boutique · Bordeaux</span>
+            <h1 class="gsap-reveal">Des pièces choisies avec soin</h1>
+            <p class="mv-script gsap-reveal">pour un style qui vous ressemble.</p>
+            <p class="hero-subtitle gsap-reveal">Maison Verveine réunit vêtements, accessoires et petits objets choisis pour leur qualité et leur caractère.</p>
+            <div class="hero-actions gsap-reveal">
               <a href="demo-boutique-maison-verveine-collection.html" class="btn btn-primary mv-btn-pill">Découvrir la collection</a>
               <a href="demo-boutique-maison-verveine-infos.html" class="btn btn-secondary mv-btn-pill mv-btn-outline-light">Nous trouver</a>
             </div>
@@ -84,73 +84,67 @@
     <!-- Barre de progression de scroll -->
     <div class="mv-scroll-progress" aria-hidden="true"><div class="mv-scroll-progress-fill" id="mv-scroll-fill"></div></div>
 
-    <!-- Carrousel 3D : rotation continue des photos de la boutique -->
-    <section class="mv-carousel-section">
-      <span class="mv-giant-word" aria-hidden="true">Boutique</span>
+    <!-- Notre histoire -->
+    <section class="mv-story">
       <div class="container">
-        <h2 class="section-title fade-in" style="text-align:left;">La boutique en volume</h2>
-        <p class="mv-script fade-in">pour un style qui vous ressemble.</p>
+        <div class="two-col">
+          <div class="gsap-reveal-group">
+            <h2 class="section-title mv-title gsap-reveal-item">Notre histoire</h2>
+            <p class="muted gsap-reveal-item">Ouverte en 2019 dans le quartier des Chartrons, Maison Verveine est née d'une envie simple : proposer une boutique où chaque pièce a été choisie une à une, plutôt qu'empilée par centaines.</p>
+            <p class="muted gsap-reveal-item">Ici, pas de grandes collections anonymes : des petites marques françaises et européennes, des matières qui vieillissent bien, et des conseils sincères pour trouver la pièce qui vous correspond vraiment.</p>
+          </div>
+          <ul class="check-list gsap-reveal-group">
+            <li class="gsap-reveal-item">Sélection resserrée, renouvelée chaque saison</li>
+            <li class="gsap-reveal-item">Petites marques françaises et européennes</li>
+            <li class="gsap-reveal-item">Conseil personnalisé, sans pression d'achat</li>
+            <li class="gsap-reveal-item">Retouches sur mesure proposées en boutique</li>
+          </ul>
+        </div>
       </div>
-      <div class="mv-carousel" style="--quantity: 8">
-        <div class="mv-carousel-item" style="--position: 1"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155727_79e0b918-ea68-4223-bb80-2a931a1e7d5b.png" alt="Façade de Maison Verveine" loading="lazy"></div>
-        <div class="mv-carousel-item" style="--position: 2"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155712_9a498069-23ac-4db0-8320-9ffef2c8cbb9.png" alt="Espace prêt-à-porter de Maison Verveine" loading="lazy"></div>
-        <div class="mv-carousel-item" style="--position: 3"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155654_46138bc7-1bb4-4596-82cf-7d70f78fd795.png" alt="Comptoir d'accessoires de Maison Verveine" loading="lazy"></div>
-        <div class="mv-carousel-item" style="--position: 4"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine" loading="lazy"></div>
-        <div class="mv-carousel-item" style="--position: 5"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155727_79e0b918-ea68-4223-bb80-2a931a1e7d5b.png" alt="Façade de Maison Verveine" loading="lazy"></div>
-        <div class="mv-carousel-item" style="--position: 6"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155712_9a498069-23ac-4db0-8320-9ffef2c8cbb9.png" alt="Espace prêt-à-porter de Maison Verveine" loading="lazy"></div>
-        <div class="mv-carousel-item" style="--position: 7"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155654_46138bc7-1bb4-4596-82cf-7d70f78fd795.png" alt="Comptoir d'accessoires de Maison Verveine" loading="lazy"></div>
-        <div class="mv-carousel-item" style="--position: 8"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine" loading="lazy"></div>
+    </section>
+
+    <!-- Rupture visuelle : image plein cadre entre deux blocs de texte -->
+    <section class="mv-break">
+      <div class="mv-break-media mv-parallax">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine" loading="lazy">
       </div>
     </section>
 
     <!-- Bandeau citation plein cadre -->
     <section class="mv-quote-band">
-      <div class="mv-quote-media fade-in mv-photo-reveal">
+      <div class="mv-quote-media mv-parallax">
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155712_9a498069-23ac-4db0-8320-9ffef2c8cbb9.png" alt="Intérieur de la boutique Maison Verveine, espace prêt-à-porter" loading="lazy">
       </div>
       <div class="container">
-        <blockquote class="mv-quote fade-in">
+        <blockquote class="mv-quote gsap-reveal">
           <p>Chaque pièce est choisie une à une, plutôt qu'empilée par centaines.</p>
           <cite>— Camille, fondatrice de Maison Verveine</cite>
         </blockquote>
       </div>
     </section>
 
-    <!-- Notre histoire -->
-    <section class="mv-story">
+    <!-- Cartes boutique en tilt 3D -->
+    <section class="mv-tilt-section">
       <div class="container">
-        <div class="two-col">
-          <div class="fade-in">
-            <h2 class="section-title" style="text-align:left;">Notre histoire</h2>
-            <p class="muted">Ouverte en 2019 dans le quartier des Chartrons, Maison Verveine est née d'une envie simple : proposer une boutique où chaque pièce a été choisie une à une, plutôt qu'empilée par centaines.</p>
-            <p class="muted">Ici, pas de grandes collections anonymes : des petites marques françaises et européennes, des matières qui vieillissent bien, et des conseils sincères pour trouver la pièce qui vous correspond vraiment.</p>
+        <h2 class="section-title mv-title gsap-reveal">Dans la boutique</h2>
+        <p class="mv-script gsap-reveal">pour un style qui vous ressemble.</p>
+        <div class="mv-tilt-grid gsap-reveal-group">
+          <div class="mv-tilt-card gsap-reveal-item">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155727_79e0b918-ea68-4223-bb80-2a931a1e7d5b.png" alt="Façade de Maison Verveine" loading="lazy">
+            <span class="mv-tilt-card-label">Façade</span>
           </div>
-          <ul class="check-list fade-in">
-            <li>Sélection resserrée, renouvelée chaque saison</li>
-            <li>Petites marques françaises et européennes</li>
-            <li>Conseil personnalisé, sans pression d'achat</li>
-            <li>Retouches sur mesure proposées en boutique</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Onglets à bascule fondue : parcourir la boutique en images -->
-    <section class="section-alt mv-tabs-section">
-      <div class="container">
-        <h2 class="section-title fade-in" style="text-align:left;">Dans la boutique</h2>
-        <p class="mv-script fade-in">pour un style qui vous ressemble.</p>
-        <div class="mv-tabs" role="tablist" aria-label="Aperçus de la boutique">
-          <button type="button" class="mv-tab is-active" role="tab" aria-selected="true" data-target="mv-panel-facade">Façade</button>
-          <button type="button" class="mv-tab" role="tab" aria-selected="false" data-target="mv-panel-pap">Prêt-à-porter</button>
-          <button type="button" class="mv-tab" role="tab" aria-selected="false" data-target="mv-panel-access">Accessoires</button>
-          <button type="button" class="mv-tab" role="tab" aria-selected="false" data-target="mv-panel-vitrine">Vitrine</button>
-        </div>
-        <div class="mv-tab-panels fade-in">
-          <img id="mv-panel-facade" class="mv-tab-panel is-active" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155727_79e0b918-ea68-4223-bb80-2a931a1e7d5b.png" alt="Façade de Maison Verveine">
-          <img id="mv-panel-pap" class="mv-tab-panel" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155712_9a498069-23ac-4db0-8320-9ffef2c8cbb9.png" alt="Espace prêt-à-porter de Maison Verveine">
-          <img id="mv-panel-access" class="mv-tab-panel" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155654_46138bc7-1bb4-4596-82cf-7d70f78fd795.png" alt="Comptoir d'accessoires de Maison Verveine">
-          <img id="mv-panel-vitrine" class="mv-tab-panel" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine">
+          <div class="mv-tilt-card gsap-reveal-item">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155712_9a498069-23ac-4db0-8320-9ffef2c8cbb9.png" alt="Espace prêt-à-porter de Maison Verveine" loading="lazy">
+            <span class="mv-tilt-card-label">Prêt-à-porter</span>
+          </div>
+          <div class="mv-tilt-card gsap-reveal-item">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155654_46138bc7-1bb4-4596-82cf-7d70f78fd795.png" alt="Comptoir d'accessoires de Maison Verveine" loading="lazy">
+            <span class="mv-tilt-card-label">Accessoires</span>
+          </div>
+          <div class="mv-tilt-card gsap-reveal-item">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine" loading="lazy">
+            <span class="mv-tilt-card-label">Vitrine</span>
+          </div>
         </div>
       </div>
     </section>
@@ -158,12 +152,12 @@
     <!-- Explorer le site -->
     <section class="mv-bento-section">
       <div class="container">
-        <div class="mv-bento fade-in">
-          <a href="demo-boutique-maison-verveine-collection.html" class="mv-bento-tile mv-bento-tile--image">
+        <div class="mv-bento gsap-reveal-group">
+          <a href="demo-boutique-maison-verveine-collection.html" class="mv-bento-tile mv-bento-tile--image gsap-reveal-item">
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine" loading="lazy">
             <span class="mv-bento-tile-label">Collection<small>Prêt-à-porter, accessoires et petite maroquinerie</small></span>
           </a>
-          <a href="demo-boutique-maison-verveine-infos.html" class="mv-bento-tile mv-bento-tile--solid">
+          <a href="demo-boutique-maison-verveine-infos.html" class="mv-bento-tile mv-bento-tile--solid gsap-reveal-item">
             <span class="mv-bento-tile-label">Infos pratiques<small>Horaires, adresse et contact</small></span>
           </a>
         </div>
@@ -187,32 +181,100 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    document.querySelectorAll(".mv-tabs .mv-tab").forEach(function (tab) {
-      tab.addEventListener("click", function () {
-        document.querySelectorAll(".mv-tabs .mv-tab").forEach(function (t) {
-          t.classList.remove("is-active");
-          t.setAttribute("aria-selected", "false");
-        });
-        tab.classList.add("is-active");
-        tab.setAttribute("aria-selected", "true");
-        document.querySelectorAll(".mv-tab-panel").forEach(function (panel) {
-          panel.classList.remove("is-active");
-        });
-        document.getElementById(tab.dataset.target).classList.add("is-active");
-      });
-    });
 
+  <!-- Smooth scroll + animations pilotées par le scroll, propres à cette page -->
+  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
     (function () {
       var fill = document.getElementById("mv-scroll-fill");
-      if (!fill) return;
-      function updateScrollProgress() {
-        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        var progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-        fill.style.height = Math.min(Math.max(progress, 0), 100) + "%";
+      if (fill) {
+        var updateScrollProgress = function () {
+          var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+          var progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+          fill.style.height = Math.min(Math.max(progress, 0), 100) + "%";
+        };
+        window.addEventListener("scroll", updateScrollProgress, { passive: true });
+        updateScrollProgress();
       }
-      window.addEventListener("scroll", updateScrollProgress, { passive: true });
-      updateScrollProgress();
+
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var canHoverPrecise = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+      // ---------- Tilt 3D des cartes boutique (desktop uniquement) ----------
+      if (!reduceMotion && canHoverPrecise) {
+        document.querySelectorAll(".mv-tilt-card").forEach(function (card) {
+          card.addEventListener("pointermove", function (e) {
+            var rect = card.getBoundingClientRect();
+            var px = (e.clientX - rect.left) / rect.width - 0.5;
+            var py = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform =
+              "perspective(900px) rotateX(" + (py * -12) + "deg) rotateY(" + (px * 12) + "deg) scale3d(1.03, 1.03, 1.03)";
+          });
+          card.addEventListener("pointerleave", function () {
+            card.style.transform = "";
+          });
+        });
+      }
+
+      // ---------- Smooth scroll (Lenis) + reveals/parallax (GSAP ScrollTrigger) ----------
+      if (reduceMotion || typeof gsap === "undefined" || typeof Lenis === "undefined") return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      var lenis = new Lenis();
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(function (time) {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+
+      // Fade + léger slide vers le haut à l'entrée dans le viewport
+      gsap.utils.toArray(".gsap-reveal").forEach(function (el) {
+        gsap.from(el, {
+          opacity: 0,
+          y: 28,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 88%" },
+        });
+      });
+
+      gsap.utils.toArray(".gsap-reveal-group").forEach(function (group) {
+        var items = group.querySelectorAll(".gsap-reveal-item");
+        if (!items.length) return;
+        gsap.from(items, {
+          opacity: 0,
+          y: 26,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: "power2.out",
+          scrollTrigger: { trigger: group, start: "top 85%" },
+        });
+      });
+
+      // Parallax doux sur les images plein cadre (désactivé sous 900px)
+      ScrollTrigger.matchMedia({
+        "(min-width: 900px)": function () {
+          gsap.utils.toArray(".mv-parallax img").forEach(function (img) {
+            gsap.fromTo(
+              img,
+              { yPercent: -8 },
+              {
+                yPercent: 8,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: img.closest(".mv-break, .mv-quote-band"),
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              }
+            );
+          });
+        },
+      });
     })();
   </script>
 </body>
