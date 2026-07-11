@@ -9,7 +9,8 @@
   --texte: #1C1D20;
   --accent: #1E3A5F;
   --accent-hover: #182E4C; /* hover des boutons : bleu légèrement assombri */
-  --accent-soft: #3A5670; /* variante claire de l'accent, seule teinte utilisée pour les touches décoratives */
+  --accent-soft: #3A5670; /* variante claire de l'accent, liens/hover */
+  --accent-2: #D99A3D; /* ambre chaud : deuxième accent, contraste fort sur fond marine ; en aplat/décoratif sur fond clair */
   --neutre: #E7E7E3;
 
   --font-heading: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -112,7 +113,7 @@ section {
   width: 48px;
   height: 3px;
   margin: 14px auto 0;
-  background-color: var(--accent-soft);
+  background-color: var(--accent-2);
   border-radius: 2px;
 }
 
@@ -290,7 +291,12 @@ section {
   position: relative;
   overflow: hidden;
   padding: 88px 0 72px;
-  border-bottom: 1px solid var(--neutre);
+  background-color: var(--accent);
+  color: var(--fond);
+}
+
+.hero h1 {
+  color: var(--fond);
 }
 
 .hero-spotlight {
@@ -300,8 +306,8 @@ section {
   opacity: 0;
   transition: opacity 0.4s var(--ease-out);
   background: radial-gradient(
-    480px circle at var(--spot-x, 50%) var(--spot-y, 30%),
-    color-mix(in srgb, var(--accent) 16%, transparent),
+    560px circle at var(--spot-x, 50%) var(--spot-y, 30%),
+    color-mix(in srgb, var(--accent-2) 24%, transparent),
     transparent 70%
   );
 }
@@ -326,7 +332,7 @@ section {
 
 .hero-eyebrow {
   display: inline-block;
-  color: var(--accent-soft);
+  color: var(--accent-2);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -336,8 +342,28 @@ section {
 
 .hero-subtitle {
   font-size: 1.15rem;
+  color: var(--fond);
   opacity: 0.85;
   margin-bottom: 32px;
+}
+
+.hero .btn-primary {
+  background-color: var(--accent-2);
+  color: var(--texte);
+}
+
+.hero .btn-primary:hover {
+  background-color: color-mix(in srgb, var(--accent-2) 85%, black);
+}
+
+.hero .btn-secondary {
+  color: var(--fond);
+  border-color: var(--fond);
+}
+
+.hero .btn-secondary:hover {
+  background-color: var(--fond);
+  color: var(--accent);
 }
 
 .hero-actions {
@@ -391,7 +417,7 @@ section {
   height: 56px;
   margin: 0 auto 18px;
   border-radius: 50%;
-  background-color: color-mix(in srgb, var(--accent) 14%, var(--fond));
+  background-color: color-mix(in srgb, var(--accent-2) 25%, var(--fond));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -618,17 +644,22 @@ section {
 .pricing-card {
   max-width: 520px;
   margin: 0 auto;
-  background-color: color-mix(in srgb, var(--accent) 5%, var(--fond));
+  background-color: var(--accent);
+  color: var(--fond);
   border-radius: var(--radius);
   padding: 40px;
   text-align: center;
   box-shadow: var(--shadow-subtle);
 }
 
+.pricing-card .muted {
+  color: var(--fond);
+}
+
 .pricing-amount {
   font-family: var(--font-heading);
   font-size: 2.4rem;
-  color: var(--accent);
+  color: var(--accent-2);
   margin-bottom: 4px;
 }
 
@@ -636,13 +667,30 @@ section {
   font-size: 1rem;
   font-family: var(--font-body);
   font-weight: 500;
-  color: var(--texte);
+  color: var(--fond);
   opacity: 0.7;
 }
 
 .pricing-card .check-list {
   text-align: left;
   margin: 24px 0 32px;
+}
+
+.pricing-card .check-list li {
+  color: var(--fond);
+}
+
+.pricing-card .check-list li::before {
+  color: var(--accent-2);
+}
+
+.pricing-card .btn-primary {
+  background-color: var(--accent-2);
+  color: var(--texte);
+}
+
+.pricing-card .btn-primary:hover {
+  background-color: color-mix(in srgb, var(--accent-2) 85%, black);
 }
 
 /* ---------- FAQ ---------- */
