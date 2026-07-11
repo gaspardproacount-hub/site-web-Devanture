@@ -58,20 +58,20 @@
   <main>
 
     <section class="mv-banner">
-      <div class="mv-banner-media fade-in mv-photo-reveal">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155727_79e0b918-ea68-4223-bb80-2a931a1e7d5b.png" alt="Façade de Maison Verveine, quartier des Chartrons à Bordeaux" loading="eager">
+      <div class="mv-banner-media mv-parallax">
+        <img class="mv-obj-right" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155727_79e0b918-ea68-4223-bb80-2a931a1e7d5b.png" alt="Façade de Maison Verveine, quartier des Chartrons à Bordeaux" loading="eager">
       </div>
       <div class="container">
-        <span class="hero-eyebrow">Bordeaux · Quartier des Chartrons</span>
-        <h1>Infos pratiques</h1>
-        <p class="mv-script">pour un style qui vous ressemble.</p>
+        <span class="hero-eyebrow gsap-reveal">Bordeaux · Quartier des Chartrons</span>
+        <h1 class="gsap-reveal">Infos pratiques</h1>
+        <p class="mv-script gsap-reveal">pour un style qui vous ressemble.</p>
       </div>
     </section>
 
     <section class="mv-contact-section">
       <div class="container">
-        <div class="contact-grid fade-in">
-          <div>
+        <div class="contact-grid gsap-reveal-group">
+          <div class="gsap-reveal-item">
             <h3>Horaires</h3>
             <table class="hours-table">
               <tr><td>Lundi</td><td>Fermé</td></tr>
@@ -80,7 +80,7 @@
               <tr><td>Dimanche</td><td>Fermé</td></tr>
             </table>
           </div>
-          <div class="contact-info">
+          <div class="contact-info gsap-reveal-item">
             <h3>Nous trouver</h3>
             <p class="muted">14 rue Notre-Dame<br>33000 Bordeaux — Quartier des Chartrons</p>
             <p><a href="tel:+33556000000">05 56 00 00 00</a></p>
@@ -91,13 +91,17 @@
       </div>
     </section>
 
-    <!-- CTA final -->
-    <section class="section-alt">
+    <!-- Explorer le site -->
+    <section class="mv-bento-section">
       <div class="container">
-        <div class="cta-band fade-in">
-          <h2>Envie de découvrir la collection en vrai ?</h2>
-          <p>On vous accueille du mardi au samedi, sans rendez-vous.</p>
-          <a href="demo-boutique-maison-verveine-collection.html" class="btn btn-primary">Voir la collection</a>
+        <div class="mv-bento gsap-reveal-group">
+          <a href="demo-boutique-maison-verveine-collection.html" class="mv-bento-tile mv-bento-tile--image gsap-reveal-item">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_155638_78633ff8-f421-4ce6-98d7-be57ffdc2d81.png" alt="Vitrine de saison de Maison Verveine" loading="lazy">
+            <span class="mv-bento-tile-label">Collection<small>Prêt-à-porter, accessoires et petite maroquinerie</small></span>
+          </a>
+          <a href="demo-boutique-maison-verveine.html" class="mv-bento-tile mv-bento-tile--solid gsap-reveal-item">
+            <span class="mv-bento-tile-label">Accueil<small>Notre histoire et l'esprit de la boutique</small></span>
+          </a>
         </div>
       </div>
     </section>
@@ -119,5 +123,11 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- Smooth scroll + animations pilotées par le scroll, communes aux 3 pages -->
+  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="boutique-maison-verveine.js"></script>
 </body>
 </html>
