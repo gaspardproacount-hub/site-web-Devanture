@@ -921,3 +921,109 @@ section {
   border-top: 1px solid var(--neutre);
   border-bottom: 1px solid var(--neutre);
 }
+
+/* ---------- Pages de démo (gallery "Réalisations") ---------- */
+.gallery-preview {
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--neutre);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  padding: 16px;
+}
+
+.gallery-item:hover .gallery-preview {
+  border-color: var(--accent);
+}
+
+.gallery-preview-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.gallery-preview-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.gallery-preview-tag {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+/* Wordmark générique utilisé dans l'en-tête des sites de démo (palette propre à chaque page) */
+.demo-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.demo-wordmark:hover {
+  color: var(--accent);
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+/* Badge fixe de retour vers Devanture, présent sur chaque page de démo */
+.demo-badge {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background-color: var(--texte);
+  color: var(--fond);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--texte) 30%, transparent);
+  transition: transform 0.15s var(--ease-out), opacity 0.15s ease;
+}
+
+.demo-badge:hover {
+  transform: translateY(-2px);
+  color: var(--fond);
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.demo-badge strong {
+  font-weight: 700;
+}
+
+@media (max-width: 560px) {
+  .demo-badge span {
+    display: none;
+  }
+}
+
+/* ---------- Table d'horaires (pages de démo) ---------- */
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hours-table td {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--neutre);
+  font-size: 0.95rem;
+}
+
+.hours-table td:last-child {
+  text-align: right;
+  font-weight: 600;
+}
