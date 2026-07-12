@@ -300,79 +300,39 @@ section {
 .nav-toggle {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  align-self: center;
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  gap: 8px;
+  width: 56px;
+  height: 100px;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
 }
 
-.nav-toggle-ball {
-  position: relative;
-  z-index: 1;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
+.nav-toggle-bar {
+  display: block;
+  width: 36px;
+  height: 3px;
+  border-radius: 2px;
   background-color: var(--accent);
-  transition: transform 0.2s var(--ease-out), background-color 0.15s ease;
+  transition: transform 0.2s var(--ease-in-out), opacity 0.2s ease;
 }
 
-.nav-toggle:hover .nav-toggle-ball {
-  transform: scale(1.15);
+.nav-toggle.is-open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
 }
 
-.nav-toggle.is-open .nav-toggle-ball {
-  transform: scale(0.8);
-  background-color: var(--accent-hover);
-}
-
-/* Éclats façon feu d'artifice, déclenchés au clic (voir script.js) */
-.nav-toggle-burst {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-}
-
-.nav-toggle-burst-particle {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 7px;
-  height: 7px;
-  margin: -3.5px 0 0 -3.5px;
-  border-radius: 50%;
-  background-color: var(--accent);
-  box-shadow: 0 0 6px color-mix(in srgb, var(--accent) 70%, transparent);
+.nav-toggle.is-open .nav-toggle-bar:nth-child(2) {
   opacity: 0;
 }
 
-.nav-toggle-burst.is-bursting .nav-toggle-burst-particle {
-  animation: nav-toggle-burst-anim 0.6s var(--ease-out) forwards;
-}
-
-@keyframes nav-toggle-burst-anim {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(var(--bx), var(--by)) scale(0);
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nav-toggle-burst-particle {
-    animation: none !important;
-    opacity: 0 !important;
-  }
+.nav-toggle.is-open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
 }
 
 .nav-links {
@@ -419,6 +379,10 @@ section {
 
 @media (max-width: 480px) {
   .nav-logo img {
+    height: 76px;
+  }
+
+  .nav-toggle {
     height: 76px;
   }
 }
