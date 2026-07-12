@@ -183,8 +183,14 @@ section {
 .site-header::before {
   content: "";
   display: block;
-  height: 8px;
-  background-color: var(--accent);
+  height: 22px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0,
+    var(--accent) 12px,
+    var(--fond) 12px,
+    var(--fond) 24px
+  );
 }
 
 .nav {
