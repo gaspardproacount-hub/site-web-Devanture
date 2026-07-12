@@ -82,6 +82,12 @@ h1, h2, h3, h4 {
 }
 
 h1 { font-size: clamp(2rem, 5vw + 1rem, 3.2rem); font-weight: 700; letter-spacing: -0.01em; }
+
+/* Titre d'accueil scindé en caractères animés (script.js) : un peu plus
+   petit pour que la phrase complète tienne en moins de lignes. */
+.hero h1.is-hero-split {
+  font-size: clamp(1.4rem, 3.6vw + 0.85rem, 2.5rem);
+}
 h2 { font-size: clamp(1.5rem, 3vw + 1rem, 2.2rem); }
 h3 { font-size: 1.25rem; }
 

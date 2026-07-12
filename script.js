@@ -199,7 +199,20 @@ document.addEventListener("DOMContentLoaded", function () {
       if (animeSplitText && isHeroSplitPage()) {
         var heroTitle = document.querySelector(".hero h1");
         if (heroTitle) {
-          var split = animeSplitText(heroTitle, { words: false, chars: true });
+          // Police un peu plus petite pour que la phrase tienne en moins de
+          // lignes (voir .is-hero-split dans styles.css).
+          heroTitle.classList.add("is-hero-split");
+
+          var split = animeSplitText(heroTitle, { words: true, chars: true });
+
+          // Empêche les coupures de ligne au milieu d'un mot : chaque mot
+          // reste entier (nowrap), seul un espace entre deux mots peut
+          // déclencher un retour à la ligne.
+          (split.words || []).forEach(function (word) {
+            word.style.display = "inline-block";
+            word.style.whiteSpace = "nowrap";
+          });
+
           animeAnimate(split.chars, {
             y: [
               { to: "-2.75rem", ease: "outExpo", duration: 600 },
