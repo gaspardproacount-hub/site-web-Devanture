@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var trailCtx = trailCanvas.getContext("2d");
     var trailDpr = Math.min(window.devicePixelRatio || 1, 2);
     var trailColorHex = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#5B3DF0";
-    var TRAIL_LIFETIME = 3000;
+    var TRAIL_LIFETIME = 1000;
     var trailPoints = [];
     var trailLastX = null;
     var trailLastY = null;
