@@ -127,6 +127,99 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ---------- Traînée de souris "brume" : suit le curseur et s'efface en 3s ----------
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && !prefersReducedMotion) {
+    var trailCanvas = document.createElement("canvas");
+    trailCanvas.setAttribute("aria-hidden", "true");
+    Object.assign(trailCanvas.style, {
+      position: "fixed",
+      inset: "0",
+      width: "100%",
+      height: "100%",
+      pointerEvents: "none",
+      zIndex: "9999",
+    });
+    document.body.appendChild(trailCanvas);
+
+    var trailCtx = trailCanvas.getContext("2d");
+    var trailDpr = Math.min(window.devicePixelRatio || 1, 2);
+    var trailColorHex = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#5B3DF0";
+    var TRAIL_LIFETIME = 3000;
+    var trailPoints = [];
+    var trailLastX = null;
+    var trailLastY = null;
+    var trailLoopRunning = false;
+
+    function hexToRgba(hex, alpha) {
+      var h = hex.replace("#", "");
+      if (h.length === 3) {
+        h = h.replace(/(.)/g, "$1$1");
+      }
+      var r = parseInt(h.substring(0, 2), 16);
+      var g = parseInt(h.substring(2, 4), 16);
+      var b = parseInt(h.substring(4, 6), 16);
+      return "rgba(" + r + "," + g + "," + b + "," + alpha + ")";
+    }
+
+    function resizeTrailCanvas() {
+      trailCanvas.width = window.innerWidth * trailDpr;
+      trailCanvas.height = window.innerHeight * trailDpr;
+      trailCtx.setTransform(trailDpr, 0, 0, trailDpr, 0, 0);
+    }
+    resizeTrailCanvas();
+    window.addEventListener("resize", resizeTrailCanvas);
+
+    function renderTrail() {
+      trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+      var now = performance.now();
+
+      trailPoints = trailPoints.filter(function (p) {
+        return now - p.time < TRAIL_LIFETIME;
+      });
+
+      trailPoints.forEach(function (p) {
+        var progress = (now - p.time) / TRAIL_LIFETIME;
+        var alpha = (1 - progress) * 0.35;
+        var radius = 10 + progress * 26;
+
+        var gradient = trailCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, radius);
+        gradient.addColorStop(0, hexToRgba(trailColorHex, alpha));
+        gradient.addColorStop(1, hexToRgba(trailColorHex, 0));
+
+        trailCtx.fillStyle = gradient;
+        trailCtx.beginPath();
+        trailCtx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        trailCtx.fill();
+      });
+
+      if (trailPoints.length) {
+        requestAnimationFrame(renderTrail);
+      } else {
+        trailLoopRunning = false;
+      }
+    }
+
+    window.addEventListener("pointermove", function (e) {
+      if (e.pointerType && e.pointerType !== "mouse") return;
+
+      if (trailLastX !== null) {
+        var dx = e.clientX - trailLastX;
+        var dy = e.clientY - trailLastY;
+        if (dx * dx + dy * dy < 16) return;
+      }
+      trailLastX = e.clientX;
+      trailLastY = e.clientY;
+
+      trailPoints.push({ x: e.clientX, y: e.clientY, time: performance.now() });
+      if (trailPoints.length > 220) trailPoints.shift();
+
+      if (!trailLoopRunning) {
+        trailLoopRunning = true;
+        requestAnimationFrame(renderTrail);
+      }
+    });
+  }
+
   // ---------- Reveal en cascade : délai progressif par grille ----------
   document.querySelectorAll(".card-grid, .feature-grid, .steps, .gallery-grid, .cross-links").forEach(function (grid) {
     Array.prototype.forEach.call(grid.children, function (child, index) {
