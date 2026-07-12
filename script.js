@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ---------- Traînée de souris "brume" : suit le curseur et s'efface en 3s ----------
+  // ---------- Traînée de souris (ligne) : suit le curseur et s'efface en 1s ----------
   if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && !prefersReducedMotion) {
     var trailCanvas = document.createElement("canvas");
     trailCanvas.setAttribute("aria-hidden", "true");
@@ -177,20 +177,22 @@ document.addEventListener("DOMContentLoaded", function () {
         return now - p.time < TRAIL_LIFETIME;
       });
 
-      trailPoints.forEach(function (p) {
-        var progress = (now - p.time) / TRAIL_LIFETIME;
-        var alpha = (1 - progress) * 0.35;
-        var radius = 10 + progress * 26;
+      trailCtx.lineCap = "round";
+      trailCtx.lineJoin = "round";
 
-        var gradient = trailCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, radius);
-        gradient.addColorStop(0, hexToRgba(trailColorHex, alpha));
-        gradient.addColorStop(1, hexToRgba(trailColorHex, 0));
+      for (var i = 1; i < trailPoints.length; i++) {
+        var p0 = trailPoints[i - 1];
+        var p1 = trailPoints[i];
+        var progress = (now - p1.time) / TRAIL_LIFETIME;
+        var alpha = 1 - progress;
 
-        trailCtx.fillStyle = gradient;
+        trailCtx.strokeStyle = hexToRgba(trailColorHex, alpha * 0.85);
+        trailCtx.lineWidth = 3 * alpha + 0.5;
         trailCtx.beginPath();
-        trailCtx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-        trailCtx.fill();
-      });
+        trailCtx.moveTo(p0.x, p0.y);
+        trailCtx.lineTo(p1.x, p1.y);
+        trailCtx.stroke();
+      }
 
       if (trailPoints.length) {
         requestAnimationFrame(renderTrail);
