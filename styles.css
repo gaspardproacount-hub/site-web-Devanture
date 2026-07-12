@@ -294,20 +294,26 @@ section {
   will-change: transform, filter, opacity;
 }
 
-.door-intro-layer-closed {
-  background-image: url("devanture-facade-intro.jpg");
+.door-intro-layer-loin {
+  background-image: url("devanture-loin.jpg");
   z-index: 1;
+}
+
+.door-intro-layer-proche {
+  background-image: url("devanture-proche.jpg");
+  z-index: 2;
+  opacity: 0;
 }
 
 .door-intro-layer-ajar {
   background-image: url("devanture-entrouverte.jpg");
-  z-index: 2;
+  z-index: 3;
   opacity: 0;
 }
 
 .door-intro-layer-open {
   background-image: url("devantureouverte.jpg");
-  z-index: 3;
+  z-index: 4;
   opacity: 0;
 }
 

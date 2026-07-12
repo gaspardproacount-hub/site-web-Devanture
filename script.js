@@ -257,9 +257,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var doorSticky = doorIntro.querySelector(".door-intro-sticky");
     var doorCue = doorIntro.querySelector(".door-intro-cue");
     var doorStages = [
-      { el: doorIntro.querySelector(".door-intro-layer-closed"), at: 0 },
-      { el: doorIntro.querySelector(".door-intro-layer-ajar"), at: 0.4 },
-      { el: doorIntro.querySelector(".door-intro-layer-open"), at: 0.7 },
+      { el: doorIntro.querySelector(".door-intro-layer-loin"), at: 0 },
+      { el: doorIntro.querySelector(".door-intro-layer-proche"), at: 0.25 },
+      { el: doorIntro.querySelector(".door-intro-layer-ajar"), at: 0.5 },
+      { el: doorIntro.querySelector(".door-intro-layer-open"), at: 0.75 },
     ];
     var doorCurrent = 0;
     var doorTarget = 0;
@@ -274,13 +275,14 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderDoorIntro(rawProgress) {
       var progress = Math.min(rawProgress, 1);
 
-      // Zoom continu vers la porte (et son mécanisme d'ouverture, voir
-      // transform-origin en CSS), du début à la fin du défilement — on ne
-      // s'arrête jamais, comme si on s'avançait vers le magasin.
-      var scale = 1 + progress * 1.9;
+      // Le rapprochement est porté par la succession de vraies photos
+      // (loin → proche → entrouverte → grande ouverte), pas par un zoom
+      // artificiel : on ne fait plus qu'un très léger zoom de transition
+      // sur chaque photo pour garder un peu de mouvement entre les bascules.
+      var scale = 1 + progress * 0.15;
       var transform = "scale(" + scale.toFixed(3) + ")";
 
-      // Étape active : porte fermée → entrouverte → grande ouverte. Les
+      // Étape active : loin → proche → entrouverte → grande ouverte. Les
       // photos ne sont pas pixel-alignées entre elles : plutôt qu'un fondu
       // progressif (qui laisse un dédoublement/fantôme visible), on bascule
       // net d'une photo à l'autre exactement au pic de flou, pour masquer
@@ -316,7 +318,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // masque le bloc (visibility, sans toucher à sa hauteur) : par
       // sécurité, pour qu'aucun flou ne puisse jamais "baver" au-dessus du
       // héros, même via un artefact de compositing du navigateur.
-      var pass = rangeProgress(progress, 0.85, 1);
+      var pass = rangeProgress(progress, 0.88, 1);
       var blur = Math.max(swapBlur, pass * 14);
       var filter = fullyFaded ? "none" : "blur(" + blur.toFixed(1) + "px) brightness(" + (1 + pass * 0.7).toFixed(2) + ")";
       doorStages.forEach(function (s) {
