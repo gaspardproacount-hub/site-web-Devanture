@@ -250,6 +250,51 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ---------- Intro défilante (accueil) : vitrine Devanture, entrée par la porte ----------
+  var doorIntro = document.querySelector(".door-intro");
+
+  if (doorIntro && !prefersReducedMotion) {
+    var doorLeft = doorIntro.querySelector(".door-intro-half-left");
+    var doorRight = doorIntro.querySelector(".door-intro-half-right");
+    var doorCue = doorIntro.querySelector(".door-intro-cue");
+    var doorTicking = false;
+
+    function updateDoorIntro() {
+      var scrollableHeight = doorIntro.offsetHeight - window.innerHeight;
+      var scrolled = -doorIntro.getBoundingClientRect().top;
+      var progress = scrollableHeight > 0 ? Math.min(Math.max(scrolled / scrollableHeight, 0), 1) : 1;
+
+      var scale = 1 + progress * 1.4;
+      var openStart = 0.7;
+      var openProgress = progress > openStart ? (progress - openStart) / (1 - openStart) : 0;
+      var slide = openProgress * 55;
+      var blur = openProgress * 16;
+
+      var transform = "scale(" + scale.toFixed(3) + ")";
+      var filter = "blur(" + blur.toFixed(1) + "px) brightness(" + (1 + openProgress * 0.6).toFixed(2) + ")";
+
+      doorLeft.style.transform = transform + " translateX(-" + slide.toFixed(2) + "%)";
+      doorLeft.style.filter = filter;
+      doorRight.style.transform = transform + " translateX(" + slide.toFixed(2) + "%)";
+      doorRight.style.filter = filter;
+
+      if (doorCue) {
+        doorCue.style.opacity = Math.max(0, 1 - progress * 4);
+      }
+
+      doorTicking = false;
+    }
+
+    window.addEventListener("scroll", function () {
+      if (!doorTicking) {
+        window.requestAnimationFrame(updateDoorIntro);
+        doorTicking = true;
+      }
+    });
+
+    updateDoorIntro();
+  }
+
   // ---------- Hero : léger parallax au scroll ----------
   var heroContainer = hero ? hero.querySelector(".container") : null;
 
