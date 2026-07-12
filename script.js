@@ -7,12 +7,14 @@
 var animeAnimate = null;
 var animeStagger = null;
 var animeSplitText = null;
+var animeCreateLayout = null;
 
 var animeReady = import("animejs")
   .then(function (mod) {
     animeAnimate = mod.animate;
     animeStagger = mod.stagger;
     animeSplitText = mod.splitText;
+    animeCreateLayout = mod.createLayout;
   })
   .catch(function () {
     // anime.js indisponible : animeAnimate reste null, les filets de sécurité prennent le relais.
@@ -311,6 +313,88 @@ document.addEventListener("DOMContentLoaded", function () {
       priceObserver.observe(el);
     });
   }
+
+  // ---------- Bouton "Cliquer ici" : compose "design for u" lettre par lettre ----------
+  (function () {
+    var layoutContainer = document.querySelector(".layout-container");
+    var layoutButton = document.querySelector(".layout-trigger");
+    if (!layoutContainer || !layoutButton) return;
+
+    var LETTERS = "designforu".split("");
+    var SPACE_BEFORE = { 6: true, 9: true }; // avant "f" (design|for) et avant "u" (for|u)
+    var letterIndex = 0;
+
+    function makeLetter(char, isSpace) {
+      var span = document.createElement("span");
+      span.className = "layout-letter" + (isSpace ? " layout-letter-space" : "");
+      span.textContent = isSpace ? " " : char;
+      return span;
+    }
+
+    function appendPlain(root) {
+      if (SPACE_BEFORE[letterIndex]) root.appendChild(makeLetter(" ", true));
+      var span = makeLetter(LETTERS[letterIndex], false);
+      if (!prefersReducedMotion) {
+        span.style.opacity = "0";
+        span.style.transform = "translateY(20px) scale(0.5)";
+      }
+      root.appendChild(span);
+      if (!prefersReducedMotion) {
+        requestAnimationFrame(function () {
+          span.style.transition = "transform 0.35s var(--ease-out), opacity 0.3s ease";
+          span.style.opacity = "1";
+          span.style.transform = "translateY(0) scale(1)";
+        });
+      }
+      letterIndex++;
+    }
+
+    function finishIfDone() {
+      if (letterIndex >= LETTERS.length) {
+        layoutButton.disabled = true;
+        layoutButton.classList.add("is-done");
+      }
+    }
+
+    function wireUpWith(layout) {
+      layoutButton.addEventListener("click", function () {
+        if (letterIndex >= LETTERS.length) return;
+
+        if (layout) {
+          layout.update(function (ctx) {
+            if (SPACE_BEFORE[letterIndex]) ctx.root.appendChild(makeLetter(" ", true));
+            ctx.root.appendChild(makeLetter(LETTERS[letterIndex], false));
+            letterIndex++;
+          });
+        } else {
+          appendPlain(layoutContainer);
+        }
+
+        finishIfDone();
+      });
+    }
+
+    if (prefersReducedMotion) {
+      wireUpWith(null);
+      return;
+    }
+
+    animeReady.then(function () {
+      var layout = animeCreateLayout
+        ? animeCreateLayout(layoutContainer, {
+            duration: 250,
+            ease: "outQuad",
+            enterFrom: {
+              transform: "translateY(100px) scale(.25)",
+              opacity: 0,
+              duration: 350,
+              ease: "out(3)",
+            },
+          })
+        : null;
+      wireUpWith(layout);
+    });
+  })();
 
   // ---------- Formulaire de contact : envoi AJAX avec délai maîtrisé ----------
   var contactForm = document.getElementById("contact-form");
