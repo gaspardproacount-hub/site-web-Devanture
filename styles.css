@@ -15,6 +15,7 @@
 
   --font-heading: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-title: "Pilcrow Rounded", var(--font-heading);
 
   --content-max: 1100px;
   --radius: 8px;
@@ -72,8 +73,17 @@ button {
   font-family: inherit;
 }
 
+@font-face {
+  font-family: "Pilcrow Rounded";
+  src: url("fonts/PilcrowRounded-Semibold.woff2") format("woff2"),
+       url("fonts/PilcrowRounded-Semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 h1, h2, h3, h4 {
-  font-family: var(--font-heading);
+  font-family: var(--font-title);
   font-weight: 600;
   line-height: 1.25;
   margin: 0 0 0.6em;
@@ -81,7 +91,7 @@ h1, h2, h3, h4 {
   text-wrap: balance;
 }
 
-h1 { font-size: clamp(2rem, 5vw + 1rem, 3.2rem); font-weight: 700; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2rem, 5vw + 1rem, 3.2rem); letter-spacing: -0.01em; }
 
 /* Titre d'accueil scindé en caractères animés (script.js) : un peu plus
    petit pour que la phrase complète tienne en moins de lignes. */
