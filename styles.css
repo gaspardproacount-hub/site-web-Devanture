@@ -299,9 +299,15 @@ section {
   z-index: 1;
 }
 
+.door-intro-layer-ajar {
+  background-image: url("devanture-entrouverte.jpg");
+  z-index: 2;
+  opacity: 0;
+}
+
 .door-intro-layer-open {
   background-image: url("devantureouverte.jpg");
-  z-index: 2;
+  z-index: 3;
   opacity: 0;
 }
 

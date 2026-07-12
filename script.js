@@ -254,9 +254,13 @@ document.addEventListener("DOMContentLoaded", function () {
   var doorIntro = document.querySelector(".door-intro");
 
   if (doorIntro && !prefersReducedMotion) {
-    var doorClosed = doorIntro.querySelector(".door-intro-layer-closed");
-    var doorOpen = doorIntro.querySelector(".door-intro-layer-open");
+    var doorSticky = doorIntro.querySelector(".door-intro-sticky");
     var doorCue = doorIntro.querySelector(".door-intro-cue");
+    var doorStages = [
+      { el: doorIntro.querySelector(".door-intro-layer-closed"), at: 0 },
+      { el: doorIntro.querySelector(".door-intro-layer-ajar"), at: 0.4 },
+      { el: doorIntro.querySelector(".door-intro-layer-open"), at: 0.7 },
+    ];
     var doorCurrent = 0;
     var doorTarget = 0;
     var doorRunning = false;
@@ -265,47 +269,66 @@ document.addEventListener("DOMContentLoaded", function () {
       return value <= start ? 0 : value >= end ? 1 : (value - start) / (end - start);
     }
 
-    var DOOR_SWAP_POINT = 0.55;
-    var DOOR_SWAP_BLUR_WIDTH = 0.14;
+    var DOOR_SWAP_BLUR_WIDTH = 0.12;
 
-    function renderDoorIntro(progress) {
+    function renderDoorIntro(rawProgress) {
+      var progress = Math.min(rawProgress, 1);
+
       // Zoom continu vers la porte (et son mécanisme d'ouverture, voir
       // transform-origin en CSS), du début à la fin du défilement — on ne
       // s'arrête jamais, comme si on s'avançait vers le magasin.
       var scale = 1 + progress * 1.9;
       var transform = "scale(" + scale.toFixed(3) + ")";
-      doorClosed.style.transform = transform;
-      doorOpen.style.transform = transform;
 
-      // Les deux photos ne sont pas pixel-alignées : plutôt qu'un fondu
-      // progressif (qui fait apparaître un dédoublement/fantôme visible),
-      // on bascule net entre les deux au moment précis où le flou est à son
-      // maximum, pour masquer la coupure.
-      var isOpen = progress >= DOOR_SWAP_POINT;
-      doorClosed.style.opacity = isOpen ? "0" : "1";
-      doorOpen.style.opacity = isOpen ? "1" : "0";
+      // Étape active : porte fermée → entrouverte → grande ouverte. Les
+      // photos ne sont pas pixel-alignées entre elles : plutôt qu'un fondu
+      // progressif (qui laisse un dédoublement/fantôme visible), on bascule
+      // net d'une photo à l'autre exactement au pic de flou, pour masquer
+      // la coupure.
+      var activeIndex = 0;
+      var i;
+      for (i = 0; i < doorStages.length; i++) {
+        if (progress >= doorStages[i].at) activeIndex = i;
+      }
 
-      var distanceFromSwap = Math.abs(progress - DOOR_SWAP_POINT);
-      var swapBlur = distanceFromSwap < DOOR_SWAP_BLUR_WIDTH
-        ? (1 - distanceFromSwap / DOOR_SWAP_BLUR_WIDTH) * 13
-        : 0;
+      var swapBlur = 0;
+      for (i = 0; i < doorStages.length; i++) {
+        var stage = doorStages[i];
+        stage.el.style.transform = transform;
+        stage.el.style.opacity = i === activeIndex ? "1" : "0";
 
-      // Dans le dernier quart, on "passe la porte" : flou + lumière.
-      var pass = rangeProgress(progress, 0.82, 1);
+        if (i > 0) {
+          var distance = Math.abs(progress - stage.at);
+          if (distance < DOOR_SWAP_BLUR_WIDTH) {
+            swapBlur = Math.max(swapBlur, (1 - distance / DOOR_SWAP_BLUR_WIDTH) * 13);
+          }
+        }
+      }
+
+      // Dans le dernier segment, on "passe la porte" : flou + lumière.
+      var pass = rangeProgress(progress, 0.85, 1);
       var blur = Math.max(swapBlur, pass * 14);
       var filter = "blur(" + blur.toFixed(1) + "px) brightness(" + (1 + pass * 0.7).toFixed(2) + ")";
-      doorClosed.style.filter = filter;
-      doorOpen.style.filter = filter;
+      doorStages.forEach(function (s) {
+        s.el.style.filter = filter;
+      });
 
       if (doorCue) {
         doorCue.style.opacity = Math.max(0, 1 - progress * 5);
       }
+
+      // Une fois l'animation terminée, tout le bloc s'efface progressivement
+      // pendant le reste du défilement (le temps que le sticky se détache),
+      // pour ne pas laisser l'image floue traîner au-dessus de l'en-tête.
+      var fadeOut = rangeProgress(rawProgress, 1, 1.3);
+      doorSticky.style.opacity = (1 - fadeOut).toFixed(3);
     }
 
     function computeDoorTarget() {
       var scrollableHeight = doorIntro.offsetHeight - window.innerHeight;
       var scrolled = -doorIntro.getBoundingClientRect().top;
-      doorTarget = scrollableHeight > 0 ? Math.min(Math.max(scrolled / scrollableHeight, 0), 1) : 1;
+      var extendedMax = scrollableHeight > 0 ? doorIntro.offsetHeight / scrollableHeight : 1;
+      doorTarget = scrollableHeight > 0 ? Math.min(Math.max(scrolled / scrollableHeight, 0), extendedMax) : 1;
     }
 
     // Lissage : la valeur affichée rattrape progressivement la cible liée au
