@@ -254,45 +254,87 @@ document.addEventListener("DOMContentLoaded", function () {
   var doorIntro = document.querySelector(".door-intro");
 
   if (doorIntro && !prefersReducedMotion) {
-    var doorLeft = doorIntro.querySelector(".door-intro-half-left");
-    var doorRight = doorIntro.querySelector(".door-intro-half-right");
+    var doorClosed = doorIntro.querySelector(".door-intro-layer-closed");
+    var doorOpen = doorIntro.querySelector(".door-intro-layer-open");
     var doorCue = doorIntro.querySelector(".door-intro-cue");
-    var doorTicking = false;
+    var doorCurrent = 0;
+    var doorTarget = 0;
+    var doorRunning = false;
 
-    function updateDoorIntro() {
-      var scrollableHeight = doorIntro.offsetHeight - window.innerHeight;
-      var scrolled = -doorIntro.getBoundingClientRect().top;
-      var progress = scrollableHeight > 0 ? Math.min(Math.max(scrolled / scrollableHeight, 0), 1) : 1;
+    function rangeProgress(value, start, end) {
+      return value <= start ? 0 : value >= end ? 1 : (value - start) / (end - start);
+    }
 
-      var scale = 1 + progress * 1.4;
-      var openStart = 0.7;
-      var openProgress = progress > openStart ? (progress - openStart) / (1 - openStart) : 0;
-      var slide = openProgress * 55;
-      var blur = openProgress * 16;
+    var DOOR_SWAP_POINT = 0.55;
+    var DOOR_SWAP_BLUR_WIDTH = 0.14;
 
+    function renderDoorIntro(progress) {
+      // Zoom continu vers la porte (et son mécanisme d'ouverture, voir
+      // transform-origin en CSS), du début à la fin du défilement — on ne
+      // s'arrête jamais, comme si on s'avançait vers le magasin.
+      var scale = 1 + progress * 1.9;
       var transform = "scale(" + scale.toFixed(3) + ")";
-      var filter = "blur(" + blur.toFixed(1) + "px) brightness(" + (1 + openProgress * 0.6).toFixed(2) + ")";
+      doorClosed.style.transform = transform;
+      doorOpen.style.transform = transform;
 
-      doorLeft.style.transform = transform + " translateX(-" + slide.toFixed(2) + "%)";
-      doorLeft.style.filter = filter;
-      doorRight.style.transform = transform + " translateX(" + slide.toFixed(2) + "%)";
-      doorRight.style.filter = filter;
+      // Les deux photos ne sont pas pixel-alignées : plutôt qu'un fondu
+      // progressif (qui fait apparaître un dédoublement/fantôme visible),
+      // on bascule net entre les deux au moment précis où le flou est à son
+      // maximum, pour masquer la coupure.
+      var isOpen = progress >= DOOR_SWAP_POINT;
+      doorClosed.style.opacity = isOpen ? "0" : "1";
+      doorOpen.style.opacity = isOpen ? "1" : "0";
+
+      var distanceFromSwap = Math.abs(progress - DOOR_SWAP_POINT);
+      var swapBlur = distanceFromSwap < DOOR_SWAP_BLUR_WIDTH
+        ? (1 - distanceFromSwap / DOOR_SWAP_BLUR_WIDTH) * 13
+        : 0;
+
+      // Dans le dernier quart, on "passe la porte" : flou + lumière.
+      var pass = rangeProgress(progress, 0.82, 1);
+      var blur = Math.max(swapBlur, pass * 14);
+      var filter = "blur(" + blur.toFixed(1) + "px) brightness(" + (1 + pass * 0.7).toFixed(2) + ")";
+      doorClosed.style.filter = filter;
+      doorOpen.style.filter = filter;
 
       if (doorCue) {
-        doorCue.style.opacity = Math.max(0, 1 - progress * 4);
+        doorCue.style.opacity = Math.max(0, 1 - progress * 5);
       }
+    }
 
-      doorTicking = false;
+    function computeDoorTarget() {
+      var scrollableHeight = doorIntro.offsetHeight - window.innerHeight;
+      var scrolled = -doorIntro.getBoundingClientRect().top;
+      doorTarget = scrollableHeight > 0 ? Math.min(Math.max(scrolled / scrollableHeight, 0), 1) : 1;
+    }
+
+    // Lissage : la valeur affichée rattrape progressivement la cible liée au
+    // scroll (plutôt que de s'y caler instantanément), pour un effet fluide.
+    function doorLoop() {
+      doorCurrent += (doorTarget - doorCurrent) * 0.12;
+      if (Math.abs(doorTarget - doorCurrent) < 0.0005) {
+        doorCurrent = doorTarget;
+      }
+      renderDoorIntro(doorCurrent);
+
+      if (doorCurrent !== doorTarget) {
+        window.requestAnimationFrame(doorLoop);
+      } else {
+        doorRunning = false;
+      }
     }
 
     window.addEventListener("scroll", function () {
-      if (!doorTicking) {
-        window.requestAnimationFrame(updateDoorIntro);
-        doorTicking = true;
+      computeDoorTarget();
+      if (!doorRunning) {
+        doorRunning = true;
+        window.requestAnimationFrame(doorLoop);
       }
     });
 
-    updateDoorIntro();
+    computeDoorTarget();
+    doorCurrent = doorTarget;
+    renderDoorIntro(doorCurrent);
   }
 
   // ---------- Hero : léger parallax au scroll ----------
