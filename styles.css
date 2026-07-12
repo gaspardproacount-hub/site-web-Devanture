@@ -183,13 +183,13 @@ section {
 .site-header::before {
   content: "";
   display: block;
-  height: 22px;
+  height: 40px;
   background-image: repeating-linear-gradient(
     90deg,
     var(--accent) 0,
-    var(--accent) 12px,
-    var(--fond) 12px,
-    var(--fond) 24px
+    var(--accent) 28px,
+    var(--fond) 28px,
+    var(--fond) 56px
   );
 }
 
