@@ -52,6 +52,80 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var animeAvailable = typeof anime !== "undefined" && "IntersectionObserver" in window;
+
+  // ---------- Entrée en cascade des grilles (anime.js) : opacité + montée + zoom léger ----------
+  // Remplace le simple fade-in CSS pour les grilles de cartes ; le fade-in CSS reste
+  // le filet de sécurité pour tout le reste (et si anime.js n'a pas pu charger).
+  if (animeAvailable && !prefersReducedMotion) {
+    document.querySelectorAll(".card-grid, .feature-grid, .steps, .gallery-grid, .cross-links").forEach(function (grid) {
+      var items = Array.prototype.slice.call(grid.children);
+      if (!items.length) return;
+
+      items.forEach(function (item) {
+        item.classList.remove("fade-in", "is-visible");
+      });
+
+      var gridObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            anime.animate(items, {
+              opacity: [0, 1],
+              translateY: [28, 0],
+              scale: [0.94, 1],
+              delay: anime.stagger(80),
+              duration: 700,
+              ease: "outExpo",
+            });
+            gridObserver.disconnect();
+          });
+        },
+        { threshold: 0.2 }
+      );
+      gridObserver.observe(grid);
+    });
+  }
+
+  // ---------- Cartes "spotlight" : lueur qui suit le curseur (inspiré de bklit-ui / kokonutui) ----------
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && !prefersReducedMotion) {
+    document.querySelectorAll(".metier-card, .feature-card, .cross-link-card, .step, .pricing-card").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", ((e.clientX - rect.left) / rect.width) * 100 + "%");
+        card.style.setProperty("--my", ((e.clientY - rect.top) / rect.height) * 100 + "%");
+      });
+    });
+  }
+
+  // ---------- Boutons "aimant" : particules attirées au survol (inspiré de kokonutui) ----------
+  if (!prefersReducedMotion) {
+    document.querySelectorAll(".btn-primary:not(.btn-magnet)").forEach(function (btn) {
+      btn.classList.add("btn-magnet");
+
+      var label = document.createElement("span");
+      label.className = "btn-magnet-label";
+      while (btn.firstChild) {
+        label.appendChild(btn.firstChild);
+      }
+
+      var particles = document.createElement("span");
+      particles.className = "btn-magnet-particles";
+      particles.setAttribute("aria-hidden", "true");
+      for (var i = 0; i < 10; i++) {
+        var particle = document.createElement("span");
+        particle.className = "btn-magnet-particle";
+        var angle = Math.random() * Math.PI * 2;
+        var distance = 24 + Math.random() * 34;
+        particle.style.setProperty("--px", Math.cos(angle) * distance + "px");
+        particle.style.setProperty("--py", Math.sin(angle) * distance + "px");
+        particles.appendChild(particle);
+      }
+
+      btn.appendChild(particles);
+      btn.appendChild(label);
+    });
+  }
 
   // ---------- Reveal en cascade : délai progressif par grille ----------
   document.querySelectorAll(".card-grid, .feature-grid, .steps, .gallery-grid, .cross-links").forEach(function (grid) {

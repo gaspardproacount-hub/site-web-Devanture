@@ -184,7 +184,7 @@ section {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: var(--fond);
+  background-color: currentColor;
   opacity: 0.45;
   transform: translate(calc(-50% + var(--px)), calc(-50% + var(--py)));
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
@@ -204,6 +204,41 @@ section {
     transition: none;
     opacity: 0;
   }
+}
+
+/* ---------- Cartes "spotlight" : lueur qui suit le curseur (inspiré de bklit-ui / kokonutui) ---------- */
+.metier-card,
+.feature-card,
+.cross-link-card,
+.step,
+.pricing-card {
+  overflow: hidden;
+}
+
+.metier-card::before,
+.feature-card::before,
+.cross-link-card::before,
+.step::before,
+.pricing-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 20%, transparent),
+    transparent 70%
+  );
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.metier-card:hover::before,
+.feature-card:hover::before,
+.cross-link-card:hover::before,
+.step:hover::before,
+.pricing-card:hover::before {
+  opacity: 1;
 }
 
 .btn-secondary {
@@ -434,6 +469,7 @@ section {
 }
 
 .metier-card {
+  position: relative;
   display: block;
   background-color: color-mix(in srgb, var(--accent) 4%, var(--fond));
   border-radius: var(--radius);
@@ -495,6 +531,7 @@ section {
 }
 
 .step {
+  position: relative;
   text-align: center;
   padding: 8px;
 }
@@ -573,6 +610,7 @@ section {
 
 .gallery-item:hover .gallery-photo {
   border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent), 0 16px 32px color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
 .gallery-photo {
@@ -580,7 +618,7 @@ section {
   border: 1px solid var(--neutre);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.2s var(--ease-out);
 }
 
 .gallery-photo img {
@@ -666,6 +704,7 @@ section {
 }
 
 .feature-card {
+  position: relative;
   background-color: color-mix(in srgb, var(--accent) 4%, var(--fond));
   border-radius: var(--radius);
   padding: 24px;
@@ -683,6 +722,7 @@ section {
 
 /* ---------- Pricing ---------- */
 .pricing-card {
+  position: relative;
   max-width: 520px;
   margin: 0 auto;
   background-color: var(--fond);
@@ -798,6 +838,7 @@ section {
 }
 
 .cross-link-card {
+  position: relative;
   display: block;
   border-radius: var(--radius);
   padding: 20px;
@@ -994,7 +1035,7 @@ section {
   border: 1px solid var(--neutre);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.2s var(--ease-out);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1006,6 +1047,7 @@ section {
 
 .gallery-item:hover .gallery-preview {
   border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent), 0 16px 32px color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
 .gallery-preview-icon {
