@@ -180,12 +180,19 @@ section {
   border-bottom: 1px solid var(--neutre);
 }
 
+.site-header::before {
+  content: "";
+  display: block;
+  height: 8px;
+  background-color: var(--accent);
+}
+
 .nav {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 56px;
-  padding: 18px 24px;
+  padding: 22px 24px;
   max-width: var(--content-max);
   margin: 0 auto;
 }
