@@ -1125,8 +1125,13 @@ section {
 }
 
 .gallery-preview-icon {
-  font-size: 1.8rem;
-  line-height: 1;
+  display: flex;
+  color: var(--accent-soft);
+}
+
+.gallery-preview-icon svg {
+  width: 32px;
+  height: 32px;
 }
 
 .gallery-preview-name {
