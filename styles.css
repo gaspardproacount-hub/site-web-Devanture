@@ -272,7 +272,7 @@ section {
 /* ---------- Intro défilante (accueil) : vitrine Devanture, entrée par la porte ---------- */
 .door-intro {
   position: relative;
-  height: 250vh;
+  height: 340vh;
   padding: 0;
 }
 

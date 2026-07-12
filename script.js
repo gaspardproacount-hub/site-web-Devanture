@@ -305,10 +305,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // Dans le dernier segment, on "passe la porte" : flou + lumière.
+      // Une fois l'animation terminée, tout le bloc s'efface progressivement
+      // pendant le reste du défilement (le temps que le sticky se détache),
+      // pour ne pas laisser l'image floue traîner au-dessus de l'en-tête.
+      var fadeOut = rangeProgress(rawProgress, 1, 1.3);
+      var fullyFaded = fadeOut >= 1;
+
+      // Dans le dernier segment, on "passe la porte" : flou + lumière. Une
+      // fois complètement effacé, on repasse le filtre à "none" et on
+      // masque le bloc (visibility, sans toucher à sa hauteur) : par
+      // sécurité, pour qu'aucun flou ne puisse jamais "baver" au-dessus du
+      // héros, même via un artefact de compositing du navigateur.
       var pass = rangeProgress(progress, 0.85, 1);
       var blur = Math.max(swapBlur, pass * 14);
-      var filter = "blur(" + blur.toFixed(1) + "px) brightness(" + (1 + pass * 0.7).toFixed(2) + ")";
+      var filter = fullyFaded ? "none" : "blur(" + blur.toFixed(1) + "px) brightness(" + (1 + pass * 0.7).toFixed(2) + ")";
       doorStages.forEach(function (s) {
         s.el.style.filter = filter;
       });
@@ -317,11 +327,8 @@ document.addEventListener("DOMContentLoaded", function () {
         doorCue.style.opacity = Math.max(0, 1 - progress * 5);
       }
 
-      // Une fois l'animation terminée, tout le bloc s'efface progressivement
-      // pendant le reste du défilement (le temps que le sticky se détache),
-      // pour ne pas laisser l'image floue traîner au-dessus de l'en-tête.
-      var fadeOut = rangeProgress(rawProgress, 1, 1.3);
       doorSticky.style.opacity = (1 - fadeOut).toFixed(3);
+      doorSticky.style.visibility = fullyFaded ? "hidden" : "visible";
     }
 
     function computeDoorTarget() {
