@@ -298,22 +298,81 @@ section {
 
 /* Le menu est toujours un menu déroulant, sur toutes les tailles d'écran */
 .nav-toggle {
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  width: 40px;
+  height: 40px;
   background: none;
   border: none;
-  padding: 8px;
+  padding: 0;
   cursor: pointer;
 }
 
-.nav-toggle-bar {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: var(--texte);
-  margin: 5px 0;
-  transition: transform 0.2s var(--ease-in-out), opacity 0.2s ease;
+.nav-toggle-ball {
+  position: relative;
+  z-index: 1;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  transition: transform 0.2s var(--ease-out), background-color 0.15s ease;
+}
+
+.nav-toggle:hover .nav-toggle-ball {
+  transform: scale(1.15);
+}
+
+.nav-toggle.is-open .nav-toggle-ball {
+  transform: scale(0.8);
+  background-color: var(--accent-hover);
+}
+
+/* Éclats façon feu d'artifice, déclenchés au clic (voir script.js) */
+.nav-toggle-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.nav-toggle-burst-particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--accent) 70%, transparent);
+  opacity: 0;
+}
+
+.nav-toggle-burst.is-bursting .nav-toggle-burst-particle {
+  animation: nav-toggle-burst-anim 0.6s var(--ease-out) forwards;
+}
+
+@keyframes nav-toggle-burst-anim {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--bx), var(--by)) scale(0);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-toggle-burst-particle {
+    animation: none !important;
+    opacity: 0 !important;
+  }
 }
 
 .nav-links {
@@ -356,18 +415,6 @@ section {
 .nav-links a.is-active {
   color: var(--accent);
   background-color: color-mix(in srgb, var(--accent) 10%, transparent);
-}
-
-.nav-toggle.is-open .nav-toggle-bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.nav-toggle.is-open .nav-toggle-bar:nth-child(2) {
-  opacity: 0;
-}
-
-.nav-toggle.is-open .nav-toggle-bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
 }
 
 @media (max-width: 480px) {

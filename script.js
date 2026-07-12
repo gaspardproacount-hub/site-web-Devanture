@@ -2,15 +2,37 @@
 // JavaScript vanilla partagé par toutes les pages : menu mobile, FAQ, fade-in au scroll.
 
 document.addEventListener("DOMContentLoaded", function () {
-  // ---------- Menu burger (mobile) ----------
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------- Menu burger (mobile) : boule bleue qui explose au clic ----------
   var navToggle = document.querySelector(".nav-toggle");
   var navLinks = document.querySelector(".nav-links");
 
   if (navToggle && navLinks) {
+    var navBurst = navToggle.querySelector(".nav-toggle-burst");
+
+    if (navBurst) {
+      for (var i = 0; i < 14; i++) {
+        var particle = document.createElement("span");
+        particle.className = "nav-toggle-burst-particle";
+        var angle = (Math.PI * 2 * i) / 14 + (Math.random() - 0.5) * 0.4;
+        var distance = 30 + Math.random() * 26;
+        particle.style.setProperty("--bx", Math.cos(angle) * distance + "px");
+        particle.style.setProperty("--by", Math.sin(angle) * distance + "px");
+        navBurst.appendChild(particle);
+      }
+    }
+
     navToggle.addEventListener("click", function () {
       var isOpen = navLinks.classList.toggle("is-open");
       navToggle.classList.toggle("is-open", isOpen);
       navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+      if (navBurst && !prefersReducedMotion) {
+        navBurst.classList.remove("is-bursting");
+        void navBurst.offsetWidth; // relance l'animation à chaque clic
+        navBurst.classList.add("is-bursting");
+      }
     });
 
     // Ferme le menu quand on clique sur un lien (utile en navigation mobile)
@@ -51,7 +73,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var animeAvailable = typeof anime !== "undefined" && "IntersectionObserver" in window;
 
   // ---------- Entrée en cascade des grilles (anime.js) : opacité + montée + zoom léger ----------
