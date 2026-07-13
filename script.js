@@ -278,6 +278,32 @@ document.addEventListener("DOMContentLoaded", function () {
       doorVideo.addEventListener("loadedmetadata", onDoorDurationReady);
     }
 
+    // Sur mobile (iOS Safari surtout), le "seek" via currentTime est bloqué
+    // tant que la vidéo n'a pas été lancée au moins une fois via un vrai
+    // geste utilisateur : on la joue puis on la remet en pause aussitôt, dès
+    // le tout premier toucher/scroll, pour "débloquer" le scrub qui suit.
+    var doorUnlocked = false;
+
+    function unlockDoorVideo() {
+      if (doorUnlocked) return;
+      doorUnlocked = true;
+
+      var playPromise = doorVideo.play();
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise
+          .then(function () {
+            doorVideo.pause();
+          })
+          .catch(function () {});
+      } else {
+        doorVideo.pause();
+      }
+    }
+
+    window.addEventListener("touchstart", unlockDoorVideo, { once: true, passive: true });
+    window.addEventListener("pointerdown", unlockDoorVideo, { once: true });
+    window.addEventListener("scroll", unlockDoorVideo, { once: true, passive: true });
+
     // Le scroll pilote directement la lecture de la vidéo image par image
     // (video.currentTime). Le scrub occupe les 82 premiers % du défilement ;
     // le reste sert au "passage de la porte" (flou + lumière) une fois la
@@ -331,6 +357,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var collapseBy = doorIntro.offsetHeight;
       var scrollYBefore = window.scrollY;
       window.removeEventListener("scroll", onDoorScroll);
+      window.removeEventListener("resize", onDoorScroll);
       doorIntro.style.height = "0px";
       doorIntro.style.overflow = "hidden";
       window.scrollTo(0, scrollYBefore - collapseBy);
@@ -375,6 +402,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener("scroll", onDoorScroll);
+    // Recalcule au redimensionnement : sur mobile, la barre d'adresse qui
+    // apparaît/disparaît change window.innerHeight en cours de scroll.
+    window.addEventListener("resize", onDoorScroll);
 
     computeDoorTarget();
     doorCurrent = doorTarget;
