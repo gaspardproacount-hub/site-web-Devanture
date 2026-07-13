@@ -1,26 +1,36 @@
 /* ==========================================================================
-   Devanture — surcharge du thème (fond couleur dune, tout le texte en blanc).
-   Chargée uniquement sur les pages Devanture elles-mêmes (pas les démos
-   clients Maison Verveine / Fournil Doré / Le Basilic, qui gardent la
-   palette claire par défaut de styles.css).
+   Devanture — thème "noir chaud + laiton" (quiet luxury).
+   Prolonge la vidéo d'intro (devanture noire, lumière intérieure dorée,
+   céramiques crème) au lieu de trancher avec elle. Chargée uniquement sur
+   les pages Devanture elles-mêmes (pas les démos clients Maison Verveine /
+   Fournil Doré / Le Basilic, qui gardent la palette claire de styles.css).
    ========================================================================== */
 
 :root {
-  --fond: #C2B280;
-  --texte: #FFFFFF;
-  --neutre: #B3A170;
-  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+  /* Fond : noir chaud, assorti à la devanture de la vidéo (plus doux qu'un
+     noir pur, garde une pointe de brun). */
+  --fond: #1B1613;
+  /* Texte : crème, comme les céramiques de la vitrine — excellent contraste
+     sur le fond noir (~15:1) et sur les remplissages laiton (~4.5:1). */
+  --texte: #F3EAD9;
+  /* Panneaux (sections alternées, cartes, bordures) : un cran plus clair
+     que le fond pour une séparation nette sans rompre l'ambiance sombre. */
+  --neutre: #2A231D;
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3);
 
-  /* Bleu gris chic et discret, gardé pour les remplissages (boutons,
-     bandeau CTA) ; le texte lui-même passe entièrement en blanc. */
-  --accent: #5B6B78;
-  --accent-hover: #46545F;
-  --accent-soft: #FFFFFF;
-
-  --on-accent: #FFFFFF;
+  /* Laiton/or : remplacent le violet électrique d'origine. --accent (plus
+     foncé) porte les remplissages pleins (boutons, bandeau CTA) pour que
+     le texte crème s'y détache bien ; --accent-soft (or clair) sert de
+     couleur de texte/liens posés directement sur le fond noir. */
+  --accent: #8A6423;
+  --accent-hover: #6B4C1A;
+  --accent-soft: #D4AF6A;
+  /* Deuxième accent : terracotta/rouille, en écho à la lumière chaude et
+     aux céramiques de la vidéo — remplace le corail vif d'origine. */
+  --accent-2: #B5651D;
 }
 
-/* --accent-soft (bleu gris foncé) sert de couleur de texte direct sur le fond. */
+/* --accent-soft (or clair) sert de couleur de texte direct sur le fond noir. */
 a,
 .section-title,
 .btn-secondary,
@@ -29,17 +39,18 @@ a,
 .problem-list li::before,
 .check-list li::before,
 .pricing-amount,
-.cross-link-card strong {
+.cross-link-card strong,
+.hero-eyebrow {
   color: var(--accent-soft);
 }
 
-.btn-secondary {
+.btn-secondary,
+.step-number {
   border-color: var(--accent-soft);
 }
 
-/* Texte posé sur les surfaces colorées (boutons, bandeau CTA, footer) :
-   --texte étant maintenant gris (trop proche de --accent), on garde du
-   blanc ici pour rester lisible sur ces fonds. */
+/* Texte posé sur les remplissages laiton (boutons, bandeau CTA, footer) :
+   --texte (crème) y reste très lisible, pas besoin d'une variable séparée. */
 .btn-primary,
 .btn-secondary:hover,
 .cta-band,
@@ -48,20 +59,16 @@ a,
 .site-footer,
 .footer-links a,
 .footer-bottom a {
-  color: var(--on-accent);
+  color: var(--texte);
 }
 
-.hero-eyebrow {
-  color: color-mix(in srgb, var(--accent-2) 75%, var(--texte) 25%);
-}
-
-/* Dégradé du titre : uniquement des tons bleu gris (plus de rouge/corail). */
+/* Dégradé du titre : or vers terracotta, dans la palette du thème. */
 .text-gradient {
-  background: linear-gradient(100deg, #8FA0AC, #3B4750);
+  background: linear-gradient(100deg, var(--accent-soft), var(--accent-2));
   -webkit-background-clip: text;
   background-clip: text;
 }
 
 .nav-links {
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
 }
