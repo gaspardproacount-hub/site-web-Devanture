@@ -55,6 +55,13 @@ a,
   color: color-mix(in srgb, var(--accent-2) 75%, var(--texte) 25%);
 }
 
+/* Dégradé du titre : uniquement des tons bleu gris (plus de rouge/corail). */
+.text-gradient {
+  background: linear-gradient(100deg, #8FA0AC, #3B4750);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
 .nav-links {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
