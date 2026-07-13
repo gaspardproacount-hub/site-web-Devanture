@@ -255,56 +255,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (doorIntro && !prefersReducedMotion) {
     var doorSticky = doorIntro.querySelector(".door-intro-sticky");
+    var doorVideo = doorIntro.querySelector(".door-intro-video");
     var doorCue = doorIntro.querySelector(".door-intro-cue");
-    var doorStages = [
-      { el: doorIntro.querySelector(".door-intro-layer-loin"), at: 0 },
-      { el: doorIntro.querySelector(".door-intro-layer-proche"), at: 0.25 },
-      { el: doorIntro.querySelector(".door-intro-layer-ajar"), at: 0.5 },
-      { el: doorIntro.querySelector(".door-intro-layer-open"), at: 0.75 },
-    ];
     var doorCurrent = 0;
     var doorTarget = 0;
     var doorRunning = false;
+    var doorLocked = false;
+    var doorDuration = 0;
 
     function rangeProgress(value, start, end) {
       return value <= start ? 0 : value >= end ? 1 : (value - start) / (end - start);
     }
 
-    var DOOR_SWAP_BLUR_WIDTH = 0.12;
+    function onDoorDurationReady() {
+      doorDuration = doorVideo.duration || 0;
+      renderDoorIntro(doorCurrent);
+    }
+
+    if (doorVideo.readyState >= 1 && doorVideo.duration) {
+      doorDuration = doorVideo.duration;
+    } else {
+      doorVideo.addEventListener("loadedmetadata", onDoorDurationReady);
+    }
+
+    // Le scroll pilote directement la lecture de la vidéo image par image
+    // (video.currentTime). Le scrub occupe les 82 premiers % du défilement ;
+    // le reste sert au "passage de la porte" (flou + lumière) une fois la
+    // vidéo figée sur sa dernière image.
+    var DOOR_SCRUB_END = 0.82;
 
     function renderDoorIntro(rawProgress) {
+      if (doorLocked) return;
+
       var progress = Math.min(rawProgress, 1);
 
-      // Le rapprochement est porté par la succession de vraies photos
-      // (loin → proche → entrouverte → grande ouverte), pas par un zoom
-      // artificiel : on ne fait plus qu'un très léger zoom de transition
-      // sur chaque photo pour garder un peu de mouvement entre les bascules.
-      var scale = 1 + progress * 0.15;
-      var transform = "scale(" + scale.toFixed(3) + ")";
-
-      // Étape active : loin → proche → entrouverte → grande ouverte. Les
-      // photos ne sont pas pixel-alignées entre elles : plutôt qu'un fondu
-      // progressif (qui laisse un dédoublement/fantôme visible), on bascule
-      // net d'une photo à l'autre exactement au pic de flou, pour masquer
-      // la coupure.
-      var activeIndex = 0;
-      var i;
-      for (i = 0; i < doorStages.length; i++) {
-        if (progress >= doorStages[i].at) activeIndex = i;
-      }
-
-      var swapBlur = 0;
-      for (i = 0; i < doorStages.length; i++) {
-        var stage = doorStages[i];
-        stage.el.style.transform = transform;
-        stage.el.style.opacity = i === activeIndex ? "1" : "0";
-
-        if (i > 0) {
-          var distance = Math.abs(progress - stage.at);
-          if (distance < DOOR_SWAP_BLUR_WIDTH) {
-            swapBlur = Math.max(swapBlur, (1 - distance / DOOR_SWAP_BLUR_WIDTH) * 13);
-          }
-        }
+      if (doorDuration > 0) {
+        var scrubProgress = Math.min(progress / DOOR_SCRUB_END, 1);
+        doorVideo.currentTime = scrubProgress * doorDuration;
       }
 
       // Une fois l'animation terminée, tout le bloc s'efface progressivement
@@ -315,15 +302,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Dans le dernier segment, on "passe la porte" : flou + lumière. Une
       // fois complètement effacé, on repasse le filtre à "none" et on
-      // masque le bloc (visibility, sans toucher à sa hauteur) : par
-      // sécurité, pour qu'aucun flou ne puisse jamais "baver" au-dessus du
-      // héros, même via un artefact de compositing du navigateur.
-      var pass = rangeProgress(progress, 0.88, 1);
-      var blur = Math.max(swapBlur, pass * 14);
-      var filter = fullyFaded ? "none" : "blur(" + blur.toFixed(1) + "px) brightness(" + (1 + pass * 0.7).toFixed(2) + ")";
-      doorStages.forEach(function (s) {
-        s.el.style.filter = filter;
-      });
+      // masque le bloc (visibility, sans toucher à sa hauteur pour l'instant)
+      // pour qu'aucun flou ne puisse jamais "baver" au-dessus du héros.
+      var pass = rangeProgress(progress, DOOR_SCRUB_END, 1);
+      var filter = fullyFaded ? "none" : "blur(" + (pass * 14).toFixed(1) + "px) brightness(" + (1 + pass * 0.7).toFixed(2) + ")";
+      doorVideo.style.filter = filter;
 
       if (doorCue) {
         doorCue.style.opacity = Math.max(0, 1 - progress * 5);
@@ -331,6 +314,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
       doorSticky.style.opacity = (1 - fadeOut).toFixed(3);
       doorSticky.style.visibility = fullyFaded ? "hidden" : "visible";
+
+      // Une fois la porte franchie et le flou totalement dissipé, on
+      // verrouille définitivement l'intro dès que le scroll a dépassé sa
+      // hauteur totale : elle sort du flux et devient impossible à
+      // rescroller au-dessus du bandeau.
+      if (fullyFaded && window.scrollY >= doorIntro.offsetHeight) {
+        lockDoorIntro();
+      }
+    }
+
+    function lockDoorIntro() {
+      if (doorLocked) return;
+      doorLocked = true;
+
+      var collapseBy = doorIntro.offsetHeight;
+      doorIntro.style.height = "0px";
+      doorIntro.style.overflow = "hidden";
+      window.scrollTo(0, window.scrollY - collapseBy);
+
+      window.removeEventListener("scroll", onDoorScroll);
+      doorVideo.pause();
     }
 
     function computeDoorTarget() {
@@ -343,6 +347,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Lissage : la valeur affichée rattrape progressivement la cible liée au
     // scroll (plutôt que de s'y caler instantanément), pour un effet fluide.
     function doorLoop() {
+      if (doorLocked) {
+        doorRunning = false;
+        return;
+      }
+
       doorCurrent += (doorTarget - doorCurrent) * 0.12;
       if (Math.abs(doorTarget - doorCurrent) < 0.0005) {
         doorCurrent = doorTarget;
@@ -356,13 +365,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    window.addEventListener("scroll", function () {
+    function onDoorScroll() {
       computeDoorTarget();
       if (!doorRunning) {
         doorRunning = true;
         window.requestAnimationFrame(doorLoop);
       }
-    });
+    }
+
+    window.addEventListener("scroll", onDoorScroll);
 
     computeDoorTarget();
     doorCurrent = doorTarget;
