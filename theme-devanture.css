@@ -7,18 +7,22 @@
 
 :root {
   --fond: #D9906F;
-  --texte: #FFFFFF;
+  --texte: #5B6B78;
   --neutre: #C67E5D;
   --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
 
-  /* Bleu gris chic et discret (plus de bleu vif) : pour les remplissages
-     (boutons, bandeau CTA — le blanc s'y lit très bien), et une variante
-     plus foncée pour le texte/liens posés directement sur le terracotta
-     (un bleu gris clair y perdrait tout contraste, le terracotta étant de
-     luminosité moyenne). */
+  /* Bleu gris chic et discret, utilisé partout : logo, texte du site (corps,
+     titres, tarifs...) et remplissages (boutons, bandeau CTA). Une variante
+     plus foncée sert au texte/liens posés directement sur le terracotta (le
+     gris clair des boutons y perdrait trop de contraste). */
   --accent: #5B6B78;
   --accent-hover: #46545F;
   --accent-soft: #2D3742;
+
+  /* Blanc réservé au texte posé SUR les remplissages accent (boutons,
+     bandeau CTA, footer) : --texte est désormais gris, donc trop proche de
+     --accent pour rester lisible sur ces fonds-là. */
+  --on-accent: #FFFFFF;
 }
 
 /* --accent-soft (bleu gris foncé) sert de couleur de texte direct sur le fond. */
@@ -38,9 +42,9 @@ a,
   border-color: var(--accent-soft);
 }
 
-/* --fond servait de texte clair sur les surfaces colorées (boutons,
-   bandeau CTA, footer) : il est maintenant le fond lui-même, donc ces
-   textes basculent sur --texte (blanc). */
+/* Texte posé sur les surfaces colorées (boutons, bandeau CTA, footer) :
+   --texte étant maintenant gris (trop proche de --accent), on garde du
+   blanc ici pour rester lisible sur ces fonds. */
 .btn-primary,
 .btn-secondary:hover,
 .cta-band,
@@ -49,7 +53,7 @@ a,
 .site-footer,
 .footer-links a,
 .footer-bottom a {
-  color: var(--texte);
+  color: var(--on-accent);
 }
 
 .hero-eyebrow {
