@@ -10,10 +10,17 @@
   --texte: #FFFFFF;
   --neutre: #C67E5D;
   --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+
+  /* Bleu choisi pour s'allier au terracotta : cobalt vif pour les remplissages
+     (boutons, bandeau CTA — le blanc s'y lit très bien), bleu marine profond
+     pour le texte/liens posés directement sur le terracotta (un bleu clair y
+     perdrait tout contraste, le terracotta étant de luminosité moyenne). */
+  --accent: #2454C7;
+  --accent-hover: #1B3E99;
+  --accent-soft: #16305E;
 }
 
-/* --accent (violet) manque de contraste en texte direct sur ce fond : on
-   bascule sur --accent-soft, déjà prévue dans styles.css pour cet usage. */
+/* --accent-soft (bleu marine) sert de couleur de texte direct sur le fond. */
 a,
 .section-title,
 .btn-secondary,
