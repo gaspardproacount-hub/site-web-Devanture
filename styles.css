@@ -274,6 +274,11 @@ section {
   position: relative;
   height: 340vh;
   padding: 0;
+  /* Le verrouillage (script.js) collapse cette hauteur puis compense le
+     scroll manuellement : sans ça, l'ancrage de défilement natif du
+     navigateur compense déjà tout seul, et les deux corrections cumulées
+     renvoient la page tout en haut. */
+  overflow-anchor: none;
 }
 
 .door-intro-sticky {

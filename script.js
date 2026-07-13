@@ -329,11 +329,12 @@ document.addEventListener("DOMContentLoaded", function () {
       doorLocked = true;
 
       var collapseBy = doorIntro.offsetHeight;
+      var scrollYBefore = window.scrollY;
+      window.removeEventListener("scroll", onDoorScroll);
       doorIntro.style.height = "0px";
       doorIntro.style.overflow = "hidden";
-      window.scrollTo(0, window.scrollY - collapseBy);
+      window.scrollTo(0, scrollYBefore - collapseBy);
 
-      window.removeEventListener("scroll", onDoorScroll);
       doorVideo.pause();
     }
 
