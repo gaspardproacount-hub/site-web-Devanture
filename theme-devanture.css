@@ -1,27 +1,22 @@
 /* ==========================================================================
-   Devanture — surcharge du thème (fond mastic, texte gris-bleu).
+   Devanture — surcharge du thème (fond couleur dune, tout le texte en blanc).
    Chargée uniquement sur les pages Devanture elles-mêmes (pas les démos
    clients Maison Verveine / Fournil Doré / Le Basilic, qui gardent la
    palette claire par défaut de styles.css).
    ========================================================================== */
 
 :root {
-  --fond: #D8C596;
-  --texte: #5B6B78;
-  --neutre: #C9B583;
+  --fond: #C2B280;
+  --texte: #FFFFFF;
+  --neutre: #B3A170;
   --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
 
-  /* Bleu gris chic et discret, utilisé partout : logo, texte du site (corps,
-     titres, tarifs...) et remplissages (boutons, bandeau CTA). Une variante
-     plus foncée sert au texte/liens posés directement sur le terracotta (le
-     gris clair des boutons y perdrait trop de contraste). */
+  /* Bleu gris chic et discret, gardé pour les remplissages (boutons,
+     bandeau CTA) ; le texte lui-même passe entièrement en blanc. */
   --accent: #5B6B78;
   --accent-hover: #46545F;
-  --accent-soft: #2D3742;
+  --accent-soft: #FFFFFF;
 
-  /* Blanc réservé au texte posé SUR les remplissages accent (boutons,
-     bandeau CTA, footer) : --texte est désormais gris, donc trop proche de
-     --accent pour rester lisible sur ces fonds-là. */
   --on-accent: #FFFFFF;
 }
 
