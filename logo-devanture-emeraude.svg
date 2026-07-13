@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 140" width="460" height="140">
-  <!-- Fond transparent — logo crème + tagline laiton, thème noir chaud -->
+  <!-- Fond transparent — logo crème + tagline menthe, thème noir chaud + émeraude -->
   <g>
     <rect x="28" y="38" width="84" height="12" rx="2" fill="#F3EAD9"/>
     <path d="M28,50 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 a10.5,10.5 0 0 0 21,0 Z" fill="#F3EAD9"/>
@@ -8,5 +8,5 @@
     <rect x="28" y="100" width="84" height="4" rx="2" fill="#F3EAD9"/>
   </g>
   <text x="140" y="76" font-family="Space Grotesk, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="42" font-weight="600" fill="#F3EAD9" letter-spacing="0.5">Devanture</text>
-  <text x="142" y="102" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#D4AF6A" letter-spacing="2.5">SITES WEB POUR COMMERCES</text>
+  <text x="142" y="102" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#7FAE99" letter-spacing="2.5">SITES WEB POUR COMMERCES</text>
 </svg>
