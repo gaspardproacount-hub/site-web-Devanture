@@ -1,20 +1,20 @@
 /* ==========================================================================
-   Devanture — surcharge du thème (fond vert sauge, texte blanc).
+   Devanture — surcharge du thème (fond mastic, texte blanc).
    Chargée uniquement sur les pages Devanture elles-mêmes (pas les démos
    clients Maison Verveine / Fournil Doré / Le Basilic, qui gardent la
    palette claire par défaut de styles.css).
    ========================================================================== */
 
 :root {
-  --fond: #8A9A78;
+  --fond: #D8C596;
   --texte: #FFFFFF;
-  --neutre: #798869;
+  --neutre: #C9B583;
   --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
-/* --accent (violet) manque de contraste en texte direct sur un fond aussi
-   soutenu : on bascule sur --accent-soft, déjà prévue dans styles.css pour
-   cet usage, partout où --accent sert de couleur de texte (pas de fond). */
+/* --accent (violet) manque de contraste en texte direct sur ce fond clair
+   une fois le texte passé en blanc : on bascule sur --accent-soft, déjà
+   prévue dans styles.css pour cet usage. */
 a,
 .section-title,
 .btn-secondary,
@@ -32,8 +32,8 @@ a,
 }
 
 /* --fond servait de texte clair sur les surfaces colorées (boutons,
-   bandeau CTA, footer) : il est maintenant plus soutenu, donc ces textes
-   basculent sur --texte, qui est la couleur claire du thème. */
+   bandeau CTA, footer) : il est maintenant lui-même clair, donc ces textes
+   basculent sur --texte (blanc) pour rester lisibles sur l'accent violet. */
 .btn-primary,
 .btn-secondary:hover,
 .cta-band,
