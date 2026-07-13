@@ -1,12 +1,12 @@
 /* ==========================================================================
-   Devanture — surcharge du thème (fond chocolat sombre, texte clair).
+   Devanture — surcharge du thème (fond noir brut, texte clair).
    Chargée uniquement sur les pages Devanture elles-mêmes (pas les démos
    clients Maison Verveine / Fournil Doré / Le Basilic, qui gardent la
    palette claire par défaut de styles.css).
    ========================================================================== */
 
 :root {
-  --fond: #402924;
+  --fond: #000000;
   --texte: #F5EDE2;
   --neutre: #5C4540;
   --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
