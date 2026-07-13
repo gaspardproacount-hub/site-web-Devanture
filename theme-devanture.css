@@ -1,9 +1,9 @@
 /* ==========================================================================
-   Devanture — thème "noir chaud + émeraude" (quiet luxury, sans jaune).
-   Prolonge la vidéo d'intro (devanture noire, céramiques crème) au lieu de
-   trancher avec elle. Chargée uniquement sur les pages Devanture elles-mêmes
-   (pas les démos clients Maison Verveine / Fournil Doré / Le Basilic, qui
-   gardent la palette claire de styles.css).
+   Devanture — thème "noir chaud + laiton" (quiet luxury).
+   Prolonge la vidéo d'intro (devanture noire, lumière intérieure dorée,
+   céramiques crème) au lieu de trancher avec elle. Chargée uniquement sur
+   les pages Devanture elles-mêmes (pas les démos clients Maison Verveine /
+   Fournil Doré / Le Basilic, qui gardent la palette claire de styles.css).
    ========================================================================== */
 
 :root {
@@ -11,26 +11,26 @@
      noir pur, garde une pointe de brun). */
   --fond: #1B1613;
   /* Texte : crème, comme les céramiques de la vitrine — excellent contraste
-     sur le fond noir (~15:1) et sur les remplissages émeraude (~8.5:1). */
+     sur le fond noir (~15:1) et sur les remplissages laiton (~4.5:1). */
   --texte: #F3EAD9;
   /* Panneaux (sections alternées, cartes, bordures) : un cran plus clair
      que le fond pour une séparation nette sans rompre l'ambiance sombre. */
   --neutre: #2A231D;
   --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3);
 
-  /* Vert émeraude profond : remplace le laiton/or (trop jaune) et le violet
-     électrique d'origine. --accent porte les remplissages pleins (boutons,
-     bandeau CTA) ; --accent-soft (menthe claire) sert de couleur de
-     texte/liens posés directement sur le fond noir. */
-  --accent: #24483C;
-  --accent-hover: #173027;
-  --accent-soft: #7FAE99;
-  /* Deuxième accent : terracotta/rouille, en écho à la lumière chaude de la
-     vidéo — remplace le corail vif d'origine. */
+  /* Laiton/or : remplacent le violet électrique d'origine. --accent (plus
+     foncé) porte les remplissages pleins (boutons, bandeau CTA) pour que
+     le texte crème s'y détache bien ; --accent-soft (or clair) sert de
+     couleur de texte/liens posés directement sur le fond noir. */
+  --accent: #8A6423;
+  --accent-hover: #6B4C1A;
+  --accent-soft: #D4AF6A;
+  /* Deuxième accent : terracotta/rouille, en écho à la lumière chaude et
+     aux céramiques de la vidéo — remplace le corail vif d'origine. */
   --accent-2: #B5651D;
 }
 
-/* --accent-soft (menthe claire) sert de couleur de texte direct sur le fond noir. */
+/* --accent-soft (or clair) sert de couleur de texte direct sur le fond noir. */
 a,
 .section-title,
 .btn-secondary,
@@ -49,7 +49,7 @@ a,
   border-color: var(--accent-soft);
 }
 
-/* Texte posé sur les remplissages émeraude (boutons, bandeau CTA, footer) :
+/* Texte posé sur les remplissages laiton (boutons, bandeau CTA, footer) :
    --texte (crème) y reste très lisible, pas besoin d'une variable séparée. */
 .btn-primary,
 .btn-secondary:hover,
@@ -62,7 +62,7 @@ a,
   color: var(--texte);
 }
 
-/* Dégradé du titre : menthe vers terracotta, dans la palette du thème. */
+/* Dégradé du titre : or vers terracotta, dans la palette du thème. */
 .text-gradient {
   background: linear-gradient(100deg, var(--accent-soft), var(--accent-2));
   -webkit-background-clip: text;

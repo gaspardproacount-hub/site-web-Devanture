@@ -93,35 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ---------- Boutons "aimant" : particules attirées au survol (inspiré de kokonutui) ----------
-  if (!prefersReducedMotion) {
-    document.querySelectorAll(".btn-primary:not(.btn-magnet)").forEach(function (btn) {
-      btn.classList.add("btn-magnet");
-
-      var label = document.createElement("span");
-      label.className = "btn-magnet-label";
-      while (btn.firstChild) {
-        label.appendChild(btn.firstChild);
-      }
-
-      var particles = document.createElement("span");
-      particles.className = "btn-magnet-particles";
-      particles.setAttribute("aria-hidden", "true");
-      for (var i = 0; i < 10; i++) {
-        var particle = document.createElement("span");
-        particle.className = "btn-magnet-particle";
-        var angle = Math.random() * Math.PI * 2;
-        var distance = 24 + Math.random() * 34;
-        particle.style.setProperty("--px", Math.cos(angle) * distance + "px");
-        particle.style.setProperty("--py", Math.sin(angle) * distance + "px");
-        particles.appendChild(particle);
-      }
-
-      btn.appendChild(particles);
-      btn.appendChild(label);
-    });
-  }
-
   // ---------- Reveal en cascade : délai progressif par grille ----------
   document.querySelectorAll(".card-grid, .feature-grid, .steps, .gallery-grid, .cross-links").forEach(function (grid) {
     Array.prototype.forEach.call(grid.children, function (child, index) {
