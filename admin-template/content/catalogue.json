@@ -1,0 +1,11 @@
+{
+  "produits": [
+    {
+      "title": "Exemple de produit",
+      "prix": 19.9,
+      "description": "Description courte du produit — à remplacer/modifier depuis /admin.",
+      "photo": "",
+      "disponible": true
+    }
+  ]
+}

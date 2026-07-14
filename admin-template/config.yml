@@ -5,6 +5,9 @@
 # Provider OAuth partagé (une seule fois pour tous les clients Devanture) :
 # base_url pointe vers le projet Vercel qui héberge api/auth.js + api/callback.js
 # (voir /api/auth.js et /api/callback.js à la racine du repo site-web-Devanture).
+#
+# Voir README.md dans ce dossier pour le pattern complet (CMS -> JSON ->
+# affichage sur la page via render-example.js).
 # ==========================================================================
 
 backend:
@@ -19,39 +22,45 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# ---------- Option A : site restaurant (carte) ----------
-# collections:
-#   - name: "menu"
-#     label: "Carte du restaurant"
-#     folder: "content/menu"
-#     create: true
-#     slug: "{{slug}}"
-#     fields:
-#       - { label: "Nom du plat", name: "title", widget: "string" }
-#       - { label: "Description", name: "description", widget: "text", required: false }
-#       - { label: "Prix (€)", name: "prix", widget: "number", value_type: "float" }
-#       - label: "Catégorie"
-#         name: "categorie"
-#         widget: "select"
-#         options: ["Entrées", "Plats", "Desserts", "Menu du midi", "Suggestions", "Vins"]
-#       - { label: "Photo", name: "photo", widget: "image", required: false }
+# Un seul fichier JSON pour tout le catalogue/la carte (plutôt qu'un fichier
+# par produit) : plus simple à relire côté site avec un seul fetch() JS
+# (voir render-example.js), suffisant pour un catalogue de petit commerce.
+collections:
+  - name: "contenu"
+    label: "Contenu du site"
+    files:
+      # ---------- Option A : site boutique (catalogue) ----------
+      - name: "catalogue"
+        label: "Catalogue produits"
+        file: "content/catalogue.json"
+        fields:
+          - name: "produits"
+            label: "Produits"
+            widget: "list"
+            summary: "{{title}} — {{prix}} €"
+            fields:
+              - { label: "Nom du produit", name: "title", widget: "string" }
+              - { label: "Prix (€)", name: "prix", widget: "number", value_type: "float" }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Photo", name: "photo", widget: "image", required: false }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
 
-# ---------- Option B : site boutique (catalogue) ----------
-# collections:
-#   - name: "catalogue"
-#     label: "Catalogue produits"
-#     folder: "content/catalogue"
-#     create: true
-#     slug: "{{slug}}"
-#     fields:
-#       - { label: "Nom du produit", name: "title", widget: "string" }
-#       - { label: "Prix (€)", name: "prix", widget: "number", value_type: "float" }
-#       - { label: "Description", name: "description", widget: "text", required: false }
-#       - { label: "Photo", name: "photo", widget: "image", required: false }
-#       - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
-
-# Décommentez la collection adaptée au projet (menu OU catalogue), en
-# remplaçant "folder" par l'endroit réel où le site lit ses données
-# (JSON, Markdown, ou contenu à extraire du HTML/JS existant — à repérer au
-# cas par cas sur le repo du client avant de finaliser cette config).
-collections: []
+      # ---------- Option B : site restaurant (carte) — décommenter et
+      # supprimer l'option A si le client est un restaurant. ----------
+      # - name: "menu"
+      #   label: "Carte du restaurant"
+      #   file: "content/menu.json"
+      #   fields:
+      #     - name: "plats"
+      #       label: "Plats"
+      #       widget: "list"
+      #       summary: "{{title}} ({{categorie}}) — {{prix}} €"
+      #       fields:
+      #         - { label: "Nom du plat", name: "title", widget: "string" }
+      #         - { label: "Description", name: "description", widget: "text", required: false }
+      #         - { label: "Prix (€)", name: "prix", widget: "number", value_type: "float" }
+      #         - label: "Catégorie"
+      #           name: "categorie"
+      #           widget: "select"
+      #           options: ["Entrées", "Plats", "Desserts", "Menu du midi", "Suggestions", "Vins"]
+      #         - { label: "Photo", name: "photo", widget: "image", required: false }
