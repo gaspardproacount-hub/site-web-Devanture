@@ -64,12 +64,81 @@
 
     <section>
       <div class="container">
-        <h1 class="section-title fade-in">Réservation & infos</h1>
+        <h1 class="section-title fade-in">Réserver une table</h1>
+        <p class="section-intro fade-in">Choisissez une date, une heure et le nombre de convives — nous confirmons votre demande dans la foulée.</p>
 
         <div class="lb-infos-media fade-in">
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_121137_15711f33-265c-4173-86d9-cea6fdb2a817.png" alt="Terrasse d'été du Basilic" loading="lazy">
         </div>
 
+        <div class="lb-booking fade-in">
+          <form id="lb-reservation-form" class="lb-booking-form">
+            <div class="lb-booking-row">
+              <div class="form-group">
+                <label for="lb-date">Date</label>
+                <input type="date" id="lb-date" name="date" required>
+              </div>
+              <div class="form-group">
+                <label for="lb-heure">Heure</label>
+                <select id="lb-heure" name="heure" required>
+                  <option value="">Choisissez</option>
+                  <optgroup label="Midi">
+                    <option>12h00</option>
+                    <option>12h30</option>
+                    <option>13h00</option>
+                    <option>13h30</option>
+                  </optgroup>
+                  <optgroup label="Soir">
+                    <option>19h30</option>
+                    <option>20h00</option>
+                    <option>20h30</option>
+                    <option>21h00</option>
+                    <option>21h30</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lb-convives">Nombre de personnes</label>
+              <select id="lb-convives" name="convives" required>
+                <option value="">Choisissez</option>
+                <option>1 personne</option>
+                <option>2 personnes</option>
+                <option>3 personnes</option>
+                <option>4 personnes</option>
+                <option>5 personnes</option>
+                <option>6 personnes</option>
+                <option>7 personnes et plus</option>
+              </select>
+            </div>
+            <div class="lb-booking-row">
+              <div class="form-group">
+                <label for="lb-nom">Nom</label>
+                <input type="text" id="lb-nom" name="nom" required>
+              </div>
+              <div class="form-group">
+                <label for="lb-tel">Téléphone</label>
+                <input type="tel" id="lb-tel" name="telephone" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Confirmer la réservation</button>
+            <p class="form-note">Outil de réservation fictif, à titre de démonstration — aucune réservation n'est réellement enregistrée.</p>
+          </form>
+
+          <div id="lb-booking-confirm" class="lb-booking-confirm" hidden>
+            <span class="lb-booking-confirm-icon" aria-hidden="true">✓</span>
+            <h3>Réservation demandée !</h3>
+            <p class="lb-booking-summary" id="lb-booking-summary"></p>
+            <p class="muted">Nous vous appelons pour confirmer votre table dans les prochaines minutes.</p>
+            <button type="button" id="lb-booking-reset" class="btn btn-secondary">Faire une nouvelle demande</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Horaires & coordonnées -->
+    <section class="section-alt">
+      <div class="container">
         <div class="contact-grid fade-in">
           <div>
             <h3>Horaires</h3>
@@ -86,17 +155,6 @@
             <p><a href="mailto:reservation@lebasilic-lyon.fr">reservation@lebasilic-lyon.fr</a></p>
             <span class="contact-reply-note">📞 Réservation conseillée le week-end</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA final -->
-    <section class="section-alt">
-      <div class="container">
-        <div class="cta-band fade-in">
-          <h2>Une envie de bistro ce soir ?</h2>
-          <p>Appelez-nous ou passez directement, selon les places disponibles.</p>
-          <a href="tel:+33472000000" class="btn btn-primary">Réserver une table</a>
         </div>
       </div>
     </section>
@@ -119,5 +177,6 @@
   </footer>
 
   <script type="module" src="script.js"></script>
+  <script src="restaurant-le-basilic.js"></script>
 </body>
 </html>

@@ -152,3 +152,51 @@
     grid-row: auto;
   }
 }
+
+/* ---------- Réserver une table : outil de réservation fictif ---------- */
+.lb-booking {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.lb-booking-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 560px) {
+  .lb-booking-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lb-booking-form .btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.lb-booking-confirm {
+  background-color: var(--neutre);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+}
+
+.lb-booking-confirm-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: var(--fond);
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.lb-booking-summary {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
