@@ -23,6 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="restaurant-le-basilic.css">
 
   <!-- Palette propre à cette page de démo : surcharge des variables partagées -->
   <style>
@@ -65,12 +66,20 @@
     <section class="hero">
       <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="container">
-        <span class="hero-eyebrow">Bistro de saison · Lyon</span>
-        <h1>Une cuisine de saison, généreuse et sans chichis</h1>
-        <p class="hero-subtitle">Le Basilic propose une cuisine de marché qui change au fil des saisons, dans un cadre chaleureux en plein cœur de Lyon. Produits locaux, cuisson maîtrisée, portions généreuses.</p>
-        <div class="hero-actions">
-          <a href="demo-restaurant-le-basilic-carte.html" class="btn btn-primary">Voir la carte</a>
-          <a href="demo-restaurant-le-basilic-infos.html" class="btn btn-secondary">Réserver une table</a>
+        <div class="lb-hero-grid">
+          <div>
+            <span class="hero-eyebrow">Bistro de saison · Lyon</span>
+            <h1>Une cuisine de saison, généreuse et sans chichis</h1>
+            <p class="hero-subtitle">Le Basilic propose une cuisine de marché qui change au fil des saisons, dans un cadre chaleureux en plein cœur de Lyon. Produits locaux, cuisson maîtrisée, portions généreuses.</p>
+            <div class="hero-actions">
+              <a href="demo-restaurant-le-basilic-carte.html" class="btn btn-primary">Voir la carte</a>
+              <a href="demo-restaurant-le-basilic-infos.html" class="btn btn-secondary">Réserver une table</a>
+            </div>
+          </div>
+          <div class="lb-hero-media fade-in">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_121107_c28d4a88-455f-4aaf-8a4b-dbaf0cee46f0.png" alt="Salle du restaurant Le Basilic" loading="eager">
+            <span class="lb-signage">Le Basilic</span>
+          </div>
         </div>
       </div>
     </section>
@@ -79,17 +88,22 @@
     <section>
       <div class="container">
         <div class="two-col">
-          <div class="fade-in">
-            <h2 class="section-title" style="text-align:left;">Notre cuisine</h2>
-            <p class="muted">Ouvert en 2017 par un chef formé dans les bouchons lyonnais, Le Basilic revisite les classiques avec des produits choisis chez des producteurs de la région.</p>
-            <p class="muted">La carte change toutes les six semaines pour suivre les saisons, et un menu du midi plus court permet de manger vite, sans sacrifier la qualité.</p>
+          <div class="lb-feature-media fade-in">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GGOs8cmZPWwDoT66C2zvduLbDi/hf_20260711_121122_7d4571c9-311f-481a-9b88-9722cb18cb2d.png" alt="Assiette du chef, Le Basilic" loading="lazy">
           </div>
-          <ul class="check-list fade-in">
-            <li>Produits locaux et de saison, sourcés en direct</li>
-            <li>Carte renouvelée toutes les six semaines</li>
-            <li>Menu du midi servi en 45 minutes</li>
-            <li>Belle sélection de vins nature et biodynamiques</li>
-          </ul>
+          <div class="lb-feature-copy">
+            <div class="fade-in">
+              <h2 class="section-title" style="text-align:left;">Notre cuisine</h2>
+              <p class="muted">Ouvert en 2017 par un chef formé dans les bouchons lyonnais, Le Basilic revisite les classiques avec des produits choisis chez des producteurs de la région.</p>
+              <p class="muted">La carte change toutes les six semaines pour suivre les saisons, et un menu du midi plus court permet de manger vite, sans sacrifier la qualité.</p>
+            </div>
+            <ul class="check-list fade-in">
+              <li>Produits locaux et de saison, sourcés en direct</li>
+              <li>Carte renouvelée toutes les six semaines</li>
+              <li>Menu du midi servi en 45 minutes</li>
+              <li>Belle sélection de vins nature et biodynamiques</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
