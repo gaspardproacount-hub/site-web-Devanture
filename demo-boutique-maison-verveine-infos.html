@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <script type="importmap">
+  {
+    "imports": {
+      "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.5.0/+esm"
+    }
+  }
+  </script>
   <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,16 +28,19 @@
   <!-- Palette et typographie propres à cette page de démo : surcharge des variables partagées -->
   <style>
     :root {
-      --fond: #F8F7EE;
-      --texte: #16281C;
-      --accent: #1E8449;
-      --accent-hover: #166636;
-      --accent-soft: #9BAE8D;
-      --accent-2: #1B3A2B;
-      --neutre: #E4E8D5;
-      --mv-accent-3: #C9D96B;
-      --mv-accent-4: #5A6B45;
+      /* Palette a deux teintes seulement : terracotta (fonds) + vert sage (typographie) */
+      --fond: #F0CDA6;
+      --texte: #2E3A26;
+      --accent: #4C6B3C;
+      --accent-hover: #3A5230;
+      --accent-soft: #8FA37E;
+      --accent-2: #7A3B1E;
+      --neutre: #E6BD92;
+      --mv-accent-3: #A9C296;
+      --mv-accent-4: #7A3B1E;
+      --mv-text-on-dark: #BBCFA9;
       --font-heading: "Playfair Display", Georgia, serif;
+      --font-title: var(--font-heading);
       --font-body: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
@@ -42,6 +52,7 @@
   <header class="site-header">
     <nav class="nav">
       <a href="demo-boutique-maison-verveine.html" class="nav-logo demo-wordmark">🌿 Maison Verveine</a>
+      <div class="nav-stripes" aria-hidden="true"></div>
       <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
@@ -122,7 +133,7 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 
   <!-- Smooth scroll + animations pilotées par le scroll, communes aux 3 pages -->
   <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>

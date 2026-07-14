@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <script type="importmap">
+  {
+    "imports": {
+      "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.5.0/+esm"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réalisations | Devanture — Création de site web</title>
+  <meta name="description" content="Exemples de sites web créés par Devanture pour des commerçants de proximité : boutique, restaurant, café, boulangerie.">
+  <link rel="canonical" href="https://www.devanture-web.fr/realisations.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Réalisations | Devanture — Création de site web">
+  <meta property="og:description" content="Exemples de sites web créés par Devanture pour des commerçants de proximité : boutique, restaurant, café, boulangerie.">
+  <meta property="og:url" content="https://www.devanture-web.fr/realisations.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:image" content="https://www.devanture-web.fr/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="logo-devanture-icone.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme-devanture.css">
+
+  <!-- Fil d'Ariane structuré -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://www.devanture-web.fr/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Réalisations",
+        "item": "https://www.devanture-web.fr/realisations.html"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo"><img src="logo-devanture-dore.svg" alt="Devanture — Sites web pour commerces" width="460" height="140"></a>
+      <div class="nav-stripes" aria-hidden="true"></div>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="site-web-boutique.html">Boutique</a></li>
+        <li><a href="site-web-restaurant.html">Restaurant</a></li>
+        <li><a href="site-web-cafe.html">Café</a></li>
+        <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
+        <li><a href="realisations.html" class="is-active">Réalisations</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Réalisations -->
+    <section id="realisations">
+      <div class="container">
+        <h1 class="section-title fade-in">Réalisations</h1>
+        <p class="section-intro fade-in">Quelques exemples de projets réalisés pour des commerçants de proximité.</p>
+
+        <!--
+          Chaque vignette mène à un site de démo (les 4 utilisent le même portail visuel,
+          en noir + contour doré, comme le thème du site). Café Noisette est une démo
+          déployée à part ; les trois autres sont des mini-sites de démo intégrés
+          (voir demo-*.html).
+        -->
+        <div class="gallery-grid">
+          <a href="demo-boutique-maison-verveine.html" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
+            <div class="gallery-preview" style="background: var(--fond); border: 2px solid var(--accent-soft); color: var(--texte);">
+              <span class="gallery-preview-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4C10 4 4 10 4 20h2c8 0 14-6 14-16z"/><path d="M6 20c3-3 7-7 12-12"/></svg>
+              </span>
+              <span class="gallery-preview-name">Maison Verveine</span>
+              <span class="gallery-preview-tag">Boutique mode &amp; accessoires</span>
+            </div>
+          </a>
+          <a href="demo-restaurant-le-basilic.html" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
+            <div class="gallery-preview" style="background: var(--fond); border: 2px solid var(--accent-soft); color: var(--texte);">
+              <span class="gallery-preview-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v8a2 2 0 004 0V2M8 12v10M17 2c-1.5 2-1.5 5 0 7 .5.5.8 1.1.8 1.8V22"/></svg>
+              </span>
+              <span class="gallery-preview-name">Le Basilic</span>
+              <span class="gallery-preview-tag">Bistro de saison</span>
+            </div>
+          </a>
+          <a href="https://site-web-d-mo-noisette.vercel.app/" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
+            <div class="gallery-preview" style="background: var(--fond); border: 2px solid var(--accent-soft); color: var(--texte);">
+              <span class="gallery-preview-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13v6a5 5 0 01-5 5H9a5 5 0 01-5-5V8z"/><path d="M17 9h1.5a2.5 2.5 0 010 5H17"/><path d="M8 3c-.5 1-.5 1.5 0 2.5M12 3c-.5 1-.5 1.5 0 2.5"/></svg>
+              </span>
+              <span class="gallery-preview-name">Noisette</span>
+              <span class="gallery-preview-tag">Café de spécialité</span>
+            </div>
+          </a>
+          <a href="demo-boulangerie-fournil-dore.html" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
+            <div class="gallery-preview" style="background: var(--fond); border: 2px solid var(--accent-soft); color: var(--texte);">
+              <span class="gallery-preview-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-6 4-9 8-9s8 3 8 9-4 6-8 6-8 0-8-6z"/><path d="M8 9.5l2 3M13 8.5l2 3.5"/></svg>
+              </span>
+              <span class="gallery-preview-name">Le Fournil Doré</span>
+              <span class="gallery-preview-tag">Boulangerie artisanale</span>
+            </div>
+          </a>
+        </div>
+        <p class="gallery-note fade-in">👆 Cliquez sur une réalisation pour voir la démo</p>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section>
+      <div class="container">
+        <div class="cta-band">
+          <h2>Votre commerce mérite le même soin</h2>
+          <p>Parlons de votre projet de site web, sans jargon technique.</p>
+          <a href="contact.html" class="btn btn-primary">Parlons de votre projet</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-logo"><img src="logo-devanture-blanc.svg" alt="Devanture — Sites web pour commerces" width="460" height="140"></a>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="site-web-boutique.html">Boutique</a></li>
+          <li><a href="site-web-restaurant.html">Restaurant</a></li>
+          <li><a href="site-web-cafe.html">Café</a></li>
+          <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
+          <li><a href="pourquoi-mon-commerce-napparait-pas-sur-google.html">Conseils</a></li>
+          <li><a href="ai-je-besoin-dun-site-internet-facebook-instagram.html">Facebook ou site ?</a></li>
+          <li><a href="combien-coute-un-site-internet-pour-commercant.html">Prix d'un site</a></li>
+          <li><a href="comment-avoir-plus-avis-google-commerce.html">Avis Google</a></li>
+          <li><a href="site-gratuit-wix-canva-ou-site-professionnel.html">Wix ou pro ?</a></li>
+          <li><a href="realisations.html" class="is-active">Réalisations</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <p class="footer-bottom">© <span id="current-year"></span> Devanture — Sites web pour commerces, partout en France — <a href="[MENTIONS LEGALES]">Mentions légales</a></p>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

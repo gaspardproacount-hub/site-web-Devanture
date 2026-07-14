@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <script type="importmap">
+  {
+    "imports": {
+      "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.5.0/+esm"
+    }
+  }
+  </script>
   <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +36,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme-devanture.css">
 
   <!-- Données structurées : à personnaliser (téléphone, email, réseaux sociaux) -->
   <script type="application/ld+json">
@@ -65,7 +73,8 @@
 
   <header class="site-header">
     <nav class="nav">
-      <a href="index.html" class="nav-logo"><img src="logo-devanture-principal.svg" alt="Devanture — Sites web pour commerces" width="460" height="140"></a>
+      <a href="index.html" class="nav-logo"><img src="logo-devanture-dore.svg" alt="Devanture — Sites web pour commerces" width="460" height="140"></a>
+      <div class="nav-stripes" aria-hidden="true"></div>
       <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
@@ -77,6 +86,7 @@
         <li><a href="site-web-restaurant.html">Restaurant</a></li>
         <li><a href="site-web-cafe.html">Café</a></li>
         <li><a href="site-web-boulangerie.html">Boulangerie</a></li>
+        <li><a href="realisations.html">Réalisations</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -88,12 +98,20 @@
     <section class="hero">
       <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="container">
-        <h1>Votre commerce mérite un site qui vous ramène des clients</h1>
+        <h1>Votre commerce mérite un site qui vous <span class="text-gradient">ramène des clients</span></h1>
         <p class="hero-subtitle">Je conçois des sites vitrines simples, rapides et bien référencés pour les commerçants et artisans partout en France — sans jargon technique, sans mauvaise surprise.</p>
         <div class="hero-actions">
           <a href="contact.html" class="btn btn-primary">Parlons de votre projet</a>
           <a href="#pour-qui" class="btn btn-secondary">Voir les offres par métier</a>
         </div>
+      </div>
+    </section>
+
+    <!-- Bouton interactif : compose "design for u" lettre par lettre (createLayout) -->
+    <section class="hero-layout">
+      <div class="container">
+        <button type="button" class="btn btn-primary layout-trigger">Cliquer ici</button>
+        <div class="layout-container" aria-live="polite"></div>
       </div>
     </section>
 
@@ -117,22 +135,22 @@
         <p class="section-intro fade-in">Chaque commerce a ses propres besoins. Choisissez votre activité pour découvrir une offre pensée spécifiquement pour vous.</p>
 
         <div class="card-grid">
-          <a href="site-web-boutique.html" class="metier-card fade-in">
+          <a href="site-web-boutique.html" class="metier-card">
             <span class="metier-card-icon" aria-hidden="true">🛍️</span>
             <h3>Boutique</h3>
             <p>Vitrine de vos produits et bonne visibilité locale.</p>
           </a>
-          <a href="site-web-restaurant.html" class="metier-card fade-in">
+          <a href="site-web-restaurant.html" class="metier-card">
             <span class="metier-card-icon" aria-hidden="true">🍽️</span>
             <h3>Restaurant</h3>
             <p>Menu lisible sur mobile et réservation simplifiée.</p>
           </a>
-          <a href="site-web-cafe.html" class="metier-card fade-in">
+          <a href="site-web-cafe.html" class="metier-card">
             <span class="metier-card-icon" aria-hidden="true">☕</span>
             <h3>Café</h3>
             <p>Ambiance, carte à jour et avis clients mis en valeur.</p>
           </a>
-          <a href="site-web-boulangerie.html" class="metier-card fade-in">
+          <a href="site-web-boulangerie.html" class="metier-card">
             <span class="metier-card-icon" aria-hidden="true">🥖</span>
             <h3>Boulangerie</h3>
             <p>Horaires, click &amp; collect et photos qui donnent envie.</p>
@@ -172,52 +190,6 @@
       </div>
     </section>
 
-    <!-- Réalisations -->
-    <section>
-      <div class="container">
-        <h2 class="section-title fade-in">Réalisations</h2>
-        <p class="section-intro fade-in">Quelques exemples de projets réalisés pour des commerçants de proximité.</p>
-
-        <!--
-          Chaque vignette mène à un site de démo (les 4 utilisent le même portail visuel,
-          en bleu marine comme le logo). Café Noisette est une démo déployée à part ;
-          les trois autres sont des mini-sites de démo intégrés (voir demo-*.html).
-        -->
-        <div class="gallery-grid">
-          <a href="demo-boutique-maison-verveine.html" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
-            <div class="gallery-preview" style="background: linear-gradient(135deg, #1E3A5F, #0F2438); color: #F6F1E9;">
-              <span class="gallery-preview-icon">🌿</span>
-              <span class="gallery-preview-name">Maison Verveine</span>
-              <span class="gallery-preview-tag">Boutique mode &amp; accessoires</span>
-            </div>
-          </a>
-          <a href="demo-restaurant-le-basilic.html" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
-            <div class="gallery-preview" style="background: linear-gradient(135deg, #1E3A5F, #0F2438); color: #F6F1E9;">
-              <span class="gallery-preview-icon">🍽️</span>
-              <span class="gallery-preview-name">Le Basilic</span>
-              <span class="gallery-preview-tag">Bistro de saison</span>
-            </div>
-          </a>
-          <a href="https://site-web-d-mo-noisette.vercel.app/" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
-            <div class="gallery-preview" style="background: linear-gradient(135deg, #1E3A5F, #0F2438); color: #F6F1E9;">
-              <span class="gallery-preview-icon">☕</span>
-              <span class="gallery-preview-name">Noisette</span>
-              <span class="gallery-preview-tag">Café de spécialité</span>
-            </div>
-          </a>
-          <a href="demo-boulangerie-fournil-dore.html" class="gallery-item fade-in" target="_blank" rel="noopener noreferrer">
-            <div class="gallery-preview" style="background: linear-gradient(135deg, #1E3A5F, #0F2438); color: #F6F1E9;">
-              <span class="gallery-preview-icon">🥖</span>
-              <span class="gallery-preview-name">Le Fournil Doré</span>
-              <span class="gallery-preview-tag">Boulangerie artisanale</span>
-            </div>
-          </a>
-        </div>
-        <p class="gallery-note fade-in">👆 Cliquez sur une réalisation pour voir la démo</p>
-      </div>
-    </section>
-
-
   </main>
 
   <footer class="site-footer">
@@ -237,13 +209,14 @@
           <li><a href="combien-coute-un-site-internet-pour-commercant.html">Prix d'un site</a></li>
           <li><a href="comment-avoir-plus-avis-google-commerce.html">Avis Google</a></li>
           <li><a href="site-gratuit-wix-canva-ou-site-professionnel.html">Wix ou pro ?</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
+        <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <p class="footer-bottom">© <span id="current-year"></span> Devanture — Sites web pour commerces, partout en France — <a href="[MENTIONS LEGALES]">Mentions légales</a></p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>

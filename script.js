@@ -1,7 +1,38 @@
 // Devanture — Sites web pour commerces
 // JavaScript vanilla partagé par toutes les pages : menu mobile, FAQ, fade-in au scroll.
+// anime.js est chargé via un import ES dynamique (voir plus bas). Si l'import échoue
+// (CDN bloqué, hors-ligne...), le reste du site continue de fonctionner normalement :
+// les grilles et le titre d'accueil gardent leur comportement statique/fade-in classique.
+
+var animeAnimate = null;
+var animeStagger = null;
+var animeSplitText = null;
+var animeCreateLayout = null;
+
+var animeReady = import("animejs")
+  .then(function (mod) {
+    animeAnimate = mod.animate;
+    animeStagger = mod.stagger;
+    animeSplitText = mod.splitText;
+    animeCreateLayout = mod.createLayout;
+  })
+  .catch(function () {
+    // anime.js indisponible : animeAnimate reste null, les filets de sécurité prennent le relais.
+  });
+
+// Pages sur lesquelles le titre d'accueil animé (splitText) ne doit PAS s'appliquer.
+var HERO_SPLIT_EXCLUDED_PAGES = ["", "index.html", "contact.html", "merci.html"];
+
+function isHeroSplitPage() {
+  var file = location.pathname.split("/").pop();
+  if (HERO_SPLIT_EXCLUDED_PAGES.indexOf(file) !== -1) return false;
+  if (file.indexOf("demo-") === 0) return false;
+  return true;
+}
 
 document.addEventListener("DOMContentLoaded", function () {
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   // ---------- Menu burger (mobile) ----------
   var navToggle = document.querySelector(".nav-toggle");
   var navLinks = document.querySelector(".nav-links");
@@ -51,7 +82,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // ---------- Cartes "spotlight" : lueur qui suit le curseur (inspiré de bklit-ui / kokonutui) ----------
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && !prefersReducedMotion) {
+    document.querySelectorAll(".metier-card, .feature-card, .cross-link-card, .step, .pricing-card").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", ((e.clientX - rect.left) / rect.width) * 100 + "%");
+        card.style.setProperty("--my", ((e.clientY - rect.top) / rect.height) * 100 + "%");
+      });
+    });
+  }
 
   // ---------- Reveal en cascade : délai progressif par grille ----------
   document.querySelectorAll(".card-grid, .feature-grid, .steps, .gallery-grid, .cross-links").forEach(function (grid) {
@@ -64,14 +104,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ---------- Fade-in discret au scroll ----------
   var fadeEls = document.querySelectorAll(".fade-in");
+  var fadeObserver = null;
 
   if ("IntersectionObserver" in window && fadeEls.length) {
-    var observer = new IntersectionObserver(
+    fadeObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+            fadeObserver.unobserve(entry.target);
           }
         });
       },
@@ -79,12 +120,85 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     fadeEls.forEach(function (el) {
-      observer.observe(el);
+      fadeObserver.observe(el);
     });
   } else {
     // Navigateur sans support : on affiche directement le contenu
     fadeEls.forEach(function (el) {
       el.classList.add("is-visible");
+    });
+  }
+
+  // ---------- Anime.js (progressive enhancement, une fois l'import résolu) ----------
+  if (!prefersReducedMotion && "IntersectionObserver" in window) {
+    animeReady.then(function () {
+      if (!animeAnimate) return;
+
+      // Entrée en cascade des grilles : remplace le fade-in classique pour les
+      // éléments pas encore révélés (les autres gardent leur fade-in déjà joué).
+      document.querySelectorAll(".card-grid, .feature-grid, .steps, .gallery-grid, .cross-links").forEach(function (grid) {
+        var items = Array.prototype.slice.call(grid.children).filter(function (item) {
+          return !item.classList.contains("is-visible");
+        });
+        if (!items.length) return;
+
+        items.forEach(function (item) {
+          if (fadeObserver) fadeObserver.unobserve(item);
+          item.classList.remove("fade-in", "is-visible");
+        });
+
+        var gridObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              animeAnimate(items, {
+                opacity: [0, 1],
+                translateY: [28, 0],
+                scale: [0.94, 1],
+                delay: animeStagger(80),
+                duration: 700,
+                ease: "outExpo",
+              });
+              gridObserver.disconnect();
+            });
+          },
+          { threshold: 0.2 }
+        );
+        gridObserver.observe(grid);
+      });
+
+      // Titre d'accueil : caractères qui rebondissent en boucle (splitText),
+      // sur toutes les pages sauf l'accueil et la page contact.
+      if (animeSplitText && isHeroSplitPage()) {
+        var heroTitle = document.querySelector(".hero h1");
+        if (heroTitle) {
+          // Police un peu plus petite pour que la phrase tienne en moins de
+          // lignes (voir .is-hero-split dans styles.css).
+          heroTitle.classList.add("is-hero-split");
+
+          var split = animeSplitText(heroTitle, { words: true, chars: true });
+
+          // Empêche les coupures de ligne au milieu d'un mot : chaque mot
+          // reste entier (nowrap), seul un espace entre deux mots peut
+          // déclencher un retour à la ligne.
+          (split.words || []).forEach(function (word) {
+            word.style.display = "inline-block";
+            word.style.whiteSpace = "nowrap";
+          });
+
+          animeAnimate(split.chars, {
+            y: [
+              { to: "-2.75rem", ease: "outExpo", duration: 600 },
+              { to: 0, ease: "outBounce", duration: 800, delay: 100 },
+            ],
+            rotate: { from: "-1turn", delay: 0 },
+            delay: animeStagger(50),
+            ease: "inOutCirc",
+            loopDelay: 1000,
+            loop: true,
+          });
+        }
+      }
     });
   }
 
@@ -170,6 +284,88 @@ document.addEventListener("DOMContentLoaded", function () {
       priceObserver.observe(el);
     });
   }
+
+  // ---------- Bouton "Cliquer ici" : compose "design for u" lettre par lettre ----------
+  (function () {
+    var layoutContainer = document.querySelector(".layout-container");
+    var layoutButton = document.querySelector(".layout-trigger");
+    if (!layoutContainer || !layoutButton) return;
+
+    var LETTERS = "designforu".split("");
+    var SPACE_BEFORE = { 6: true, 9: true }; // avant "f" (design|for) et avant "u" (for|u)
+    var letterIndex = 0;
+
+    function makeLetter(char, isSpace) {
+      var span = document.createElement("span");
+      span.className = "layout-letter" + (isSpace ? " layout-letter-space" : "");
+      span.textContent = isSpace ? " " : char;
+      return span;
+    }
+
+    function appendPlain(root) {
+      if (SPACE_BEFORE[letterIndex]) root.appendChild(makeLetter(" ", true));
+      var span = makeLetter(LETTERS[letterIndex], false);
+      if (!prefersReducedMotion) {
+        span.style.opacity = "0";
+        span.style.transform = "translateY(20px) scale(0.5)";
+      }
+      root.appendChild(span);
+      if (!prefersReducedMotion) {
+        requestAnimationFrame(function () {
+          span.style.transition = "transform 0.35s var(--ease-out), opacity 0.3s ease";
+          span.style.opacity = "1";
+          span.style.transform = "translateY(0) scale(1)";
+        });
+      }
+      letterIndex++;
+    }
+
+    function finishIfDone() {
+      if (letterIndex >= LETTERS.length) {
+        layoutButton.disabled = true;
+        layoutButton.classList.add("is-done");
+      }
+    }
+
+    function wireUpWith(layout) {
+      layoutButton.addEventListener("click", function () {
+        if (letterIndex >= LETTERS.length) return;
+
+        if (layout) {
+          layout.update(function (ctx) {
+            if (SPACE_BEFORE[letterIndex]) ctx.root.appendChild(makeLetter(" ", true));
+            ctx.root.appendChild(makeLetter(LETTERS[letterIndex], false));
+            letterIndex++;
+          });
+        } else {
+          appendPlain(layoutContainer);
+        }
+
+        finishIfDone();
+      });
+    }
+
+    if (prefersReducedMotion) {
+      wireUpWith(null);
+      return;
+    }
+
+    animeReady.then(function () {
+      var layout = animeCreateLayout
+        ? animeCreateLayout(layoutContainer, {
+            duration: 250,
+            ease: "outQuad",
+            enterFrom: {
+              transform: "translateY(100px) scale(.25)",
+              opacity: 0,
+              duration: 350,
+              ease: "out(3)",
+            },
+          })
+        : null;
+      wireUpWith(layout);
+    });
+  })();
 
   // ---------- Formulaire de contact : envoi AJAX avec délai maîtrisé ----------
   var contactForm = document.getElementById("contact-form");
