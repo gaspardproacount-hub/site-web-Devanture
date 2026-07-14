@@ -435,53 +435,6 @@ section {
   flex-wrap: wrap;
 }
 
-/* ---------- Bouton "Cliquer ici" : compose "design for u" lettre par lettre ---------- */
-.hero-layout {
-  padding: 16px 0 56px;
-  text-align: center;
-}
-
-.layout-trigger {
-  margin-bottom: 28px;
-}
-
-.layout-trigger.is-done {
-  opacity: 0.6;
-  cursor: default;
-}
-
-.layout-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  min-height: 52px;
-}
-
-.layout-letter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius);
-  background-color: color-mix(in srgb, var(--accent) 10%, var(--fond));
-  color: var(--accent);
-  font-family: var(--font-title);
-  font-weight: 600;
-  font-size: 1.3rem;
-  text-transform: uppercase;
-  box-shadow: var(--shadow-subtle);
-}
-
-.layout-letter-space {
-  width: 20px;
-  height: 44px;
-  background: none;
-  box-shadow: none;
-}
-
 /* ---------- Cards grid ("Pour qui ?") ---------- */
 .card-grid {
   display: grid;
