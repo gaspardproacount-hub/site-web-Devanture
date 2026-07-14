@@ -758,6 +758,74 @@
   margin-bottom: 4px;
 }
 
+/* ---------- Produits en boutique (alimenté par le dashboard client Devanture) ---------- */
+.mv-products-section {
+  position: relative;
+}
+
+.mv-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.mv-product-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--neutre);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 16px color-mix(in srgb, var(--texte) 12%, transparent);
+}
+
+.mv-product-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.mv-product-card-body {
+  padding: 18px 20px 22px;
+}
+
+.mv-product-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mv-product-card-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.mv-product-price {
+  font-weight: 600;
+  color: var(--accent-2);
+  white-space: nowrap;
+}
+
+.mv-product-card-body p {
+  margin-top: 8px;
+  color: var(--texte);
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .mv-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .mv-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- Pied de page : reste dans la famille terracotta (fond)
    + sage clair (texte), le pied de page partagé utilise --accent comme fond
    ce qui donnerait du vert ici puisque --accent est notre couleur de texte ---------- */

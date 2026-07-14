@@ -85,17 +85,19 @@
           <div class="gsap-reveal-item">
             <h3>Horaires</h3>
             <table class="hours-table">
-              <tr><td>Lundi</td><td>Fermé</td></tr>
-              <tr><td>Mardi – Vendredi</td><td>10h30 – 19h00</td></tr>
-              <tr><td>Samedi</td><td>10h00 – 19h30</td></tr>
-              <tr><td>Dimanche</td><td>Fermé</td></tr>
+              <tbody id="mv-hours-body">
+                <tr><td>Lundi</td><td>Fermé</td></tr>
+                <tr><td>Mardi – Vendredi</td><td>10h30 – 19h00</td></tr>
+                <tr><td>Samedi</td><td>10h00 – 19h30</td></tr>
+                <tr><td>Dimanche</td><td>Fermé</td></tr>
+              </tbody>
             </table>
           </div>
           <div class="contact-info gsap-reveal-item">
             <h3>Nous trouver</h3>
-            <p class="muted">14 rue Notre-Dame<br>33000 Bordeaux — Quartier des Chartrons</p>
-            <p><a href="tel:+33556000000">05 56 00 00 00</a></p>
-            <p><a href="mailto:contact@maison-verveine.fr">contact@maison-verveine.fr</a></p>
+            <p class="muted" id="mv-address">14 rue Notre-Dame<br>33000 Bordeaux — Quartier des Chartrons</p>
+            <p><a href="tel:+33556000000" id="mv-phone-link">05 56 00 00 00</a></p>
+            <p><a href="mailto:contact@maison-verveine.fr" id="mv-email-link">contact@maison-verveine.fr</a></p>
             <span class="contact-reply-note">🚗 Parking Chartrons à 2 minutes à pied</span>
           </div>
         </div>
@@ -177,5 +179,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="boutique-maison-verveine.js"></script>
+  <script src="maison-verveine-cms.js"></script>
 </body>
 </html>
