@@ -1,0 +1,57 @@
+# ==========================================================================
+# Template Decap CMS — à copier dans admin/config.yml de CHAQUE nouveau site
+# client, puis à adapter (repo, collection, champs).
+#
+# Provider OAuth partagé (une seule fois pour tous les clients Devanture) :
+# base_url pointe vers le projet Vercel qui héberge api/auth.js + api/callback.js
+# (voir /api/auth.js et /api/callback.js à la racine du repo site-web-Devanture).
+# ==========================================================================
+
+backend:
+  name: github
+  repo: mon-org/nom-du-repo-client   # À ADAPTER : owner/repo GitHub du site client
+  branch: main
+  base_url: https://www.devanture-web.fr/api   # Provider OAuth partagé Devanture
+  auth_endpoint: auth                          # -> https://www.devanture-web.fr/api/auth
+
+# Les médias uploadés depuis le CMS (photos plats/produits) sont commités
+# directement dans le repo, dans ce dossier :
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# ---------- Option A : site restaurant (carte) ----------
+# collections:
+#   - name: "menu"
+#     label: "Carte du restaurant"
+#     folder: "content/menu"
+#     create: true
+#     slug: "{{slug}}"
+#     fields:
+#       - { label: "Nom du plat", name: "title", widget: "string" }
+#       - { label: "Description", name: "description", widget: "text", required: false }
+#       - { label: "Prix (€)", name: "prix", widget: "number", value_type: "float" }
+#       - label: "Catégorie"
+#         name: "categorie"
+#         widget: "select"
+#         options: ["Entrées", "Plats", "Desserts", "Menu du midi", "Suggestions", "Vins"]
+#       - { label: "Photo", name: "photo", widget: "image", required: false }
+
+# ---------- Option B : site boutique (catalogue) ----------
+# collections:
+#   - name: "catalogue"
+#     label: "Catalogue produits"
+#     folder: "content/catalogue"
+#     create: true
+#     slug: "{{slug}}"
+#     fields:
+#       - { label: "Nom du produit", name: "title", widget: "string" }
+#       - { label: "Prix (€)", name: "prix", widget: "number", value_type: "float" }
+#       - { label: "Description", name: "description", widget: "text", required: false }
+#       - { label: "Photo", name: "photo", widget: "image", required: false }
+#       - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
+
+# Décommentez la collection adaptée au projet (menu OU catalogue), en
+# remplaçant "folder" par l'endroit réel où le site lit ses données
+# (JSON, Markdown, ou contenu à extraire du HTML/JS existant — à repérer au
+# cas par cas sur le repo du client avant de finaliser cette config).
+collections: []
