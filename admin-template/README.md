@@ -41,13 +41,35 @@ HTML/CSS/JS statiques comme ceux de Devanture.
 7. Donner au client l'accès à `https://<site-du-client>/admin` (voir
    plus bas "Accès client").
 
-## Accès client
+## Accès client (client non technique, ne connaît pas GitHub)
 
-Le client se rend sur `https://<son-site>/admin`, clique sur "Login with
-GitHub", et doit avoir un compte GitHub avec accès en écriture à son propre
-repo (soit en tant que collaborateur, soit un compte dédié créé pour lui).
-Une fois connecté, il voit uniquement l'interface définie dans `config.yml`
-(ex. "Catalogue produits") — pas le code, pas les autres fichiers du repo.
+Le client n'a pas de compte GitHub et n'a pas à en créer un lui-même, ni à
+comprendre ce que c'est. Marche à suivre, à faire une fois par client :
+
+1. **Créer un compte GitHub dédié à ce client** (une seule fois, à sa
+   création) — un simple compte GitHub gratuit, avec un email au choix
+   (celui du client, ou une adresse dédiée type `client-nom@...`) et un mot
+   de passe simple que tu notes de ton côté.
+2. **Ajouter ce compte comme collaborateur** sur le repo GitHub de ce
+   client **uniquement** (Settings → Collaborators sur son repo) — jamais
+   sur le repo d'un autre client, pour garder les accès bien séparés.
+3. **Se connecter une fois** avec ce compte, dans le navigateur du client
+   (sur son ordinateur/téléphone, en rendez-vous ou par écran partagé) :
+   ouvrir `https://<son-site>/admin`, cliquer "Login with GitHub", entrer
+   l'email/mot de passe créés à l'étape 1. GitHub garde ensuite la session
+   ouverte dans ce navigateur pendant plusieurs mois.
+4. **Transmettre au client uniquement le lien** `https://<son-site>/admin`
+   (à mettre en favori) — il n'aura plus jamais besoin de retaper d'identifiants
+   ni de savoir que GitHub existe : il clique le lien, l'interface d'édition
+   s'ouvre directement.
+
+Si la session GitHub venait à expirer (rare), il suffit de se reconnecter une
+fois avec les identifiants notés à l'étape 1 — le client peut aussi te
+solliciter pour ça plutôt que de gérer un mot de passe GitHub lui-même.
+
+Dans tous les cas, ce compte dédié n'a accès (en écriture) qu'au repo de ce
+client précis : impossible pour lui de voir ou modifier le contenu d'un
+autre client, même par erreur.
 
 ## Ce qui est à faire une seule fois (déjà fait)
 
