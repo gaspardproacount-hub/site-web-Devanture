@@ -35,6 +35,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ---------- Nous écrire : formulaire de contact fictif (page infos) ----------
+  // Purement démonstratif : aucune requête réseau, juste un résumé affiché
+  // côté client pour donner l'impression d'un vrai envoi de message.
+  var mvContactForm = document.getElementById("mv-contact-form");
+  var mvConfirm = document.getElementById("mv-message-confirm");
+  var mvSummary = document.getElementById("mv-message-summary");
+  var mvResetBtn = document.getElementById("mv-message-reset");
+
+  if (mvContactForm && mvConfirm && mvSummary) {
+    mvContactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var nom = document.getElementById("mv-nom").value;
+
+      mvSummary.textContent = "Merci " + nom + ", votre message a bien été reçu.";
+
+      mvContactForm.hidden = true;
+      mvConfirm.hidden = false;
+    });
+
+    if (mvResetBtn) {
+      mvResetBtn.addEventListener("click", function () {
+        mvContactForm.reset();
+        mvContactForm.hidden = false;
+        mvConfirm.hidden = true;
+      });
+    }
+  }
+
   // ---------- Smooth scroll (Lenis) + reveals/parallax (GSAP ScrollTrigger) ----------
   if (reduceMotion || typeof gsap === "undefined" || typeof Lenis === "undefined") return;
 

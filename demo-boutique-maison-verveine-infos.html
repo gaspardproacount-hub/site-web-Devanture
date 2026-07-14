@@ -102,6 +102,43 @@
       </div>
     </section>
 
+    <!-- Nous écrire -->
+    <section>
+      <div class="container">
+        <h2 class="section-title mv-title gsap-reveal">Nous écrire</h2>
+        <p class="mv-script gsap-reveal">pour un style qui vous ressemble.</p>
+
+        <div class="mv-message gsap-reveal">
+          <form id="mv-contact-form" class="mv-message-form">
+            <div class="mv-message-row">
+              <div class="form-group">
+                <label for="mv-nom">Nom</label>
+                <input type="text" id="mv-nom" name="nom" required>
+              </div>
+              <div class="form-group">
+                <label for="mv-email">Email</label>
+                <input type="email" id="mv-email" name="email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="mv-message">Message</label>
+              <textarea id="mv-message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mv-btn-pill">Envoyer le message</button>
+            <p class="form-note">Outil de contact fictif, à titre de démonstration — aucun message n'est réellement envoyé.</p>
+          </form>
+
+          <div id="mv-message-confirm" class="mv-message-confirm" hidden>
+            <span class="mv-message-confirm-icon" aria-hidden="true">✓</span>
+            <h3>Message envoyé !</h3>
+            <p class="mv-message-summary" id="mv-message-summary"></p>
+            <p class="muted">Nous vous répondons généralement sous 24h.</p>
+            <button type="button" id="mv-message-reset" class="btn btn-secondary mv-btn-pill">Envoyer un autre message</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Explorer le site -->
     <section class="mv-bento-section">
       <div class="container">

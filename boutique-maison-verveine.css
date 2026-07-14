@@ -713,6 +713,51 @@
   overflow: hidden;
 }
 
+/* ---------- Nous écrire : formulaire de contact fictif ---------- */
+.mv-message {
+  max-width: 560px;
+}
+
+.mv-message-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 560px) {
+  .mv-message-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mv-message-form .btn {
+  margin-top: 8px;
+}
+
+.mv-message-confirm {
+  background-color: var(--neutre);
+  border-radius: var(--radius);
+  padding: 40px;
+}
+
+.mv-message-confirm-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: var(--fond);
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.mv-message-summary {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
 /* ---------- Pied de page : reste dans la famille terracotta (fond)
    + sage clair (texte), le pied de page partagé utilise --accent comme fond
    ce qui donnerait du vert ici puisque --accent est notre couleur de texte ---------- */
