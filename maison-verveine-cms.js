@@ -10,9 +10,10 @@
 
 (function () {
   const CMS_CONFIG = {
-    supabaseUrl: "VOTRE_SUPABASE_URL",
-    supabaseAnonKey: "VOTRE_SUPABASE_ANON_KEY",
-    siteId: "VOTRE_SITE_ID",
+    supabaseUrl: "https://kekjsyqakhpuzxxeralm.supabase.co",
+    supabaseAnonKey:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtla2pzeXFha2hwdXp4eGVyYWxtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQwNDgwNDAsImV4cCI6MjA5OTYyNDA0MH0.vZdboaaVCYThBNH4zXGrb8gEYXwzmk5uHCoPiLFXhUI",
+    siteId: "45313b5d-95f5-4b29-b609-d2335d19b582",
   };
 
   const isConfigured =
